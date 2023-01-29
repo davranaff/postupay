@@ -1,0 +1,123 @@
+/*!***************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[3].oneOf[13].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[3].oneOf[13].use[3]!./src/app/globals.css ***!
+  \***************************************************************************************************************************************************************************************************************************************************************/
+@font-face {
+    font-family: "averin";
+    src: url(/_next/static/media/AvenirNextCyr-Bold.dff8f0fe.ttf);
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'averin';
+    src: url(/_next/static/media/AvenirNextCyr-Light.92cda518.ttf);
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'averin';
+    src: url(/_next/static/media/AvenirNextCyr-Medium.e38ddf0f.ttf);
+    font-weight: 500;
+    font-style: normal;
+}
+
+html {
+    font-family: "averin", serif;
+    font-weight: 300;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+/*!*************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[3].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[3].oneOf[7].use[3]!./src/app/components/Navbar/navbar.module.css ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************/
+.navbar_navbar__6Ixie {
+    width: auto;
+    padding: 10px 50px;
+    background-color: rgba(224, 233, 255, 0.478431);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar_navbarLogo__oTfUe {
+    margin: 0;
+    color: #2455C6;
+    font-size: 35px;
+    font-weight: 600;
+}
+
+.navbar_navbarAuth___bkY_ {
+    margin: 0;
+    color: #646464;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+}
+
+.navbar_navbarAuth___bkY_ img {
+    margin-right: 5px;
+}
+
+/*!*************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[3].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[3].oneOf[7].use[3]!./src/app/components/Footer/footer.module.css ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************/
+.footer_footer__Uv1gf {
+    width: auto;
+    background: #F0F4FF;
+    border-radius: 50px 50px 0 0;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer_footerItem__TbWhs {
+    width: auto;
+}
+
+.footer_footerItemR__y3KQ9 {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.footer_footerItemR__y3KQ9 p {
+    font-size: 15px;
+    color: #6C6F82;
+}
+
+.footer_footerIcons__fVZ1y {
+    width: auto;
+    justify-content: space-between;
+}
+
+.footer_footerIcons__fVZ1y img {
+    margin-left: 10px;
+}
+
+.footer_footerInfo__39fQr {
+    list-style-type: none ;
+    color: #6C6F82;
+    font-size: 15px;
+    -webkit-margin-after: 0;
+            margin-block-end: 0;
+    -webkit-margin-start: 0;
+            margin-inline-start: 0;
+    -webkit-margin-end: 0;
+            margin-inline-end: 0;
+    -webkit-padding-start: 0;
+            padding-inline-start: 0;
+}
+
+.footer_footerLogo__VCoQ8 {
+    margin: 0;
+    color: #2455C6;
+    font-size: 35px;
+    font-weight: 600;
+}

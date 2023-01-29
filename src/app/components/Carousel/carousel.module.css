@@ -1,0 +1,12 @@
+.main {
+    width: auto;
+    height: auto;
+    padding: 70px 120px;
+}
+
+
+.mainContent img {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+}

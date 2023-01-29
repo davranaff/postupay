@@ -1,0 +1,20 @@
+.main {
+    width: auto;
+    height: auto;
+    padding: 30px 0;
+}
+
+.title {
+    text-align: center;
+    font-size: 35px;
+    margin: 50px 0;
+}
+
+.sliders {
+    margin: 50px 0;
+}
+
+.sliders img {
+    width: 120px;
+    height: 120px;
+}

@@ -1,0 +1,28 @@
+.navbar {
+    width: auto;
+    padding: 10px 50px;
+    background-color: rgba(224, 233, 255, 0.478431);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbarLogo {
+    margin: 0;
+    color: #2455C6;
+    font-size: 35px;
+    font-weight: 600;
+}
+
+.navbarAuth {
+    margin: 0;
+    color: #646464;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+}
+
+.navbarAuth img {
+    margin-right: 5px;
+}

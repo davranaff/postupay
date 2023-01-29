@@ -1,0 +1,30 @@
+@font-face {
+    font-family: "averin";
+    src: url("../../assets/fonts/AvenirNextCyr/AvenirNextCyr-Bold.ttf");
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'averin';
+    src: url("../../assets/fonts/AvenirNextCyr/AvenirNextCyr-Light.ttf");
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'averin';
+    src: url("../../assets/fonts/AvenirNextCyr/AvenirNextCyr-Medium.ttf");
+    font-weight: 500;
+    font-style: normal;
+}
+
+html {
+    font-family: "averin", serif;
+    font-weight: 300;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}

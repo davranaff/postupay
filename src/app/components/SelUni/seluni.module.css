@@ -1,0 +1,48 @@
+.main {
+    width: auto;
+    height: 130px;
+    background-color: rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    padding: 35px 100px;
+    border-radius: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.item {
+    width: 300px;
+    height: 100%;
+    background-color: #FFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s ease-out;
+}
+
+.item:hover {
+    box-shadow: 0 0 0 rgba(0,0,0,0.2);
+    transform: scale(1.05);
+}
+
+.item span {
+    margin-left: 10px;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.item__active {
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    transform: scale(1.05);
+}
+
+.checkbox {
+    border-radius: 20px;
+    width: 25px;
+    height: 25px;
+}
