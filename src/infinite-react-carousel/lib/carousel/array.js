@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -41,9 +41,12 @@ function () {
     _defineProperty(this, "toString", function (array) {
       var result = [];
       var newArray = array || _this.array;
-      newArray.forEach(function (item) {
+
+      for (var i = 0; i < newArray.length; i += 1) {
+        var item = newArray[i];
         if (_typeof(item) === 'object' && item instanceof Array) result.push("[".concat(_this.toString(item), "]"));else if (_typeof(item) === 'object') result.push(JSON.stringify(item));else result.push(item.toString());
-      });
+      }
+
       return result.join(',');
     });
 
