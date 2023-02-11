@@ -1,0 +1,10 @@
+.filterContent {
+    width: auto;
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    padding: 60px 100px;
+    position: relative;
+    overflow: hidden;
+    transition: .2s ease-in-out;
+}

@@ -1,0 +1,152 @@
+.main {
+    background-color: rgba(0,0,0,0.03);
+    border-radius: 30px;
+    padding: 20px 30px;
+    box-sizing: border-box;
+    width: 55%;
+    height: auto;
+    position: absolute;
+    left: 7%;
+    transition: .2s ease-in-out;
+}
+
+.main_active {
+    width: 83%;
+}
+
+
+.mainTitle {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 15px 0;
+}
+
+/*  input */
+.input {
+    width: 100%;
+    padding: 10px 30px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.15);
+    transition: .2s;
+    margin: 10px 0;
+    box-sizing: border-box;
+    font-size: 15px;
+}
+
+.error {
+    animation: error .5s 1;
+    color: black;
+}
+
+.error::placeholder {
+    color: #DE303B;
+}
+
+.input:focus {
+    transform: scale(1.01) translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.input::placeholder {
+    font-size: 15px;
+    color: rgba(0,0,0,0.2);
+}
+
+@keyframes error {
+    0% {
+    }
+    20% {
+        transform: translateX(-3px);
+    }
+    40% {
+        transform: translateX(3px)
+    }
+    60% {
+        transform: translateX(-3px)
+    }
+    80% {
+        transform: translateX(3px);
+    }
+    100% {
+    }
+}
+
+.label {
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.icon {
+    position: absolute;
+    top: 32%;
+    right: 4%;
+    width: auto;
+    height: 40%;
+    transition: .2s;
+}
+
+.iconFocused {
+    transform: scale(1.01) translateY(-5px);
+}
+
+.inputIcon {
+    position: absolute;
+    top: 16%;
+    left: 2%;
+    width: 12px;
+}
+/* end input */
+
+
+/* filter item */
+
+.resultContent {
+    height: 500px;
+    overflow-y: scroll;
+}
+
+.filterItem {
+    width: auto;
+    height: auto;
+    border-bottom: 1px solid #B2B4BD;
+    display: flex;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    margin: 15px 0;
+    transition: .2s;
+    cursor: pointer;
+    color: black;
+}
+
+.filterItem:hover {
+    border-bottom: 1px solid black;
+}
+
+.filterItemImg {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.filterItemContent {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 10px;
+}
+
+.filterItemContentTitle {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.filterItemContentSubtitle {
+    font-size: 12px;
+}
+/* end filter item */

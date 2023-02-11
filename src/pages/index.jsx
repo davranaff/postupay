@@ -6,14 +6,20 @@ import Partners from "@/app/components/Partners/Partners";
 
 function Index() {
     return (
-        <>
+        <div>
             <Carousel/>
             <SelUni/>
             <Road/>
             <News/>
             <Partners/>
-        </>
+        </div>
     );
 }
+
+export function getServerSideProps() {
+
+  return { props: {} }
+}
+
 
 export default Index;

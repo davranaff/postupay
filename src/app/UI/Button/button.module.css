@@ -1,41 +1,3 @@
-.navbar {
-    width: auto;
-    padding: 10px 50px;
-    background-color: rgba(224, 233, 255, 0.478431);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.navbarLogo {
-    margin: 0;
-    color: #2455C6;
-    font-size: 35px;
-    font-weight: 600;
-}
-
-.navbarAuth {
-    width: 200px;
-    margin: 0;
-    color: #646464;
-    font-size: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-weight: 500;
-}
-
-.sign {
-    color: #646464;
-}
-.sign:hover {
-    color: #525252;
-}
-
-.navbarAuth img {
-    margin-right: 5px;
-}
-
 .button {
     text-align: center;
     border-radius: 10px;
@@ -73,4 +35,20 @@
     background-color: #FFF;
     color: #2455C6;
     box-shadow: 0 0 0 rgba(0, 0, 0, 0.15);
+}
+
+.medium {
+    font-size: 18px;
+}
+
+.fullWidth {
+    width: 100%;
+}
+
+.small {
+    font-size: 15px;
+}
+
+.large {
+    font-size: 35px;
 }

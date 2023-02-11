@@ -1,0 +1,33 @@
+.main {
+    width: auto;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    background-color: #F8F8F8;
+    border-radius: 30px;
+    width: 400px;
+    height: auto;
+    padding: 35px;
+    box-sizing: border-box;
+}
+
+.title {
+    font-size: 22px;
+    font-weight: 500;
+    margin: 8px 0;
+}
+
+.subtitle {
+    font-size: 15px;
+    color: #6C6F82;
+    margin: 8px 0;
+}
+
+.subtitle a {
+    text-decoration: underline;
+    color: #6C6F82;
+}

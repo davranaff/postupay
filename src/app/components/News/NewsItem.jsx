@@ -8,7 +8,6 @@ function NewsItem() {
             <div className={style.newsItem__content}>
                 <div className={style.newsItem__content_title}>
                     <span>
-                        <Image src='icons/check.svg' width={20} height={20} />
                          В школах и вузах вводят каникулы до 16 января
                     </span>
                 </div>

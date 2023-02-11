@@ -17,6 +17,7 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    position: relative;
 }
 
 .title {
@@ -25,15 +26,15 @@
 
 .roadItem {
     width: 23%;
-    height: 250px;
+    height: auto;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     border-radius: 15px;
     transition: .3s ease-in-out;
     box-sizing: border-box;
     padding: 35px 45px;
+    z-index: 1;
 }
 
 .roadItem__active {
@@ -65,4 +66,21 @@
     word-break: break-word;
     margin: 0;
     font-weight: 500;
+}
+
+.pathTop {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    top: 75px;
+    left: 100px;
+    z-index: 0;
+}
+
+.pathBottom {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    right: 100px;
+    bottom: 130px;
 }

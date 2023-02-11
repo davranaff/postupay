@@ -1,15 +1,19 @@
 import style  from './navbar.module.css'
-import Image from "next/image";
+import Link from "next/link";
 
 
 function Navbar(props) {
     return (
         <nav className={style.navbar}>
-            <h1 className={style.navbarLogo}>postupay</h1>
-            <h1 className={style.navbarAuth}>
-                <Image src={'icons/check.svg'} alt={'check'} width={20} height={20}/>
-                Войти
-            </h1>
+            <Link href='/' className={style.navbarLogo}>postupay</Link>
+            <div className={style.navbarAuth}>
+                 <Link href='/filter' className={style.button}>
+                     Найти Вуз
+                 </Link>
+                 <Link href='signin/' className={style.sign}>
+                    Войти
+                </Link>
+            </div>
         </nav>
     );
 }

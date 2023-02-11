@@ -19,6 +19,13 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'averin';
+    src: url("../../assets/fonts/AvenirNextCyr/AvenirNextCyr-Demi.ttf");
+    font-weight: 700;
+    font-style: normal;
+}
+
 html {
     font-family: "averin", serif;
     font-weight: 300;
@@ -27,4 +34,12 @@ html {
 body {
     margin: 0;
     padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+    margin: 0;
 }

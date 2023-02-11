@@ -14,13 +14,12 @@
 }
 
 .newsContent {
-    display: flex;
-    justify-content: space-between;
     margin: 50px 0;
+    padding: 20px 0 20px 40px;
 }
 
 .newsItem {
-    width: 30%;
+    width: 280px;
     height: auto;
     border-radius: 20px;
     display: flex;
