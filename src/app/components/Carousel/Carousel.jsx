@@ -17,6 +17,7 @@ function Carousel() {
                 interval: 2000,
                 pauseOnHover: false,
                 pagination: false,
+                autoWidth: true
             }}>
                 <SplideSlide>
                     <img src="sliders/header/slider1.svg" alt=""/>
