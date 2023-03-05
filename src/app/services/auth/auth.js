@@ -5,13 +5,11 @@ import {parseBody} from "next/dist/server/api-utils/node";
 export const auth = {
     login: async (data) => {
         const url = mainUrl + 'user/token/'
-        return await axios.post(url, data).then(
-            res => res.data
-        ).catch(e => e)
+        return await axios.post(url, data)
     },
     register: async (data) => {
         const url = mainUrl + 'user/'
-        return await axios.post(url, JSON.stringify(data), {
+        return await axios.post(url, data, {
             headers: {
                 'Content-Type': 'application/json'
             }

@@ -1,10 +1,9 @@
 .main {
     width: auto;
     height: 130px;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.05);
     box-sizing: border-box;
     padding: 35px 100px;
-    border-radius: 30px;
     display: flex;
     justify-content: space-between;
 }
@@ -19,7 +18,7 @@
     box-sizing: border-box;
     padding: 10px 20px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    box-shadow: 0 0 5px rgba(0,0,0,0.15);
     font-size: 15px;
     cursor: pointer;
     transition: 0.3s ease-out;
@@ -45,4 +44,64 @@
     border-radius: 20px;
     width: 25px;
     height: 25px;
+}
+
+@media screen and (max-width: 1920px) {
+    .main {
+        padding: 30px 60px;
+        height: auto;
+    }
+    .item {
+        height: 80px;
+        width: 30%;
+    }
+    .item span {
+        font-size: 30px;
+    }
+}
+
+@media screen and (max-width: 1440px) {
+    .main {
+        height: auto;
+        padding: 30px 50px;
+    }
+    .item {
+        width: 30%;
+        height: 50px;
+    }
+    .item span {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 768px)  {
+    .main {
+        padding: 20px 40px;
+        height: auto;
+    }
+    .item {
+        width: 30%;
+        height: auto;
+    }
+    .item span {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .main {
+        width: 100%;
+        height: auto;
+        flex-direction: column;
+        padding: 20px 50px;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+    }
+
+    .item {
+        width: 100%;
+        margin-bottom: 10px;
+        font-size: 15px;
+    }
 }

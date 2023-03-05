@@ -1,20 +1,42 @@
 import style from './news.module.css'
 import NewsItem from "@/app/components/News/NewsItem";
-import Slider from 'src/infinite-react-carousel'
+import {Splide, SplideSlide} from "@splidejs/react-splide";
+import '@splidejs/react-splide/css';
 
 
 function News(props) {
     return (
         <div className={style.main}>
             <h1 className={style.title}>Новости</h1>
-            <div className={style.newsContent}>
-                <Slider slidesToShow={3} arrows={false} pauseOnHover={false} adaptiveHeight={true} autoplay={true}>
+
+            <Splide className={style.newsContent} options={{
+                type: 'loop',
+                rewind: true,
+                rewindByDrag: true,
+                flickPower: true,
+                autoplay: true,
+                speed: 1000,
+                perPage: 3,
+                perMove: 1,
+                focus: 'center',
+                interval: 2000,
+                pauseOnHover: false,
+                pagination: false,
+                autoWidth: true,
+            }}>
+                <SplideSlide>
                     <NewsItem/>
+                </SplideSlide>
+                <SplideSlide>
                     <NewsItem/>
+                </SplideSlide>
+                <SplideSlide>
                     <NewsItem/>
+                </SplideSlide>
+                <SplideSlide>
                     <NewsItem/>
-                </Slider>
-            </div>
+                </SplideSlide>
+            </Splide>
         </div>
     );
 }

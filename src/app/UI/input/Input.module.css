@@ -65,3 +65,26 @@
 .iconFocused {
     transform: scale(1.01) translateY(-5px);
 }
+
+@media screen and (max-width: 768px) {
+    .input {
+        font-size: 8px;
+        padding: 7px;
+        border-radius: 5px;
+        margin: 5px 0;
+    }
+    .input::placeholder {
+        font-size: 8px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .input {
+        padding: 8px 12px;
+        font-size: 13px;
+        border-radius: 10px;
+    }
+    .input::placeholder {
+        font-size: 13px;
+    }
+}

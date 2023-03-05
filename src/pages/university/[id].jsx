@@ -9,42 +9,42 @@ function Id({university}) {
             <div className={style.header}>
                 <div className={style.leftInfo}>
                     <Image src={'/other/ban.png'} alt={'example'} width={100} height={100}/>
-                    <div className={style.leftInfoItem}>
+                    {university.phone_number && <div className={style.leftInfoItem}>
                         <img src={'/icons/telephone.svg'} alt={'telephone'}/>
                         <div className={style.leftInfoItemContent}>
-                            <p>{university.phone_number}</p>
+                            <p><a href={'tel:' + university.phone_number}>{university.phone_number}</a></p>
                         </div>
-                    </div>
-                    <div className={style.leftInfoItem}>
+                    </div>}
+                    {university.email && <div className={style.leftInfoItem}>
                         <img src={'/icons/mail.svg'} alt={'telephone'}/>
                         <div className={style.leftInfoItemContent}>
-                            <p>{university.email}</p>
+                            <p><a href={'mailto:' + university.email}>{university.email}</a></p>
                         </div>
-                    </div>
-                    <div className={style.leftInfoItem}>
+                    </div>}
+                    {university.postcode && <div className={style.leftInfoItem}>
                         <img src={'/icons/info.svg'} alt={'telephone'}/>
                         <div className={style.leftInfoItemContent}>
                             <p>{university.postcode}</p>
                         </div>
-                    </div>
-                    <div className={style.leftInfoItem}>
+                    </div>}
+                    {university.website && <div className={style.leftInfoItem}>
                         <img src={'/icons/ethernet.svg'} alt={'telephone'}/>
                         <div className={style.leftInfoItemContent}>
-                            <p>{university.website}</p>
+                            <p><a href={university.website}>{university.website}</a></p>
                         </div>
-                    </div>
-                    <div className={style.leftInfoItem}>
+                    </div>}
+                    {university.telegram && <div className={style.leftInfoItem}>
                         <img src={'/icons/Teleg.svg'} alt={'telephone'}/>
                         <div className={style.leftInfoItemContent}>
-                            <p>{university.telegram}</p>
+                            <p><a href={'https://t.me/' + university.telegram}>{university.telegram}</a></p>
                         </div>
-                    </div>
-                    <div className={style.leftInfoItem}>
+                    </div>}
+                    {university.instagram && <div className={style.leftInfoItem}>
                         <img src={'/icons/Insta.svg'} alt={'telephone'}/>
                         <div className={style.leftInfoItemContent}>
-                            <p>{university.instagram}</p>
+                            <p><a href={'https://instagram.com/' + university.instagram}>{university.instagram}</a></p>
                         </div>
-                    </div>
+                    </div>}
                 </div>
                 <div className={style.rightInfo}>
                     <h1 className={style.rightInfoTitle}>{university.title}</h1>
@@ -85,11 +85,11 @@ function Id({university}) {
                 </div>
                 <div className={style.footContacts}>
                     <div className={style.footContactsInfo}>
-                        <p>Телефон: 71 262-43-50</p>
-                        <p>Факс: 71 262-43-60</p>
-                        <p>Электронная почта: info@reu.uz</p>
-                        <p>Почтовый индекс: 100164</p>
-                        <p>Официальный сайт: https://reu.uz/</p>
+                        {university.phone_number &&
+                            <p>Телефон: <a href={'tel:' + university.phone_number}>{university.phone_number}</a></p>}
+                        {university.email && <p>Электронная почта: <a href={'mailto:' + university.email}>{university.email}</a> </p>}
+                        {university.postcode && <p>Почтовый индекс: {university.postcode}</p>}
+                        {university.website && <p>Официальный сайт: <a href={university.website}>{university.website}</a></p>}
                     </div>
                     <div className={style.footContactsAddress}>
                         <p>
@@ -105,9 +105,9 @@ function Id({university}) {
 }
 
 export async function getServerSideProps(context) {
-    const { params } = context
+    const {params} = context
 
-    const data = await universities.getOne(params.id).then( res => res.data )
+    const data = await universities.getOne(params.id).then(res => res.data)
 
     return {
         props: {

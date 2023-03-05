@@ -31,3 +31,44 @@
     text-decoration: underline;
     color: #6C6F82;
 }
+
+@media screen and (max-width: 768px) {
+    .main {
+        padding: 50px 0;
+        height: auto;
+    }
+    .content {
+        width: 220px;
+        padding: 20px 40px;
+        border-radius: 20px;
+    }
+    .title {
+        font-size: 12px;
+    }
+    .subtitle {
+        font-size: 8px;
+    }
+    .forgot {
+        font-size: 8px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .main {
+        height: auto;
+        padding: 80px 25px;
+    }
+    .content {
+        width: 100%;
+    }
+    .title {
+        text-align: center;
+        font-size: 20px;
+    }
+    .subtitle {
+        font-size: 14px;
+        margin: 15px 0;
+        font-weight: 400;
+        color: black;
+    }
+}

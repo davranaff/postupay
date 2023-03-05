@@ -49,3 +49,86 @@
     font-size: 35px;
     font-weight: 600;
 }
+
+@media screen and (max-width: 1920px) {
+    .footerLogo {
+        font-size: 56px;
+    }
+    .footerInfo {
+        font-size: 20px;
+    }
+    .footerItemR p {
+        font-size: 20px;
+    }
+    .footerIcons img {
+        width: 53px;
+        height: 53px;
+    }
+}
+
+@media screen and (max-width: 1440px) {
+    .footerLogo {
+        font-size: 36px;
+    }
+    .footerInfo {
+        font-size: 15px;
+    }
+    .footerItemR p {
+        font-size: 15px;
+    }
+    .footerIcons img {
+        width: 33px;
+        height: 33px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .footer {
+        padding: 20px 30px;
+    }
+    .footerItem {
+        width: 60%;
+    }
+    .footerLogo {
+        font-size: 22px;
+    }
+    .footerInfo {
+        font-size: 15px;
+    }
+    .footerInfo li {
+        font-size: 8px;
+        margin: 5px 0;
+    }
+    .footerIcons img {
+        width: 21px;
+    }
+    .footerItemR p {
+        font-size: 8px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .footer {
+        padding: 20px 30px;
+    }
+    .footerItem {
+        width: 60%;
+    }
+    .footerLogo {
+        font-size: 20px;
+    }
+    .footerInfo {
+        font-size: 14px;
+    }
+    .footerInfo li {
+        font-size: 10px;
+        margin: 5px 0;
+    }
+    .footerIcons img {
+        width: 25px;
+    }
+    .footerRights {
+        display: none;
+    }
+}
+

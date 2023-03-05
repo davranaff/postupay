@@ -7,9 +7,32 @@
     align-items: center;
 }
 
+.button {
+    text-align: center;
+    border-radius: 10px;
+    background-color: #2455C6;
+    color: white;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.15);
+    outline: none;
+    border: none;
+    padding: 10px 20px;
+    transition: .1s ease-in-out;
+    margin: 10px 0;
+}
+
+.button:hover {
+    filter: brightness(90%);
+    cursor: pointer;
+}
+
+.button:active {
+    filter: brightness(90%);
+    transform: scale(0.99);
+}
+
 
 .result {
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 700;
     margin: 10px 0;
 }
@@ -35,12 +58,12 @@
 .wave1 {
     width:150px;
     height: 150px;
-    background-color: #DFF4D6;
+    background-color: inherit;
     position: absolute;
-    top: -40px;
-    right: -10px;
-    border-radius: 40px;
-    animation: wave1 2.5s infinite linear;
+    top: -50px;
+    right: -3px;
+    border-radius: 60px;
+    animation: wave1 3.5s infinite linear;
 }
 
 @keyframes wave1 {
@@ -55,12 +78,12 @@
 .wave2 {
     width: 150px;
     height: 150px;
-    background-color: #DFF4D6;
+    background-color: inherit;
     position: absolute;
     bottom: -40px;
-    right: -10px;
-    border-radius:50px;
-    animation: wave2 2.5s infinite linear;
+    right: -3px;
+    border-radius:60px;
+    animation: wave2 3.5s infinite linear;
 }
 
 @keyframes wave2 {
@@ -156,4 +179,105 @@
     flex-direction: column;
     justify-content: space-between;
     font-weight: 500;
+}
+
+
+@media screen and (max-width: 768px) {
+    .profile {
+        padding: 25px 50px;
+    }
+    .button {
+        width: 100%;
+        font-size: 8px;
+        padding: 7px 10px;
+        border-radius: 5px;
+    }
+    .result {
+        font-size: 12px;
+    }
+    .profileContent {
+        padding: 30px;
+    }
+    .profileInfo {
+        margin: 0 0 30px 0;
+    }
+    .profileName {
+        font-size: 20px;
+    }
+    .profileId {
+        align-items: flex-end;
+    }
+    .profileId p {
+        font-size: 12px;
+    }
+    .progress {
+        height: auto;
+        padding: 10px;
+        border-radius: 10px;
+    }
+    .progress img {
+        width: 25px;
+        height: 25px;
+    }
+    .progressContent h2 {
+        font-size: 12px;
+    }
+    .progressContent {
+        font-size: 9px;
+    }
+    .progress h1 {
+        font-size: 24px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .profile {
+        display: flex;
+        align-items: flex-start;
+        padding: 0 10px 100px 10px;
+        height: auto;
+    }
+    .result {
+        font-size: 15px;
+    }
+    .profileContent {
+        padding: 15px;
+        background-color: white;
+    }
+    .progress {
+        border-radius: 10px;
+        height: 70px;
+    }
+    .progress img {
+        height: 30px;
+        width: 30px;
+    }
+    .progress h1 {
+        display: none;
+        font-size: 20px;
+    }
+    .progress h2 {
+        font-size: 10px;
+    }
+    .progress p {
+        font-size: 10px;
+    }
+    .profileName {
+        font-size: 15px;
+    }
+    .profileId {
+        font-size: 12px;
+    }
+    .profileInfo {
+        height: 40px;
+        margin: 5px 0;
+    }
+    .button {
+        padding: 5px 10px;
+        font-size: 10px;
+        border-radius: 5px;
+    }
+    .profileName {
+        align-items: flex-start;
+    }
 }

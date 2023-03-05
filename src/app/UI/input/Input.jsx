@@ -15,12 +15,13 @@ function Input({nameOfInput = 'example', type = 'text', required = true, name}) 
         if (success === false) {
             setError(true)
         }
+        setError(false)
         setValue('')
     }, [success])
 
     function endFocused() {
         value.length === 0 && setError(true)
-        !success && setError(true)
+        success === false && setError(true)
         if (type === 'password' && value.length < 8) {
             setError(true)
         }

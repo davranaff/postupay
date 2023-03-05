@@ -1,13 +1,20 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import style from './signupform.module.css'
 import {SignUpContext} from "@/app/context/SignUpContext";
 import {auth} from "@/app/services/auth/auth";
+import {useRouter} from "next/navigation";
+import {toast} from "react-toastify";
 
 function SingInForm({children}) {
     const [data, setData] = useState([])
     const [success, setSuccess] = useState(null)
+    const router = useRouter()
 
-    function handleSubmit(e) {
+    useEffect( _ => {
+        success === true && router.push('/signin')
+    }, [success] )
+
+    async function handleSubmit(e) {
         e.preventDefault()
         const formData = {}
         data.forEach(value => {
@@ -15,17 +22,17 @@ function SingInForm({children}) {
         })
         if (formData.password === formData.password2) {
             delete formData.password2
-            try {
-                const res = auth.register(formData)
+            const res = await auth.register(formData)
+            if (res.status === 201) {
+                toast.success('Вы успешно прошли регистрацию')
                 setSuccess(true)
-                return null
-            } catch (e) {
-                console.log(e)
-                setSuccess(false)
-                return null
+                return
             }
+            toast.error('Данный Email адрес уже существует')
+            setSuccess(false)
+            return
         }
-        alert('пароли не совпадают')
+        toast.error('Пароли не совпадают')
     }
 
     return (

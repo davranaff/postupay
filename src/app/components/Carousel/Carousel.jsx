@@ -1,18 +1,57 @@
 import style from './carousel.module.css'
-import Image from "next/image";
-import Slider from "src/infinite-react-carousel";
+import {Splide, SplideSlide} from "@splidejs/react-splide";
 
 function Carousel() {
 
     return (
         <div className={style.main}>
-            <div className={style.mainContent}>
-                <Slider arrows={false} slidesToShow={1} pauseOnHover={false} autoplay={true}>
-                    <Image src="sliders/header/Slider.svg" alt="Slider1" width='0' height='0'/>
-                    <Image src="sliders/header/Slider2.svg" alt="Slider2" width='0' height='0'/>
-                    <Image src="sliders/header/Slider3.svg" alt="Slider3" width='0' height='0'/>
-                </Slider>
-            </div>
+            <Splide className={style.carouselContent} options={{
+                type: 'loop',
+                rewind: true,
+                autoplay: true,
+                arrows: false,
+                speed: 1000,
+                perPage: 3,
+                perMove: 1,
+                focus: 'center',
+                interval: 2000,
+                pauseOnHover: false,
+                pagination: false,
+            }}>
+                <SplideSlide>
+                    <img src="sliders/header/slider1.svg" alt=""/>
+                </SplideSlide>
+                <SplideSlide>
+                    <img src="sliders/header/slider2.svg" alt=""/>
+                </SplideSlide>
+                <SplideSlide>
+                    <img src="sliders/header/slider3.svg" alt=""/>
+                </SplideSlide>
+            </Splide>
+            <Splide className={style.carouselContentMobile} options={{
+                type: 'loop',
+                rewind: true,
+                autoplay: true,
+                arrows: false,
+                speed: 1000,
+                perPage: 3,
+                perMove: 1,
+                focus: 'center',
+                interval: 2000,
+                pauseOnHover: false,
+                pagination: false,
+                autoWidth: true,
+            }}>
+                <SplideSlide>
+                    <img src="sliders/header/sliderm1.svg" alt=""/>
+                </SplideSlide>
+                <SplideSlide>
+                    <img src="sliders/header/sliderm2.svg" alt=""/>
+                </SplideSlide>
+                <SplideSlide>
+                    <img src="sliders/header/sliderm3.svg" alt=""/>
+                </SplideSlide>
+            </Splide>
         </div>
     );
 }

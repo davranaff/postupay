@@ -109,6 +109,11 @@
     overflow-y: scroll;
 }
 
+.resultContent span {
+    font-size: 15px;
+    margin-left: 30px;
+}
+
 .filterItem {
     width: auto;
     height: auto;
@@ -150,3 +155,28 @@
     font-size: 12px;
 }
 /* end filter item */
+
+
+@media screen and (max-width: 768px) {
+
+}
+
+@media screen and (max-width: 400px) {
+    .filterItem {
+        padding: 10px 0;
+    }
+    .filterItemContentTitle {
+        font-size: 10px;
+    }
+    .filterItemContentSubtitle {
+        font-size: 10px;
+    }
+    .filterItemImg {
+        width: 40px;
+        height: 40px;
+    }
+    .resultContent {
+        height: auto;
+        overflow-y: auto;
+    }
+}

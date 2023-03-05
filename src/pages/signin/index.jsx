@@ -13,6 +13,7 @@ function Index(props) {
                 <SingInForm>
                     <Input nameOfInput={'Эл. Почта'} type={'email'} name={'email'}/>
                     <Input nameOfInput={'Пароль'} type={'password'} name={'password'}/>
+                    <p className={style.forgot}><Link href={'/'}>Забыли пароль?</Link></p>
                     <Button text={'Войти'}/>
                 </SingInForm>
             </div>

@@ -45,8 +45,8 @@
     width: 85px;
     height: 85px;
     border-radius: 100%;
-    background: #E4E7EE;
-    box-shadow: inset 0 5px 5px rgba(0, 0, 0, 0.2);
+    background: #F2F3F5;
+    box-shadow: inset 0 5px 5px rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -84,3 +84,129 @@
     right: 100px;
     bottom: 130px;
 }
+
+@media screen and (max-width: 1920px) {
+    .main {
+        overflow: hidden;
+    }
+    .title {
+        font-size: 60px;
+        margin: 20px 0;
+    }
+    .pathTop {
+        top: 12%;
+        left: 15%;
+    }
+    .pathBottom {
+        bottom: 30%;
+        width: 100%;
+        right: 15%;
+    }
+    .roadItem {
+        padding: 50px;
+    }
+    .roadItem__circle {
+        width: 150px;
+        height: 150px;
+        font-size: 60px;
+    }
+    .roadItem__title {
+        font-size: 30px;
+    }
+}
+
+@media screen and (max-width: 1440px) {
+    .title {
+        font-size: 30px;
+        margin: 20px 0;
+    }
+    .pathTop {
+        top: 10%;
+        left: 12%;
+    }
+    .pathBottom {
+        bottom: 30%;
+        right: 12%;
+    }
+    .roadItem {
+        padding: 20px;
+    }
+    .roadItem__circle {
+        width: 70px;
+        height: 70px;
+        font-size: 30px;
+    }
+    .roadItem__title {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .main {
+        padding: 20px;
+        overflow: hidden;
+    }
+    .title {
+        font-size: 150%;
+        margin-bottom: 20px;
+    }
+    .roadItem {
+        width: 23%;
+        padding: 30px;
+    }
+    .pathBottom {
+        bottom: 30%;
+        right: 10%;
+    }
+    .pathTop {
+        right: 0;
+        width: 90%;
+        left: 15%;
+        top: 15%;
+    }
+    .roadItem__circle {
+        width: 50px;
+        height: 50px;
+        font-size: 25px;
+    }
+    .roadItem__title {
+        font-size: 15px;
+    }
+}
+
+
+@media screen and (max-width: 400px) {
+    .pathBottom, .pathTop {
+        display: none;
+    }
+    .main {
+        padding: 10px 20px;
+    }
+    .title {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+    .content {
+        flex-direction: column;
+    }
+
+    .roadItem {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        padding: 0;
+        background-color: rgba(230, 237, 251, 0.4);
+        border-radius: 30px;
+        margin: 10px 0;
+    }
+    .roadItem__title {
+        font-size: 14px;
+        margin-left: 10px;
+    }
+    .roadItem__circle {
+        width: 40px;
+        height: 40px;
+        font-size: 17px;
+    }
+}
+

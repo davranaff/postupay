@@ -1,5 +1,6 @@
 import style from './seluni.module.css'
 import {useState} from "react";
+import {useRouter} from "next/navigation";
 
 
 function SelUni() {
@@ -7,16 +8,19 @@ function SelUni() {
         {
             id: 1,
             title: 'Государственные ВУЗы',
+            query: 'education_form=1',
             checked: false
         },
         {
             id: 2,
             title: 'Иностранные ВУЗы',
+            query: 'education_form=3',
             checked: false
         },
         {
             id: 3,
             title: 'Частные ВУЗы',
+            query: 'education_form=2',
             checked: false
         }
     ]
@@ -32,11 +36,14 @@ function SelUni() {
 
 
 function Check({check, setList}) {
+    const router = useRouter()
+
     const handleState = () => {
         setList(prevState => prevState.map(value => {
             if (value.id === check.id) return {...value, checked: !value.checked}
             return {...value, checked: false}
         }))
+        router.push(`/filter/?education_form=${check.query}`)
     }
     return (
         <label className={`${style.item} ${check.checked && style.item__active}`} onClick={handleState}>

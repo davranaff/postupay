@@ -1,18 +1,25 @@
 import React, {useEffect, useState} from 'react';
 import style from './filteractions.module.css'
 import {useFilterContext} from "@/app/context/FilterContext";
+import {useRouter} from "next/router";
 
 function FilterActions(props) {
+    const [change, setChange] = useState(1)
     const [info, setInfo] = useState({})
     const {showSideBar, setShowSideBar, setParams} = useFilterContext()
-
+    const router = useRouter()
 
     useEffect(_ => {
+        if (Object.keys(router.query).length !== 0 && change === 1) {
+            setInfo({...info, [router.query.education_form]: router.query.education_form})
+            setParams(Object.keys({[router.query.education_form]: router.query.education_form}).join('&'))
+        }
         setParams(Object.keys(info).join('&'))
-    }, [info])
+    }, [change])
 
 
     const active = (object) => {
+        setChange(change + 1)
         if (info[`${object.name}=${object.id}`]) {
             const newObj = Object.keys(info).filter(key =>
                 key !== `${object.name}=${object.id}`).reduce((obj, key) => {
