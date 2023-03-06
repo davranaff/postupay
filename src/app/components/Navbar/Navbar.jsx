@@ -3,13 +3,20 @@ import Link from "next/link";
 import {useRouter} from "next/router";
 import {useBaseContext} from "@/app/context/BaseContext";
 import {useState} from "react";
-
+import {auth} from "@/app/services/auth/auth";
 
 function Navbar(props) {
     const route = useRouter()
     const {user, setUser} = useBaseContext()
     const [show, setShow] = useState(false)
 
+    async function logout() {
+        if (user) {
+            const data = await auth.logout()
+            setUser({...user, active: false, access: '', refresh: ''})
+            localStorage.removeItem('tokens')
+        }
+    }
 
     return (
         <nav className={style.navbar}>
@@ -26,9 +33,21 @@ function Navbar(props) {
                         </div>
                         <div className={`${style.dropDown} ${show && style.dropDownActive}`}>
                             <ul>
-                                <li onClick={_ => route.push('/profile?update=true')}>Изменить</li>
-                                <li onClick={_ => route.push('/profile?save=true')}>Сохраненные ВУЗы</li>
-                                <li onClick={_ => route.push('/')}>Выйти</li>
+                                <li onClick={_ => {
+                                    route.push('/profile?update=true')
+                                    setShow(false)
+                                }}>Изменить
+                                </li>
+                                <li onClick={_ => {
+                                    route.push('/profile?save=true')
+                                    setShow(false)
+                                }}>Сохраненные ВУЗы
+                                </li>
+                                <li onClick={_ => {
+                                    logout()
+                                    setShow(false)
+                                }}>Выйти
+                                </li>
                             </ul>
                         </div>
                     </div>

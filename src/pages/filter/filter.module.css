@@ -8,3 +8,16 @@
     overflow: hidden;
     transition: .2s ease-in-out;
 }
+
+@media screen and (max-width: 768px) {
+    .filterContent {
+        padding: 20px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .filterContent {
+        display: block;
+        padding: 0;
+    }
+}

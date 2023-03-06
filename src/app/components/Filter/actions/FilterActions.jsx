@@ -8,6 +8,10 @@ function FilterActions(props) {
     const [info, setInfo] = useState({})
     const {showSideBar, setShowSideBar, setParams} = useFilterContext()
     const router = useRouter()
+    const [dropDown, setDropDown] = useState({
+        title: 'Выберите регион',
+        active: false,
+    })
 
     useEffect(_ => {
         if (Object.keys(router.query).length !== 0 && change === 1) {
@@ -20,6 +24,7 @@ function FilterActions(props) {
 
     const active = (object) => {
         setChange(change + 1)
+        console.log(info)
         if (info[`${object.name}=${object.id}`]) {
             const newObj = Object.keys(info).filter(key =>
                 key !== `${object.name}=${object.id}`).reduce((obj, key) => {
@@ -27,6 +32,7 @@ function FilterActions(props) {
                     return obj;
                 }, {}
             )
+            console.log(newObj)
             setInfo(newObj)
             return
         }
@@ -42,13 +48,17 @@ function FilterActions(props) {
                 <img src="/icons/arrow.svg" alt=""/>
             </div>
             <label htmlFor="select" className={style.label}>
-                <select name="" id="select" className={style.select} onChange={e => {
-                    console.log(e.target.value)
+                <div id="select" className={style.select} onClick={_ => {
+                    setDropDown({...dropDown, active: !dropDown.active})
                 }}>
-                    <option value="">Выберите регион…</option>
-                    {props.regions.map(value => <option key={value.id}
-                                                        value={value.title}>{value.title}</option>)}
-                </select>
+                    <p>{dropDown.title}</p>
+                </div>
+                <div className={`${style.selectBody} ${dropDown.active && style.selectBody_active}`}>
+                    {props.regions.map(value => <div key={value.id} onClick={_ => {
+                        setDropDown({title: value.title, active: false})
+                        active(value)
+                    }}>{value.title}</div>)}
+                </div>
             </label>
             <p className={style.buttonsTitle}>Тип учебного заведения:</p>
             <div className={style.buttons}>
@@ -77,6 +87,7 @@ function FilterActions(props) {
                                                              className={`${style.button} ${info[`${value.name}=${value.id}`] && style.active}`}
                                                              onClick={_ => active(value)}>{value.title}</button>)}
             </div>
+            <button className={`${style.button} ${style.blue}`} onClick={_ => setShowSideBar(!showSideBar)}>Поиск</button>
         </div>
     );
 }

@@ -232,7 +232,7 @@
     }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 450px) {
     .navbar {
         padding: 10px 20px;
     }

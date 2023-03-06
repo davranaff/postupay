@@ -14,7 +14,6 @@ function Filter(props) {
              await filter.getFilterResult(params).then(res => setData(res.data))
          }
          getData()
-        console.log(params)
     } , [params] )
 
     return (

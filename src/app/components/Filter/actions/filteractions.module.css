@@ -1,5 +1,5 @@
 .main {
-    background-color: rgba(0,0,0,0.03);
+    background-color: rgba(0, 0, 0, 0.03);
     border-radius: 30px;
     padding: 20px 30px;
     box-sizing: border-box;
@@ -25,6 +25,8 @@
     width: 100%;
     height: auto;
     box-sizing: border-box;
+    background-color: white;
+    user-select: none;
     position: relative;
 }
 
@@ -40,6 +42,7 @@
     box-sizing: border-box;
     font-size: 15px;
     cursor: pointer;
+    background-color: white;
 }
 
 .select:first-child {
@@ -62,7 +65,7 @@
 
 .select::placeholder {
     font-size: 15px;
-    color: rgba(0,0,0,0.2);
+    color: rgba(0, 0, 0, 0.2);
 }
 
 .select::after {
@@ -100,6 +103,7 @@
 .buttons {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     width: auto;
     height: auto;
     margin: 10px 0;
@@ -129,6 +133,17 @@
     padding: 5px 10px;
     margin: 5px;
     cursor: pointer;
+}
+
+.blue {
+    background-color: #2455C6;
+    color: #FFF;
+    display: none;
+}
+
+.blue:active {
+    background-color: white;
+    color: #6C6F82;
 }
 
 .button:hover {
@@ -165,4 +180,110 @@
 
 .arrow_active img {
     rotate: 180deg;
+}
+
+.selectBody {
+    display: none;
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.15);
+    transition: .2s;
+    box-sizing: border-box;
+    font-size: 15px;
+    cursor: pointer;
+    background-color: white;
+}
+
+.selectBody_active {
+    max-height: 300px;
+    overflow-y: scroll;
+    display: block;
+    position: absolute;
+    z-index: 50;
+    top: 105%;
+    border-radius: 10px;
+}
+
+
+.selectBody div:hover {
+    color: #2455C6;
+}
+
+@media screen and (max-width: 1440px) {
+    .arrow_active {
+        right: 440px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .title {
+        font-size: 12px;
+    }
+    .arrow {
+        width: 15px;
+        height: 15px;
+    }
+    .arrow_active {
+        right: 240px;
+    }
+    .arrow img {
+        width: 80%;
+        height: 80%;
+    }
+    .input {
+        padding: 5px;
+        height: auto;
+    }
+    .label p, .selectBody {
+        font-size: 10px;
+    }
+    .button {
+        font-size: 10px;
+    }
+    .main {
+        padding: 10px;
+    }
+}
+
+
+@media screen and (max-width: 450px) {
+    .main {
+        width: 100%;
+        display: none;
+        position: absolute;
+        top: 100px;
+        right: 100%;
+        z-index: 50;
+        background-color: rgba(255, 255, 255, 1);
+        padding: 10px 30px;
+    }
+
+    .main_active {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .arrow {
+        display: none;
+    }
+
+    .select {
+        z-index: 101;
+    }
+
+    .selectBody_active {
+        z-index: 50;
+    }
+    .blue {
+        display: block;
+    }
+    .label p, .selectBody {
+        font-size: 14px;
+    }
+    .button {
+        font-size: 14px;
+    }
 }

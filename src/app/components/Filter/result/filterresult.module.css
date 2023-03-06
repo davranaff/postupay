@@ -10,8 +10,16 @@
     transition: .2s ease-in-out;
 }
 
+.mainM div img {
+    display: none;
+}
+
 .main_active {
     width: 83%;
+}
+
+.button {
+    display: none;
 }
 
 
@@ -156,12 +164,97 @@
 }
 /* end filter item */
 
-
-@media screen and (max-width: 768px) {
-
+.mainTitleM {
+    display: none;
 }
 
-@media screen and (max-width: 400px) {
+
+@media screen and (max-width: 768px) {
+    .input {
+        font-size: 12px;
+        padding: 7px 20px;
+    }
+    .input::placeholder {
+        font-size: 12px;
+    }
+    .mainTitle {
+        font-size: 12px;
+    }
+    .empty {
+        font-size: 10px;
+    }
+    .resultContent {
+        height: 300px;
+    }
+    .filterItem {
+        padding: 10px 0;
+    }
+    .filterItemContentTitle {
+        font-size: 10px;
+    }
+    .filterItemContentSubtitle {
+        font-size: 8px;
+    }
+    .filterItemImg {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .main {
+        width: 100%;
+        left: 0;
+        background-color: white;
+    }
+    .mainM {
+        width: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .mainM div {
+        display: flex;
+        align-items: center;
+    }
+    .mainM div img {
+        width: 20px;
+        height: 20px;
+        display: block;
+    }
+    .mainTitleM {
+        display: block;
+        font-size: 20px;
+    }
+    .button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #2455C6;
+        color: #FFF;
+        border-radius: 5px;
+        outline: none;
+        border: none;
+        box-shadow: 0 3px 3px rgba(0, 0, 0, 0.15);
+        transition: .1s ease-in-out;
+        padding: 5px 10px;
+        margin: 5px;
+        cursor: pointer;
+    }
+
+    .button:hover {
+        filter: brightness(0.9);
+    }
+    .input {
+        box-shadow: 0 3px 3px rgba(0, 0, 0, 0.15);
+    }
+    .active {
+        background-color: #2455C6;
+        color: #FFF;
+    }
+    .mainTitle {
+        display: none;
+    }
     .filterItem {
         padding: 10px 0;
     }

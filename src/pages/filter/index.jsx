@@ -13,46 +13,37 @@ function Index(props) {
 }
 
 export async function getServerSideProps() {
-    try {
-        let regions = await filter.getRegions().then(res => res.data)
-        let subjects = await filter.getSubjects().then(res => res.data)
-        let educationTypes = await filter.getEducationTypes().then(res => res.data)
-        let educationForms = await filter.getEducationForms().then(res => res.data)
-        let educationDegrees = await filter.getEducationDegrees().then(res => res.data)
+    let regions = await filter.getRegions().then(res => res.data)
+    let subjects = await filter.getSubjects().then(res => res.data)
+    let educationTypes = await filter.getEducationTypes().then(res => res.data)
+    let educationForms = await filter.getEducationForms().then(res => res.data)
+    let educationDegrees = await filter.getEducationDegrees().then(res => res.data)
 
 
-        regions = regions.map(value => {
-            return {...value, name: 'city'}
-        })
-        subjects = subjects.map(value => {
-            return {...value, name: 'subject'}
-        })
-        educationTypes = educationTypes.map(value => {
-            return {...value, name: 'education_type'}
-        })
-        educationForms = educationForms.map(value => {
-            return {...value, name: 'education_form'}
-        })
-        educationDegrees = educationDegrees.map(value => {
-            return {...value, name: 'degree'}
-        })
+    regions = regions.map(value => {
+        return {...value, name: 'city'}
+    })
+    subjects = subjects.map(value => {
+        return {...value, name: 'subject'}
+    })
+    educationTypes = educationTypes.map(value => {
+        return {...value, name: 'education_type'}
+    })
+    educationForms = educationForms.map(value => {
+        return {...value, name: 'education_form'}
+    })
+    educationDegrees = educationDegrees.map(value => {
+        return {...value, name: 'degree'}
+    })
 
 
-        return {
-            props: {
-                regions,
-                subjects,
-                educationTypes,
-                educationForms,
-                educationDegrees
-            }
-        }
-    } catch (e) {
-        return {
-            redirect: {
-                permanent: false,
-                destination: "/"
-            }
+    return {
+        props: {
+            regions,
+            subjects,
+            educationTypes,
+            educationForms,
+            educationDegrees
         }
     }
 }

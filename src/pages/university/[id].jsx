@@ -2,6 +2,7 @@ import React from 'react';
 import style from './detail.module.css'
 import Image from "next/image";
 import {universities} from "@/app/services/universities/universites";
+import Link from 'next/link'
 
 function Id({university}) {
     return (
@@ -47,19 +48,15 @@ function Id({university}) {
                     </div>}
                 </div>
                 <div className={style.rightInfo}>
-                    <h1 className={style.rightInfoTitle}>{university.title}</h1>
+                    <h1 className={style.rightInfoTitle}>{university.translations['ru'].title}</h1>
                     <button className={style.button}>Сохранить ВУЗ</button>
                     <div className={style.rightInfoDescription}>
-                        С 1995 года на территории Республики Узбекистан успешно функционирует Филиал Российского
-                        экономического университета имени Г.В. Плеханова. За годы функционирования Филиал подготовил
-                        более 3400 выпускников, в том числе более 2600 бакалавров и почти 800 магистров, которые
-                        получили путевку в жизнь, обретя в стенах своей альма-матер не только высокий профессионализм в
-                        области экономики, но и качества духовно нравственной личности с твердыми принципами морали и
-                        патриотизма.
+                        {university.translations['ru'].description}
                     </div>
                     <div className={style.rightInfoFinance}>
                         <div className={style.finance}></div>
-                        <div className={style.economics}></div>
+                        <div className={style.finance}></div>
+                        <div className={style.finance}></div>
                     </div>
                 </div>
             </div>
@@ -72,9 +69,9 @@ function Id({university}) {
                     </div>
                     <h1>0%</h1>
                 </div>
-                <div className={style.blockTestButton}>
+                <Link href={`/university/test/${university.id}`} className={style.blockTestButton}>
                     Пройти тестирование
-                </div>
+                </Link>
             </div>
             <div className={style.foot}>
                 <div className={style.footMap}>

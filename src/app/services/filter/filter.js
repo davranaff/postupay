@@ -12,7 +12,7 @@ export const filter = {
         return await axios.get(url)
     },
     getRegions: async _ => {
-        const url = mainUrl + 'region/'
+        const url = mainUrl + 'city/'
         return await axios.get(url)
     },
     getSubjects: async _ => {

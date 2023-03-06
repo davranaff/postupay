@@ -1,6 +1,5 @@
 import {mainUrl} from "@/app/services/base";
 import axios from "axios";
-import {parseBody} from "next/dist/server/api-utils/node";
 
 export const auth = {
     login: async (data) => {
@@ -19,5 +18,13 @@ export const auth = {
                 return res
             }
         ).catch(error => error)
+    },
+    logout: async () => {
+        const url = mainUrl + 'user/logout/blacklist/'
+        return await axios.post(url, {
+            refresh_token: JSON.parse(localStorage.getItem('tokens')).refresh
+        }).then(res => {
+            return res
+        }).catch(err => console.log(err))
     }
 }
