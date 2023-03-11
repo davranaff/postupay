@@ -53,6 +53,13 @@
     position: relative;
 }
 
+.label svg {
+    position: absolute;
+    right: 5%;
+    top: 35%;
+    cursor: pointer;
+}
+
 .icon {
     position: absolute;
     top: 32%;

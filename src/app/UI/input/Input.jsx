@@ -1,27 +1,25 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import style from './Input.module.css'
-import {useSingUpContext} from "@/app/context/SignUpContext";
-import {useSingInContext} from "@/app/context/SignInContext";
+import { useSingUpContext } from "@/app/context/SignUpContext";
+import { useSingInContext } from "@/app/context/SignInContext";
+import { AiTwotoneEye, AiTwotoneEyeInvisible  } from 'react-icons/ai'
 
-function Input({nameOfInput = 'example', type = 'text', required = true, name}) {
+function Input({ nameOfInput = 'example', type = 'text', required = true, name }) {
     const [value, setValue] = useState('')
     const [error, setError] = useState(false)
-    const {data, setData, success} = useSingUpContext() !== null ? useSingUpContext() : useSingInContext()
+    const { data, setData, success } = useSingUpContext() !== null ? useSingUpContext() : useSingInContext()
+    const [showPassword, setShowPassword] = useState(type)
 
     useEffect(_ => {
         if (success === null) {
-            setData(prev => [...prev, {name: name, value: ''}])
+            setData(prev => [...prev, { name: name, value: '' }])
         }
-        if (success === false) {
-            setError(true)
-        }
+
         setError(false)
-        setValue('')
     }, [success])
 
     function endFocused() {
-        value.length === 0 && setError(true)
-        success === false && setError(true)
+        !value.length && setError(true)
         if (type === 'password' && value.length < 8) {
             setError(true)
         }
@@ -33,7 +31,7 @@ function Input({nameOfInput = 'example', type = 'text', required = true, name}) 
         setValue(e.target.value)
         setData(prev => prev.map(obj => {
             if (obj.name === name) {
-                return {...obj, value: e.target.value}
+                return { ...obj, value: e.target.value }
             }
             return obj
         }))
@@ -43,7 +41,7 @@ function Input({nameOfInput = 'example', type = 'text', required = true, name}) 
     return (
         <label htmlFor={nameOfInput} className={`${style.label}`}>
             <input
-                type={type}
+                type={type === 'password' ? showPassword : type}
                 name={name}
                 id={nameOfInput}
                 value={value}
@@ -54,6 +52,11 @@ function Input({nameOfInput = 'example', type = 'text', required = true, name}) 
                 minLength={type === 'password' ? 8 : 4}
                 onBlur={endFocused}
             />
+            {type === 'password' && (
+                showPassword === 'password' ? 
+                <AiTwotoneEye onClick={() => setShowPassword('text')} /> : 
+                <AiTwotoneEyeInvisible onClick={() => setShowPassword('password')}/>
+                )}
         </label>
     );
 }

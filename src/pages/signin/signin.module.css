@@ -42,6 +42,7 @@
 
 .subtitle a {
     text-decoration: underline;
+    font-weight: bold;
     color: #6C6F82;
 }
 
