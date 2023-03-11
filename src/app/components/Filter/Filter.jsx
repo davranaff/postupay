@@ -9,6 +9,7 @@ function Filter(props) {
     const [showSideBar, setShowSideBar] = useState(true)
     const [data, setData] = useState([])
     const [params, setParams] = useState('')
+
     useEffect(  _ => {
          async function getData() {
              await filter.getFilterResult(params).then(res => setData(res.data))

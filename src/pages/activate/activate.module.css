@@ -1,0 +1,26 @@
+.main {
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+.content {
+    width: 95%;
+    height: 600px;
+    background-color: #F8F8F8;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.content h1 {
+    color: #2455C6;
+}
+
+.content a {
+    text-decoration: underline;
+}

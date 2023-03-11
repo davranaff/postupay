@@ -20,11 +20,10 @@ function SingInForm({children}) {
         data.forEach(value => {
             formData[value.name] = value.value
         })
-        if (formData.password === formData.password2) {
-            delete formData.password2
+        if (formData.password === formData.re_password) {
             const res = await auth.register(formData)
             if (res.status === 201) {
-                toast.success('Вы успешно прошли регистрацию')
+                toast.success('Подтвердите почту!')
                 setSuccess(true)
                 return
             }

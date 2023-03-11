@@ -26,12 +26,15 @@ function SingInForm({children}) {
                 localStorage.setItem('tokens', JSON.stringify(res.data))
                 setCookie('access', res.data.access)
                 setUser(res.data)
+                const head = new Headers()
+                head.set('Authorization', res.data.access)
+                localStorage.setItem('Authorization', `Bearer ${res.data.access}`)
                 setSuccess(true)
                 toast.success('Вы успешно вошли в Аккаунт')
                 router.push('/')
             }
         } catch (e) {
-            toast.error('Email или пароль не верный')
+            toast.error(e.response.data.detail)
         }
 
     }

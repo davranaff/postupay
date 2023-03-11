@@ -16,7 +16,7 @@ function Index(props) {
                     <Input nameOfInput={'Фамилия'} type={'text'} name={'last_name'}/>
                     <Input nameOfInput={'Эл. Почта'} type={'email'} name={'email'}/>
                     <Input nameOfInput={'Создайте пароль'} type={'password'} name={'password'}/>
-                    <Input nameOfInput={'Подтвердите пароль'} type={'password'} name={'password2'}/>
+                    <Input nameOfInput={'Подтвердите пароль'} type={'password'} name={'re_password'}/>
                     <Button text={'Регистрация'}/>
                 </SignUpForm>
             </div>

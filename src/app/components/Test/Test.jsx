@@ -7,7 +7,6 @@ function Test(props) {
     const [data, setData] = useState([])
     const [active, setActive] = useState(props.data[0])
 
-
     useEffect(_ => {
         const local = JSON.parse(localStorage.getItem('data'))
         if (local === null) {

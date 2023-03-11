@@ -6,7 +6,6 @@ function Options() {
     const { data, setActive, active } = useTestContext()
 
     useEffect(_ => {
-        console.log(active)
     }, [active])
 
     const activeOption = (obj) => {
