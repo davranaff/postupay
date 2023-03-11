@@ -21,14 +21,24 @@ function SingInForm({children}) {
             formData[value.name] = value.value
         })
         if (formData.password === formData.re_password) {
-            const res = await auth.register(formData)
-            if (res.status === 201) {
+            const res = await auth.register(formData).then(
+            res => {
                 toast.success('Подтвердите почту!')
                 setSuccess(true)
-                return
             }
-            toast.error('Данный Email адрес уже существует')
-            setSuccess(false)
+        ).catch(error => {
+                setSuccess(false)
+                if (error.response.data.email && error.response.data.password) {
+                    toast.error('Данный Email адрес уже существует')
+                    toast.error('Ненадёжный пароль!')
+                } else if (error.response.data.email) {
+                    toast.error('Данный Email адрес уже существует')
+                } else if (error.response.data.password) {
+                    toast.error('Ненадёжный пароль!')
+                } else {
+                    toast.error('Что-то пошло не так!')
+                }
+            })
             return
         }
         toast.error('Пароли не совпадают')

@@ -12,12 +12,7 @@ export const auth = {
             headers: {
                 'Content-Type': 'application/json'
             }
-        }).then(
-            res => {
-                console.log(res)
-                return res
-            }
-        ).catch(error => error)
+        })
     },
     logout: async () => {
         const url = 'https://education07.pythonanywhere.com/auth/jwt/refresh/'

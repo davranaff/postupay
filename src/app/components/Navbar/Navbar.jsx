@@ -13,18 +13,20 @@ function Navbar(props) {
     const [profile, setProfile] = useState(null)
 
     useEffect(_ => {
-        auth.getProfile(
-            localStorage.getItem('Authorization')
-        ).then(
-            res => {
-                setProfile(res.data)
-            }
-        ).catch(
-            err => {
-                console.log(err)
-                toast.warn('У вас нету доступа!')
-            }
-        )
+        if (user.active) {
+            auth.getProfile(
+                localStorage.getItem('Authorization')
+            ).then(
+                res => {
+                    setProfile(res.data)
+                }
+            ).catch(
+                err => {
+                    console.log(err)
+                    toast.warn('У вас нету доступа!')
+                }
+            )
+        }
     }, [])
 
     async function logout() {
