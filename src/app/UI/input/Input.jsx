@@ -12,16 +12,12 @@ function Input({nameOfInput = 'example', type = 'text', required = true, name}) 
         if (success === null) {
             setData(prev => [...prev, {name: name, value: ''}])
         }
-        if (success === false) {
-            setError(true)
-        }
+       
         setError(false)
-        setValue('')
     }, [success])
 
     function endFocused() {
-        value.length === 0 && setError(true)
-        success === false && setError(true)
+        !value.length && setError(true)
         if (type === 'password' && value.length < 8) {
             setError(true)
         }
@@ -39,7 +35,7 @@ function Input({nameOfInput = 'example', type = 'text', required = true, name}) 
         }))
     }
 
-
+    console.log(error);
     return (
         <label htmlFor={nameOfInput} className={`${style.label}`}>
             <input
