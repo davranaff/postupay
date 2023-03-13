@@ -1,11 +1,14 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Link from "next/link";
 import Input from "@/app/UI/input/Input";
 import Button from "@/app/UI/Button/Button";
 import SignUpForm from "@/app/components/SignUpForm/SignUpForm";
 import style from './signup.module.css'
 
+
 function Index(props) {
+
+
     return (
         <div className={style.main}>
             <div className={style.content}>
@@ -17,7 +20,7 @@ function Index(props) {
                     <Input nameOfInput={'Эл. Почта'} type={'email'} name={'email'}/>
                     <Input nameOfInput={'Создайте пароль'} type={'password'} name={'password'}/>
                     <Input nameOfInput={'Подтвердите пароль'} type={'password'} name={'re_password'}/>
-                    <Button text={'Регистрация'}/>
+                    <Button text={'Регистрация'} />
                 </SignUpForm>
             </div>
         </div>

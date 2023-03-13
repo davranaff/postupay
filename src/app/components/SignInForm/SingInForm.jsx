@@ -12,9 +12,11 @@ function SingInForm({children}) {
     const [success, setSuccess] = useState(null)
     const {setUser} = useBaseContext()
     const router = useRouter()
+    const [isLoading, setIsLoading] = useState(false)
 
     async function handleSubmit(e) {
         e.preventDefault()
+        setIsLoading(true)
         const formData = {}
         data.forEach(value => {
             formData[value.name] = value.value
@@ -22,6 +24,7 @@ function SingInForm({children}) {
         try {
             const res = await auth.login(formData).then(res => res)
             if (res.status === 200) {
+                setIsLoading(false)
                 res.data.active = true
                 localStorage.setItem('tokens', JSON.stringify(res.data))
                 setCookie('access', res.data.access)
@@ -35,12 +38,13 @@ function SingInForm({children}) {
             }
         } catch (e) {
             toast.error(e.response.data.detail)
+            setIsLoading(false)
         }
 
     }
 
     return (
-        <SignInContext.Provider value={{data, setData, success}}>
+        <SignInContext.Provider value={{data, setData, success, isLoading, setIsLoading}}>
             <form onSubmit={handleSubmit} className={style.main}>
                 {...children}
             </form>
