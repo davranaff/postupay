@@ -6,6 +6,7 @@ import {useBaseContext} from "@/app/context/BaseContext";
 import {setCookie} from "@/app/utils/cookies";
 import {useRouter} from "next/navigation";
 import {toast} from "react-toastify";
+import {decodeToken } from "@/app/utils/jwtDecode"
 
 function SingInForm({children}) {
     const [data, setData] = useState([])
@@ -24,6 +25,7 @@ function SingInForm({children}) {
         try {
             const res = await auth.login(formData).then(res => res)
             if (res.status === 200) {
+                console.log(res)
                 setIsLoading(false)
                 res.data.active = true
                 localStorage.setItem('tokens', JSON.stringify(res.data))
@@ -35,6 +37,10 @@ function SingInForm({children}) {
                 setSuccess(true)
                 toast.success('Вы успешно вошли в Аккаунт')
                 router.push('/')
+                // console.log(decodeToken(res.data.access))
+                auth.getProfile(`Bearer ${res.data.access}`).then(res => {
+                    localStorage.setItem('user', JSON.stringify(res.data))
+                })
             }
         } catch (e) {
             toast.error(e.response.data.detail)

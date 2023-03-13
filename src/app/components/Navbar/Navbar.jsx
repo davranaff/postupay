@@ -74,6 +74,7 @@ function Navbar(props) {
                                 }}>Выйти
                                 </li>
                             </ul>
+                          
                         </div>
                     </div>
                     : !['/signin', '/signup'].includes(route.pathname) &&
