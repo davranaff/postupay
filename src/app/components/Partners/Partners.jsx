@@ -26,7 +26,7 @@ function Partners(props) {
                 autoWidth: true,
             }}>
                 <SplideSlide>
-                    <Image src='sliders/partners/logo.svg' alt='partner' width={0} height={0}/>
+                    <Image src='/sliders/partners/logo.svg' alt='partner' width={0} height={0}/>
                 </SplideSlide>
                 <SplideSlide>
                     <Image src='sliders/partners/logo.svg' alt='partner' width={0} height={0}/>

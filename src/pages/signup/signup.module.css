@@ -57,7 +57,7 @@
 @media screen and (max-width: 450px) {
     .main {
         height: auto;
-        padding: 80px 25px;
+        padding: 150px 25px;
     }
     .content {
         width: 100%;
