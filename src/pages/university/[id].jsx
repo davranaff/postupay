@@ -30,6 +30,8 @@ function Id({university}) {
         router.push(`test/?subject=${university.id}&tk_=${localStorage.getItem('Authorization')}`)
     }
 
+    
+
     return (
         <div className={style.main}>
             <div className={style.header}>

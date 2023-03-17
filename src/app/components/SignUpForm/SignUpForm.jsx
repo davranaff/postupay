@@ -9,12 +9,14 @@ function SingInForm({children}) {
     const [data, setData] = useState([])
     const [success, setSuccess] = useState(null)
     const router = useRouter()
+    const [isLoading, setIsLoading] = useState(false)
 
     useEffect( _ => {
         success === true && router.push('/signin')
     }, [success] )
 
     async function handleSubmit(e) {
+        setIsLoading(true)
         e.preventDefault()
         const formData = {}
         data.forEach(value => {
@@ -25,6 +27,7 @@ function SingInForm({children}) {
             res => {
                 toast.success('Подтвердите почту!')
                 setSuccess(true)
+                setIsLoading(false)
             }
         ).catch(error => {
                 setSuccess(false)
@@ -38,6 +41,7 @@ function SingInForm({children}) {
                 } else {
                     toast.error('Что-то пошло не так!')
                 }
+                setIsLoading(false)
             })
             return
         }
@@ -45,7 +49,7 @@ function SingInForm({children}) {
     }
 
     return (
-        <SignUpContext.Provider value={{data, setData, success}}>
+        <SignUpContext.Provider value={{data, setData, success, isLoading,setIsLoading}}>
             <form onSubmit={handleSubmit} className={style.main}>
                 {...children}
             </form>

@@ -1,18 +1,29 @@
-import React from 'react';
+import { SignInContext } from '@/app/context/SignInContext';
+import { SignUpContext } from '@/app/context/SignUpContext';
+import React, { useContext } from 'react';
 import style from './button.module.css'
 
 function Button({
-                    text = 'example',
-                    size = 'medium',
-                    disabled = false,
-                    type = 'submit',
-                    full = true,
-                    isForm = true
-                }) {
+    text = 'example',
+    size = 'medium',
+    disabled = false,
+    type = 'submit',
+    full = true,
+    isForm = true,
+   
+}) {
+    
+
+    const {isLoading, setIsLoading} =  text === 'Регистрация' ? useContext(SignUpContext) : useContext(SignInContext)
+//${disabled ? style.disabled : style.active}
     return (
         <button
             type={type}
-            className={`${style.button} ${style.medium} ${disabled ? style.disabled : style.active} ${full && style.fullWidth} ${isForm && style.isForm}`}>
+            className={`${style.button} ${style.medium}
+            ${isLoading ? style.disabled : style.active}
+            ${full && style.fullWidth} ${isForm && style.isForm}`}
+            disabled = {isLoading}
+            >
             {text}
         </button>
     );
