@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import style from './questions.module.css'
 import {useTestContext} from "@/app/context/TestContext";
-import {value} from "lodash/seq";
 import {toast} from "react-toastify";
 
 function Questions(props) {
@@ -34,21 +33,27 @@ function Questions(props) {
         setActive(newActive)
     }
 
-    return (
+    if (active) return (
         <div className={style.questions}>
             <h1 className={style.title}>Вопрос {active.id}</h1>
             <div className={style.description}>
-                {active.question}
+                {active.translations['ru']}
             </div>
             <div className={style.answers}>
-                {active.options.map(value => <label key={value.id} className={style.label}>
+                {active.answers.map(value => <label key={value.id} className={style.label}>
                     <input type="radio" name='answer' onChange={_ => chose(value)}
                            checked={value === check || value.checked}/>
-                    {value.question}
+                    {value.translations['ru']}
                 </label>)}
                 <button onClick={_ => next(active)}
                         className={style.button}>{active === data[data.length - 1] ? 'Завершить попытку' : 'Следующий вопрос'}</button>
             </div>
+        </div>
+    );
+
+    return (
+        <div className={style.questions}>
+            <h1 className={style.title}>Выберите Тест</h1>
         </div>
     );
 }

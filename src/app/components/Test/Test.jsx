@@ -5,21 +5,23 @@ import Questions from "@/app/components/Test/Questions/Questions";
 
 function Test(props) {
     const [data, setData] = useState([])
-    const [active, setActive] = useState(props.data[0])
+    const [active, setActive] = useState(null)
+
 
     useEffect(_ => {
-        const local = JSON.parse(localStorage.getItem('data'))
+        let tests = props.tests.map( v => ({...v, answers: v.answers.map(value => ({...value, done: false}))}))
+        localStorage.setItem('tests',JSON.stringify(tests))
+        const local = JSON.parse(localStorage.getItem('tests'))
         if (local === null) {
-            setData(props.data)
+            setData(tests)
             return
         }
         setData(local)
-        setActive(local[0])
     }, [])
 
     return (
         <TestContext.Provider value={{active, setActive, data, setData}}>
-            <Options/>
+            <Options tests={props.tests}/>
             <Questions/>
         </TestContext.Provider>
     );

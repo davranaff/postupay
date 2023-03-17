@@ -1,6 +1,8 @@
 import {mainUrl} from "@/app/services/base";
 import axios from "axios";
 
+
+
 export const auth = {
     login: async (data) => {
         const url = 'https://education07.pythonanywhere.com/auth/jwt/create/'

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import style from './signinform.module.css'
 import {SignInContext} from "@/app/context/SignInContext";
-import {auth} from '@/app/services/auth/auth'
+import {auth, authHead} from '@/app/services/auth/auth'
 import {useBaseContext} from "@/app/context/BaseContext";
 import {setCookie} from "@/app/utils/cookies";
 import {useRouter} from "next/navigation";
@@ -34,6 +34,7 @@ function SingInForm({children}) {
                 const head = new Headers()
                 head.set('Authorization', res.data.access)
                 localStorage.setItem('Authorization', `Bearer ${res.data.access}`)
+                authHead.auth = localStorage.getItem('Authorization')
                 setSuccess(true)
                 toast.success('Вы успешно вошли в Аккаунт')
                 router.push('/')

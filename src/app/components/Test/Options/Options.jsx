@@ -42,7 +42,6 @@ function Options() {
         return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
     };
 
-
     useEffect(_ => {
     }, [active])
 
@@ -52,7 +51,7 @@ function Options() {
 
     return (<div className={style.options}>
         <img src="/other/ban.png" alt=""/>
-        <h1 className={style.title}>Математика</h1>
+        <h1 className={style.title}>{tests[0].subject.title}</h1>
 
         <div className={style.time}> {formatTime(time)}</div>
         <div className={style.optionsContent}>
