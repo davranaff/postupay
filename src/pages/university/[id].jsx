@@ -27,7 +27,7 @@ function Id({university}) {
     }
 
     function goTest() {
-        router.push(`test/?subject=${university.id}`)
+        router.push(`test/?subject=${university.id}&tk_=${localStorage.getItem('Authorization')}`)
     }
 
     return (
@@ -79,9 +79,9 @@ function Id({university}) {
                         {university.translations['ru'].description}
                     </div>
                     <div className={style.rightInfoFinance}>
-                        <div className={style.finance}></div>
-                        <div className={style.finance}></div>
-                        <div className={style.finance}></div>
+                        {university.faculty.map(vl => <div className={style.finance}>
+                            {vl.translations['ru'].title}
+                        </div>)}
                     </div>
                 </div>
             </div>
@@ -117,9 +117,7 @@ function Id({university}) {
                     </div>
                     <div className={style.footContactsAddress}>
                         <p>
-                            Республика Узбекистан, г.Ташкент,
-                            Мирзо Улугбекский район, массив Ялангач,
-                            улица Шахриобод, дом 3
+                            {university.translations['ru'].address}
                         </p>
                     </div>
                 </div>
@@ -132,7 +130,7 @@ export async function getServerSideProps(context) {
     const {params} = context
 
     const data = await universities.getOne(params.id).then(res => res.data)
-
+    console.log(data)
     return {
         props: {
             university: data,

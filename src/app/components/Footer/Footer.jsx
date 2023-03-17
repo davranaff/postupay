@@ -1,12 +1,13 @@
 import style from './footer.module.css'
 import Image from "next/image";
+import Link from "next/link";
 
 
 function Footer() {
     return (
         <footer className={style.footer}>
             <div className={style.footerItem}>
-                <h1 className={style.footerLogo}>postupay</h1>
+                <Link href={'/'} className={style.footerLogo}>postupay</Link>
                 <ul className={style.footerInfo}>
                     <li>Наши контакты:</li>
                     <li>+998 97 444 73 37</li>

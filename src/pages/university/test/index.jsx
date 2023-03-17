@@ -12,10 +12,7 @@ function Index(props) {
 }
 
 export async function getServerSideProps(context) {
-
-    // let tests = await test.getTest(context.query.subject).then(res => console.log(res.data))
-    let tests = await test.getTest(2).then(res => res.data)
-
+    let tests = await test.getTest(2, context.query.tk_).then(res => res.data)
     let data = [
         {
             id: 1,
@@ -100,13 +97,11 @@ export async function getServerSideProps(context) {
     ]
 
     data = data.map(value => ({...value, done: false}))
-    const questions = tests.answers.map(value => console.log(JSON.parse(value)))
 
     return {
         props: {
             data: data,
             tests: tests,
-            questions
         }
     }
 }
