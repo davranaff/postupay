@@ -32,7 +32,20 @@
 .navbarAuth img {
     margin-right: 5px;
 }
+.navItem {
+    width: auto;
+    height: auto;
+    display: flex;
+    color: #646464;
+    margin-left: 20px;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
 
+.navItem:hover {
+    color: #4d4d4d;
+}
 .button {
     text-align: center;
     border-radius: 10px;
@@ -65,6 +78,8 @@
     transform: scale(0.99);
 }
 
+
+
 .active {
     transform: scale(1.01) translateY(-5px);
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.15);
@@ -78,20 +93,9 @@
     box-shadow: 0 0 0 rgba(0, 0, 0, 0.15);
 }
 
-.navItem {
-    width: auto;
-    height: auto;
-    display: flex;
-    color: #646464;
-    margin-left: 20px;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
-}
 
-.navItem:hover {
-    color: #4d4d4d;
-}
+
+
 
 .navItem img {
     width: 30px;

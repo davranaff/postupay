@@ -28,6 +28,11 @@
     margin: 10px 0;
 }
 
+.time svg {
+    position: relative;
+    top: 7px;
+}
+
 .optionsContent {
     width: 100%;
     height: auto;

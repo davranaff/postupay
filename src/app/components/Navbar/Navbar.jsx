@@ -82,7 +82,7 @@ function Navbar(props) {
                         </div>
                     </div>
                     : !['/signin', '/signup'].includes(route.pathname) &&
-                    <Link href='/signin/' className={style.navItem}>
+                    <Link href='/signin/' className={`${style.navItem} ${style.button} ${style.signinbtn}`}>
                         <div className={style.check}></div>
                         Войти
                     </Link>}
