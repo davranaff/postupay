@@ -54,8 +54,8 @@ function Input({ nameOfInput = 'example', type = 'text', required = true, name }
             />
             {type === 'password' && (
                 showPassword === 'password' ? 
-                <AiTwotoneEye onClick={() => setShowPassword('text')} /> : 
-                <AiTwotoneEyeInvisible onClick={() => setShowPassword('password')}/>
+                <AiTwotoneEye color="#6C6F82" onClick={() => setShowPassword('text')} /> :
+                <AiTwotoneEyeInvisible  color="#6C6F82" onClick={() => setShowPassword('password')}/>
                 )}
         </label>
     );

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import style from './options.module.css'
 import {useTestContext} from "@/app/context/TestContext";
-import {ceil} from "lodash";
+import {AiTwotoneEye, AiTwotoneEyeInvisible} from "react-icons/ai";
 
 function Options() {
     const {data, setActive, active} = useTestContext()
@@ -9,6 +9,8 @@ function Options() {
     const [defaultTime, setDefaultTime] = useState(1500);
     const [time, setTime] = useState(defaultTime);
     const [isActive, setIsActive] = useState(false);
+
+    const [showTime, setShowTime] = useState(true)
 
     useEffect(() => {
 
@@ -53,7 +55,12 @@ function Options() {
         <img src="/other/ban.png" alt=""/>
         <h1 className={style.title}>{tests[0].subject.title}</h1>
 
-        <div className={style.time}> {formatTime(time)}</div>
+        {showTime ?  <div className={style.time}> {formatTime(time)}   <AiTwotoneEyeInvisible  color="#6C6F82" onClick={() => setShowTime(false)}/></div> :
+            <div className={style.time}> -- : --   <AiTwotoneEye  color="#6C6F82"onClick={() => setShowTime(true)} /></div>
+        }
+
+
+
         <div className={style.optionsContent}>
             {data.map(value => <div key={value.id} onClick={_ => activeOption(value)}
                                     className={`${style.option} ${(value === active || value.done) && style.option_active}`}>

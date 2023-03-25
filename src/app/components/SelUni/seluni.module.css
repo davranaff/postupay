@@ -21,11 +21,11 @@
     box-shadow: 0 0 5px rgba(0,0,0,0.15);
     font-size: 15px;
     cursor: pointer;
-    transition: 0.3s ease-out;
+    transition: 0.1s ease-out;
 }
 
 .item:hover {
-    box-shadow: 0 0 0 rgba(0,0,0,0.2);
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
     transform: scale(1.05);
 }
 
