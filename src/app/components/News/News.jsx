@@ -28,7 +28,7 @@ function News(props) {
                 perPage: 3,
                 perMove: 1,
                 focus: 'center',
-                interval: 1800,
+                interval: 10000,
                 pauseOnHover: false,
                 pagination: false,
                 autoWidth: true,

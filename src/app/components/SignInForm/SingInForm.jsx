@@ -15,17 +15,21 @@ function SingInForm({children}) {
     const router = useRouter()
     const [isLoading, setIsLoading] = useState(false)
 
+
+
     async function handleSubmit(e) {
         e.preventDefault()
+
         setIsLoading(true)
         const formData = {}
         data.forEach(value => {
             formData[value.name] = value.value
         })
         try {
-            const res = await auth.login(formData).then(res => res)
+            const res = await auth.login(formData).then(res => res).catch(e => toast.error(e.response.data.detail))
             if (res.status === 200) {
-                console.log(res)
+                router.push('/')
+
                 setIsLoading(false)
                 res.data.active = true
                 localStorage.setItem('tokens', JSON.stringify(res.data))
@@ -34,17 +38,17 @@ function SingInForm({children}) {
                 const head = new Headers()
                 head.set('Authorization', res.data.access)
                 localStorage.setItem('Authorization', `Bearer ${res.data.access}`)
+
                 authHead.auth = localStorage.getItem('Authorization')
                 setSuccess(true)
                 toast.success('Вы успешно вошли в Аккаунт')
-                router.push('/')
                 // console.log(decodeToken(res.data.access))
                 auth.getProfile(`Bearer ${res.data.access}`).then(res => {
                     localStorage.setItem('user', JSON.stringify(res.data))
                 })
+
             }
         } catch (e) {
-            toast.error(e.response.data.detail)
             setIsLoading(false)
         }
 
@@ -54,6 +58,7 @@ function SingInForm({children}) {
         <SignInContext.Provider value={{data, setData, success, isLoading, setIsLoading}}>
             <form onSubmit={handleSubmit} className={style.main}>
                 {...children}
+
             </form>
         </SignInContext.Provider>
     );
