@@ -6,6 +6,7 @@ import {useBaseContext} from "@/app/context/BaseContext";
 import {decodeToken} from "@/app/utils/jwtDecode";
 import {toast} from "react-toastify";
 import {useRouter} from "next/navigation";
+import {mainUrlFiles} from "@/app/services/base";
 
 function Id({university}) {
     const {user} = useBaseContext()
@@ -30,13 +31,12 @@ function Id({university}) {
         router.push(`test/?subject=${university.id}&tk_=${localStorage.getItem('Authorization')}`)
     }
 
-    
 
     return (
         <div className={style.main}>
             <div className={style.header}>
                 <div className={style.leftInfo}>
-                    <Image src={'/other/ban.png'} alt={'example'} width={100} height={100}/>
+                    <img src={mainUrlFiles + university.image} alt={'example'} width={100} height={100}/>
                     {university.phone_number && <div className={style.leftInfoItem}>
                         <img src={'/icons/telephone.svg'} alt={'telephone'}/>
                         <div className={style.leftInfoItemContent}>
@@ -81,9 +81,11 @@ function Id({university}) {
                         {university.translations['ru'].description}
                     </div>
                     <div className={style.rightInfoFinance}>
-                        {university.faculty.map(vl => <div className={style.finance}>
-                            {vl.translations['ru'].title}
-                        </div>)}
+                        {university.faculty.map(vl => (
+                            <div className={style.finance}>
+                                {vl.translations['ru'].title}
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>
@@ -132,7 +134,6 @@ export async function getServerSideProps(context) {
     const {params} = context
 
     const data = await universities.getOne(params.id).then(res => res.data)
-    console.log(data)
     return {
         props: {
             university: data,

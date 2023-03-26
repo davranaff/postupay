@@ -15,8 +15,8 @@ function FilterActions(props) {
 
     useEffect(_ => {
         if (Object.keys(router.query).length !== 0 && change === 1) {
-            setInfo({...info, [router.query.education_form]: router.query.education_form})
-            setParams(Object.keys({[router.query.education_form]: router.query.education_form}).join('&'))
+            setInfo({...info, [router.query.education_type]: router.query.education_type})
+            setParams(Object.keys({[router.query.education_type]: router.query.education_type}).join('&'))
         }
         setParams(Object.keys(info).join('&'))
     }, [change])

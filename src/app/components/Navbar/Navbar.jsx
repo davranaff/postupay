@@ -5,6 +5,7 @@ import { useBaseContext } from "@/app/context/BaseContext";
 import { useEffect, useState } from "react";
 import { auth } from "@/app/services/auth/auth";
 import { toast } from "react-toastify";
+import {decodeToken} from "@/app/utils/jwtDecode";
 
 function Navbar(props) {
     const route = useRouter()
@@ -12,7 +13,6 @@ function Navbar(props) {
     const [show, setShow] = useState(false)
     const [customer, setCustomer] = useState(null)
 
-    console.log(customer)
 
     useEffect(_ => {
         if (localStorage.getItem('user')) {
@@ -28,7 +28,7 @@ function Navbar(props) {
                 }
             ).catch(
                 err => {
-                    console.log(err)
+                    console.log(err.response.data.detail)
                     toast.warn('У вас нету доступа!')
                 }
             )

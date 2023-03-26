@@ -8,19 +8,19 @@ function SelUni() {
         {
             id: 1,
             title: 'Государственные ВУЗы',
-            query: 'education_form=1',
+            query: 'education_type=1',
             checked: false
         },
         {
             id: 2,
             title: 'Иностранные ВУЗы',
-            query: 'education_form=3',
+            query: 'education_type=3',
             checked: false
         },
         {
             id: 3,
             title: 'Частные ВУЗы',
-            query: 'education_form=2',
+            query: 'education_type=2',
             checked: false
         }
     ]
@@ -43,7 +43,7 @@ function Check({check, setList}) {
             if (value.id === check.id) return {...value, checked: !value.checked}
             return {...value, checked: false}
         }))
-        router.push(`/filter/?education_form=${check.query}`)
+        router.push(`/filter/?education_type=${check.query}`)
     }
     return (
         <label className={`${style.item} ${check.checked && style.item__active}`} onClick={handleState}>

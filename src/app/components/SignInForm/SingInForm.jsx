@@ -29,7 +29,7 @@ function SingInForm({children}) {
             const res = await auth.login(formData).then(res => res).catch(e => toast.error(e.response.data.detail))
             if (res.status === 200) {
                 router.push('/')
-
+                
                 setIsLoading(false)
                 res.data.active = true
                 localStorage.setItem('tokens', JSON.stringify(res.data))

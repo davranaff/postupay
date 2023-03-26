@@ -92,17 +92,19 @@
 }
 
 .rightInfoFinance {
-    width: auto;
+    width: 100%;
     height: auto;
     display: flex;
-    justify-content: space-between;
     margin: 30px 0;
     padding: 10px;
-    overflow-x: auto;
+    overflow-x: scroll;
+    flex-wrap: nowrap;
+        white-space: nowrap;
+
 }
 
 .finance {
-    width: 200px;
+    min-width: 200px;
     height: 200px;
     border-radius: 30px;
     box-shadow: 0 3px 3px rgba(0, 0, 0, 0.15);
@@ -111,6 +113,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 0 20px;
+}
+
+.finance:first-child, .finance:last-child {
+    margin: 0;
 }
 
 
