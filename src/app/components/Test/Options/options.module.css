@@ -66,7 +66,7 @@
 }
 
 .option_active {
-    background-color: rgba(33, 82, 245, 0.2);
+    background-color: rgba(14, 67, 241, 0.33);
     box-shadow: inset 0 2px 5px 1px rgba(0, 0, 0, 0.25);
 }
 

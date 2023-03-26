@@ -23,9 +23,8 @@ function SingInForm({children}) {
             formData[value.name] = value.value
         })
         try {
-            const res = await auth.login(formData).then(res => res)
+            const res = await auth.login(formData).then(res => res).catch(e => toast.error(e.response.data.detail))
             if (res.status === 200) {
-                console.log(res)
                 setIsLoading(false)
                 res.data.active = true
                 localStorage.setItem('tokens', JSON.stringify(res.data))
@@ -44,7 +43,6 @@ function SingInForm({children}) {
                 })
             }
         } catch (e) {
-            toast.error(e.response.data.detail)
             setIsLoading(false)
         }
 
