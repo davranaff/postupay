@@ -28,6 +28,13 @@ export const auth = {
             uid: uid, token: token
         })
     },
+
+    resetConfirmPassword: async (uid,token, new_password) =>  {
+        const url = 'https://education07.pythonanywhere.com/auth/users/reset_password_confirm/'
+        return await axios.post(url, {
+            uid, token, new_password
+        })
+    },
     getProfile: async (token) => {
         const url = 'https://education07.pythonanywhere.com/auth/users/me/'
         return await axios.get(url, {

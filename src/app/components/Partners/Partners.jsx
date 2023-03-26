@@ -19,7 +19,7 @@ function Partners(props) {
                 perMove: 1,
                 focus: 'center',
                 padding: '15%',
-                interval: 2200,
+                interval: 9000,
                 pauseOnHover: false,
                 arrows: false,
                 pagination: false,

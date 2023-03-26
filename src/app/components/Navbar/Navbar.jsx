@@ -13,14 +13,18 @@ function Navbar(props) {
     const [show, setShow] = useState(false)
     const [customer, setCustomer] = useState(null)
 
+
     useEffect(_ => {
-        setCustomer(JSON.parse(localStorage.getItem('user')))
-        if (user.active) {
+        if (localStorage.getItem('user')) {
+            setCustomer(JSON.parse(localStorage.getItem('user')))
+        }
+
             auth.getProfile(
                 localStorage.getItem('Authorization')
             ).then(
                 res => {
-                    setCustomer(res.data)
+                    console.log(res.data)
+                    localStorage.setItem('user', JSON.stringify(res.data))
                 }
             ).catch(
                 err => {
@@ -28,7 +32,6 @@ function Navbar(props) {
                     toast.warn('У вас нету доступа!')
                 }
             )
-        }
     }, [])
 
     async function logout() {
@@ -56,7 +59,7 @@ function Navbar(props) {
                 </Link>}
                 {user.active ?
                     <div className={style.navItem}>
-                        <div className={style.navProfile} onClick={_ => setShow(!show)}>
+                        <div className={`${style.navProfile} ${style.button} ${style.signinbtn}`} onClick={_ => setShow(!show)}>
                             <img src="/icons/check.svg" alt="check" />
                             {customer && customer.first_name + ' ' + customer.last_name[0] + '.'}
                         </div>

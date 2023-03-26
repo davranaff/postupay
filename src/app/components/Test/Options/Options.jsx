@@ -8,8 +8,8 @@ function Options() {
 
     const [defaultTime, setDefaultTime] = useState(1500);
     const [time, setTime] = useState(defaultTime);
-    const [isActive, setIsActive] = useState(false);
 
+    const [isActive, setIsActive] = useState(false)
     const [showTime, setShowTime] = useState(true)
 
     useEffect(() => {
