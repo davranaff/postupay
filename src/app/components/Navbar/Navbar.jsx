@@ -18,7 +18,7 @@ function Navbar(props) {
         if (localStorage.getItem('user')) {
             setCustomer(JSON.parse(localStorage.getItem('user')))
         }
-
+        if (localStorage.getItem('Authorization')) {
             auth.getProfile(
                 localStorage.getItem('Authorization')
             ).then(
@@ -28,10 +28,10 @@ function Navbar(props) {
                 }
             ).catch(
                 err => {
-                    console.log(err.response.data.detail)
                     toast.warn('У вас нету доступа!')
                 }
             )
+        }
     }, [])
 
     async function logout() {

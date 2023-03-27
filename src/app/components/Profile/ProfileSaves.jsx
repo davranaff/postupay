@@ -6,7 +6,7 @@ import Image from "next/image";
 function ProfileSaves({ saves }) {
     return (
         <div className={style.resultContent}>
-            {saves.length === 0 ? <Link href={`university/1}`} key={1}>
+            {saves.length === 0 ? <Link href={`university/1`} key={1}>
                 <div className={style.filterItem}>
                     <Image src={'/other/ban.png'} alt={'example'} width={0} height={0}
                            className={style.filterItemImg}/>
