@@ -7,22 +7,23 @@ function SelUni() {
     const initialState = [
         {
             id: 1,
-            title: 'Государственные ВУЗы',
+            title: 'Частные ВУЗы',
             query: 'education_type=1',
             checked: false
         },
         {
             id: 2,
-            title: 'Иностранные ВУЗы',
-            query: 'education_type=3',
+            title: 'Государственные ВУЗы',
+            query: 'education_type=2',
             checked: false
         },
         {
             id: 3,
-            title: 'Частные ВУЗы',
-            query: 'education_type=2',
+            title: 'Иностранные ВУЗы',
+            query: 'education_type=3',
             checked: false
-        }
+        },
+
     ]
     const [list, setList] = useState(initialState)
 

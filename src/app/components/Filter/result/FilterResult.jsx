@@ -35,7 +35,7 @@ function FilterResult() {
                     <img onClick={_ => {
                         getSaves()
                         setSaves({...saves, active: !saves.active})
-                    }} src="/icons/save.svg" alt=""/>
+                    }} src={saves.active ? '/icons/save.svg' : '/icons/rectangle.svg'} alt=""/>
                     <button className={style.button} onClick={_ => setShowSideBar(!showSideBar)}>{showSideBar ? 'Поиск' : 'Фильтр'}</button>
                 </div>
             </div>
