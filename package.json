@@ -19,12 +19,18 @@
     "jwt-decode": "^3.1.2",
     "lodash": "^4.17.21",
     "next": "13.1.6",
+    "next-intl": "^2.12.0",
     "nprogress": "^0.2.0",
     "prop-types": "^15.8.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.8.0",
+    "react-intl": "^6.3.2",
     "react-toastify": "^9.1.1",
     "resize-observer-polyfill": "^1.5.1"
+  },
+  "devDependencies": {
+    "@formatjs/cli": "^6.0.4",
+    "babel-plugin-formatjs": "^10.4.0"
   }
 }

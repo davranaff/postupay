@@ -4,7 +4,7 @@ import News from "@/app/components/News/News";
 import Carousel from "@/app/components/Carousel/Carousel";
 import Partners from "@/app/components/Partners/Partners";
 
-function Index() {
+function Index(props) {
     return (
         <div>
             <Carousel/>
@@ -16,9 +16,11 @@ function Index() {
     );
 }
 
-export function getServerSideProps() {
+export async function getServerSideProps(context) {
 
-  return { props: {} }
+  return {
+      props: {}
+  }
 }
 
 
