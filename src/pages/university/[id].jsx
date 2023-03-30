@@ -82,7 +82,7 @@ function Id({university}) {
                     </div>
                     <div className={style.rightInfoFinance}>
                         {university.faculty.map(vl => (
-                            <div className={style.finance}>
+                            <div className={style.finance} key={vl.id}>
                                 {vl.translations['ru'].title}
                             </div>
                         ))}

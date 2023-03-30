@@ -62,13 +62,14 @@ function FilterActions(props) {
             </label>
             <p className={style.buttonsTitle}>Тип учебного заведения:</p>
             <div className={style.buttons}>
-                {props.educationForms.map(value => <button key={value.id}
+                {props.educationTypes.map(value => <button key={value.id}
                                                            className={`${style.button} ${info[`${value.name}=${value.id}`] && style.active}`}
                                                            onClick={_ => active(value)}>{value.title}</button>)}
             </div>
             <p className={style.buttonsTitle}>Форма обучения:</p>
+
             <div className={style.buttons}>
-                {props.educationTypes.map(value => <button key={value.id}
+                {props.educationForms.map(value => <button key={value.id}
                                                            className={`${style.button} ${info[`${value.name}=${value.id}`] && style.active}`}
                                                            onClick={_ => active(value)}>{value.title}</button>)}
             </div>
@@ -87,7 +88,8 @@ function FilterActions(props) {
                                                              className={`${style.button} ${info[`${value.name}=${value.id}`] && style.active}`}
                                                              onClick={_ => active(value)}>{value.title}</button>)}
             </div>
-            <button className={`${style.button} ${style.blue}`} onClick={_ => setShowSideBar(!showSideBar)}>Поиск</button>
+            <button className={`${style.button} ${style.blue}`} onClick={_ => setShowSideBar(!showSideBar)}>Поиск
+            </button>
         </div>
     );
 }
