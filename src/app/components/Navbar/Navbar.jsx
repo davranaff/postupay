@@ -13,8 +13,6 @@ function Navbar(props) {
     const [customer, setCustomer] = useState(null)
 
     useEffect(_ => {
-
-
         auth.getProfile(
             localStorage.getItem('Authorization')
         ).then(
