@@ -1,16 +1,30 @@
 import style from './navbar.module.css'
 import Link from "next/link";
 import {useRouter} from "next/router";
-import {useBaseContext} from "@/app/context/BaseContext";
-import {useEffect, useState} from "react";
+import {useBaseContext, UserContext} from "@/app/context/BaseContext";
+import {useContext, useEffect, useState} from "react";
 import {auth} from "@/app/services/auth/auth";
 import {toast} from "react-toastify";
+import Image from "next/image";
 
 function Navbar(props) {
     const route = useRouter()
     const {user, setUser} = useBaseContext()
     const [show, setShow] = useState(false)
     const [customer, setCustomer] = useState(null)
+
+    const [showSelect, setShowSelect] = useState(false)
+
+    const {language, setLanguage} = useContext(UserContext)
+    const languages = [
+        {lang: 'Ru', image: './icons/russia.png'},
+        {lang: 'Uzb', image: './icons/uzbekistan.png'},
+        {lang: 'Eng', image: './icons/united_kingdom.png'},
+    ]
+    const changeLang = (lang) => {
+        setLanguage(lang)
+        setShowSelect(false)
+    }
 
     useEffect(_ => {
         auth.getProfile(
@@ -23,7 +37,7 @@ function Navbar(props) {
         ).catch(
             err => {
                 console.log(err.response.data.detail)
-                if (localStorage.getItem('Authorization')) {
+                if (localStorage.getItem('Authorization' ) && !localStorage.getItem('user'))  {
                     toast.warn('У вас нету доступа!')
                 }
             }
@@ -60,6 +74,20 @@ function Navbar(props) {
         <nav className={style.navbar}>
             <Link href='/' className={style.navbarLogo}>postupay</Link>
             <div className={style.navbarAuth}>
+                <div className={style.navItem}>
+                    <div className={style.langSelect}>
+                        <p className={style.lang}
+                           onClick={() => setShowSelect(!showSelect)}>
+                            <span>{language.lang}</span> <img src={language.image} />
+                        </p>
+                        {showSelect && (
+                            <div className={style.languages}>
+                                {languages.map(lang => (
+                                    <span className={style.selectItem} onClick={() => changeLang(lang)}>{lang.lang}</span>
+                                ))}
+                            </div>)}
+                    </div>
+                </div>
                 {route.pathname !== '/filter' && <Link href='/filter' className={style.button}>
                     Найти Вуз
                 </Link>}
@@ -72,6 +100,11 @@ function Navbar(props) {
                         </div>
                         <div className={`${style.dropDown} ${show && style.dropDownActive}`}>
                             <ul>
+                                <li onClick={_ => {
+                                    route.push('/profile')
+                                    setShow(false)
+                                }}>Профиль
+                                </li>
                                 <li onClick={_ => {
                                     route.push('/profile')
                                     setShow(false)

@@ -208,6 +208,43 @@
     }
 }
 
+.langSelect {
+    position: relative;
+}
+
+.lang {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.lang img {
+    width: 40px;
+    height: 32px;
+}
+
+.languages {
+    top: 34px;
+    right: 10px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-radius: 10px;
+    z-index: 1;
+}
+
+.languages span {
+    padding: 5px 15px ;
+    border-radius: 10px;
+
+}
+.selectItem:hover {
+    opacity: .5;
+    cursor: pointer;
+    background: #FFFFFF;
+}
+
 @media screen and (max-width: 768px) {
     .navbar {
         padding: 10px 20px;
