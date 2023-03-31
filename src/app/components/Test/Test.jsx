@@ -22,7 +22,7 @@ function Test(props) {
 
     return (
         <TestContext.Provider value={{active, setActive, tests, setTests}}>
-            <Options tests={props.tests}/>
+            <Options tests={props.tests} university={props.university}/>
             <Questions/>
         </TestContext.Provider>
     );

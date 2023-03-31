@@ -2,8 +2,9 @@ import React, {useEffect, useState} from 'react';
 import style from './options.module.css'
 import {useTestContext} from "@/app/context/TestContext";
 import {AiTwotoneEye, AiTwotoneEyeInvisible} from "react-icons/ai";
+import {mainUrlFiles} from "@/app/services/base";
 
-function Options() {
+function Options(props) {
     const {tests, setActive, active} = useTestContext()
 
     const [defaultTime, setDefaultTime] = useState(1500);
@@ -48,7 +49,7 @@ function Options() {
         setActive(tests.find(el => obj.id === el.id))
     }
     return (<div className={style.options}>
-        <img src="/other/ban.png" alt=""/>
+        <img src={mainUrlFiles + props.university.image} alt=""/>
         <h1 className={style.title}>{tests[0] && tests[0].subject.title}</h1>
 
         {showTime ?  <div className={style.time}> {formatTime(time)}   <AiTwotoneEyeInvisible  color="#6C6F82" onClick={() => setShowTime(false)}/></div> :
