@@ -41,7 +41,7 @@ function Application({Component, pageProps}) {
 
     return <UserContext.Provider value={{user, setUser, language, setLanguage}}>
         <Head>
-            <link rel="icon" href="https://play-lh.googleusercontent.com/VRMWkE5p3CkWhJs6nv-9ZsLAs1QOg5ob1_3qg-rckwYW7yp1fMrYZqnEFpk0IoVP4LM"/>
+            <link rel="icon" href="icons/logo.svg"/>
         </Head>
         <App>
             <Component {...pageProps} />
