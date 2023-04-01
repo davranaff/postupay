@@ -11,27 +11,26 @@ function Navbar(props) {
     const route = useRouter()
     const {user, setUser} = useBaseContext()
     const [show, setShow] = useState(false)
-    const [customer, setCustomer] = useState(null)
 
     const [showSelect, setShowSelect] = useState(false)
 
     const {language, setLanguage} = useContext(UserContext)
+    const {customer, setCustomer} = useContext(UserContext)
     const languages = [
         {lang: 'Ru', image: './icons/russia.png'},
         {lang: 'Uzb', image: './icons/uzbekistan.png'},
-        {lang: 'Eng', image: './icons/united_kingdom.png'},
     ]
     const changeLang = (lang) => {
         setLanguage(lang)
         setShowSelect(false)
     }
 
+
     useEffect(_ => {
         auth.getProfile(
             localStorage.getItem('Authorization')
         ).then(
             res => {
-                console.log(res.data)
                 localStorage.setItem('user', JSON.stringify(res.data))
             }
         ).catch(
@@ -49,7 +48,7 @@ function Navbar(props) {
     }, [route.pathname])
 
     useEffect(() => {
-       setTimeout(() =>  setCustomer(JSON.parse(localStorage.getItem('user'))), 1000 )
+       setTimeout(() =>  setCustomer(JSON.parse(localStorage.getItem('user'))), 1)
     }, [])
 
     async function logout() {
@@ -105,11 +104,7 @@ function Navbar(props) {
                                     setShow(false)
                                 }}>Профиль
                                 </li>
-                                <li onClick={_ => {
-                                    route.push('/profile')
-                                    setShow(false)
-                                }}>Изменить
-                                </li>
+
                                 <li onClick={_ => {
                                     route.push('/profile?save=true')
                                     setShow(false)

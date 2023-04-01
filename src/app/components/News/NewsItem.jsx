@@ -2,7 +2,6 @@ import style from './news.module.css'
 import Image from "next/image";
 
 function NewsItem({post}) {
-    console.log(post)
     return (
         <div className={style.newsItem}>
             <img className={style.newsItem__image} src={'example.jpeg'}  alt={'example.png'}/>

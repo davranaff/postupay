@@ -99,8 +99,16 @@
     padding: 10px;
     overflow-x: scroll;
     flex-wrap: nowrap;
-        white-space: nowrap;
+     cursor: grab;
+}
 
+.rightInfoFinance::-webkit-scrollbar {
+    display: none;
+}
+
+.rightInfoFinance {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 .finance {
@@ -114,6 +122,7 @@
     justify-content: center;
     align-items: center;
     margin: 0 20px;
+    padding: 30px;
 }
 
 .finance:first-child, .finance:last-child {
