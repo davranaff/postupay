@@ -24,6 +24,9 @@ function Application({Component, pageProps}) {
         lang: 'Ru', image: './icons/russia.png'
     })
 
+
+    const [customer, setCustomer] = useState(null)
+
     useEffect(
         _ => {
             const data = JSON.parse(localStorage.getItem('tokens'))
@@ -39,7 +42,7 @@ function Application({Component, pageProps}) {
         }, []
     )
 
-    return <UserContext.Provider value={{user, setUser, language, setLanguage}}>
+    return <UserContext.Provider value={{user, setUser, language, setLanguage, customer,setCustomer}}>
         <Head>
             <link rel="icon" href="icons/logo.svg"/>
         </Head>

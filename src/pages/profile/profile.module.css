@@ -294,6 +294,7 @@
     transition: .2s;
     margin: 10px 0;
     box-sizing: border-box;
+    font-size: 15px;
 }
 
 .input:focus {

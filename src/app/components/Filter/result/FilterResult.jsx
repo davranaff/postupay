@@ -59,7 +59,7 @@ function FilterResult() {
                             </p>
                         </div>
                     </div>
-                </Link>) : <h2 className={style.empty}>Ничего не найдено</h2> : saves.datas.length ? data.map(value => <Link href={`university/${value.id}`} key={value.id}>
+                </Link>) : <h2 className={style.mainTitle}>Ничего не найдено</h2> : saves.datas.length ? data.map(value => <Link href={`university/${value.id}`} key={value.id}>
                     <div className={style.filterItem}>
                         <Image src={'/other/ban.png'} alt={'example'} width={0} height={0}
                                className={style.filterItemImg}/>
@@ -72,7 +72,7 @@ function FilterResult() {
                             </p>
                         </div>
                     </div>
-                </Link>) : <h2 className={style.empty}>Ничего не найдено</h2>
+                </Link>) : <h2 className={style.mainTitle}>Ничего не найдено</h2>
                 }
             </div>
         </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import style from './detail.module.css'
 import Image from "next/image";
 import {universities} from "@/app/services/universities/universites";
@@ -7,10 +7,15 @@ import {decodeToken} from "@/app/utils/jwtDecode";
 import {toast} from "react-toastify";
 import {useRouter} from "next/navigation";
 import {mainUrlFiles} from "@/app/services/base";
+import ScrollContainer from "react-indiana-drag-scroll";
 
 function Id({university}) {
     const {user} = useBaseContext()
     const router = useRouter()
+
+    const scrollRef = useRef(null);
+
+
 
     async function saveUni() {
         if (user.active) {
@@ -80,13 +85,13 @@ function Id({university}) {
                     <div className={style.rightInfoDescription}>
                         {university.translations['ru'].description}
                     </div>
-                    <div className={style.rightInfoFinance}>
+                    <ScrollContainer className={style.rightInfoFinance} >
                         {university.faculty.map(vl => (
-                            <div className={style.finance} key={vl.id}>
+                            <div className={style.finance} key={vl.id} >
                                 {vl.translations['ru'].title}
                             </div>
                         ))}
-                    </div>
+                    </ScrollContainer>
                 </div>
             </div>
             <div className={style.blockTest}>
