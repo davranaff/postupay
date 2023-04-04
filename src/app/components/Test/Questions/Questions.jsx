@@ -35,7 +35,9 @@ function Questions(props) {
     const next = (obj) => {
         if (obj.id === tests[tests.length - 1].id) {
             toast.success('Успешно завершили наш тест')
-            localStorage.removeItem('data')
+            localStorage.removeItem('tests')
+            localStorage.setItem('time', '0')
+            localStorage.removeItem('active')
             return
         }
         const newActive = tests[tests.findIndex(value => value.id === obj.id) + 1]

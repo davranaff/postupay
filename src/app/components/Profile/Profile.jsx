@@ -22,7 +22,7 @@ function Profile({check}) {
     const router = useRouter()
     const [userInfo, setUserInfo] = useState(null)
     const [edit, setEdit] = useState(false)
-
+    const [id, setId] = useState(Math.floor(Math.random() * 99999))
     const [showModal, setShowModal] = useState(false)
     const [name, setName] = useState(userInfo && !edit ? userInfo.first_name : "")
     const [surname, setSurname] = useState(userInfo && !edit ? userInfo.last_name : "")
@@ -79,7 +79,7 @@ function Profile({check}) {
                     {userInfo && !edit ? `${userInfo.first_name} ${userInfo.last_name}` : "Иванов Иван"} &nbsp; <BiEdit onClick={() => setShowModal(true)}/>
                 </div>
                 <div className={style.profileId}>
-                    <p>ID: {userInfo && userInfo.id}</p>
+                    <p>ID: {userInfo && id}</p>
                     <button className={style.button}
                             onClick={_ => setCheckout(!checkout)}>{!checkout ? 'Сохраненные ВУЗы' : 'Тестирование'}</button>
                 </div>
