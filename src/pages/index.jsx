@@ -1,13 +1,13 @@
 import SelUni from "@/app/components/SelUni/SelUni";
 import Road from "@/app/components/Road/Road";
 import News from "@/app/components/News/News";
-import Carousel from "@/app/components/Carousel/Carousel";
+import CarouselH from "@/app/components/Carousel/CarouselH";
 import Partners from "@/app/components/Partners/Partners";
 
 function Index(props) {
     return (
         <div>
-            <Carousel/>
+            <CarouselH/>
             <SelUni/>
             <Road/>
             <News/>

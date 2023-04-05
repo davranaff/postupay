@@ -17,8 +17,8 @@ function Navbar(props) {
     const {language, setLanguage} = useContext(UserContext)
     const {customer, setCustomer} = useContext(UserContext)
     const languages = [
-        {lang: 'Ru', image: './icons/russia.png'},
-        {lang: 'Uzb', image: './icons/uzbekistan.png'},
+        {lang: 'Ru', image: 'icons/russia.png'},
+        {lang: 'Uzb', image: 'icons/uzbekistan.png'},
     ]
     const changeLang = (lang) => {
         setLanguage(lang)
@@ -77,7 +77,10 @@ function Navbar(props) {
                     <div className={style.langSelect}>
                         <p className={style.lang}
                            onClick={() => setShowSelect(!showSelect)}>
-                            <span>{language.lang}</span> <img src={language.image} />
+                            <span>{language.lang}</span>
+                            {language.lang === "Ru"
+                                ? <img src='/icons/russia.png' alt={language.lang}/>
+                                : <img src='/icons/uzbekistan.png' alt={language.lang}/>}
                         </p>
                         {showSelect && (
                             <div className={style.languages}>

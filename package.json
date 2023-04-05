@@ -22,11 +22,13 @@
     "next-intl": "^2.12.0",
     "nprogress": "^0.2.0",
     "prop-types": "^15.8.1",
+    "pure-react-carousel": "^1.30.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.8.0",
     "react-indiana-drag-scroll": "^2.2.0",
     "react-intl": "^6.3.2",
+    "react-responsive-carousel": "^3.2.23",
     "react-toastify": "^9.1.1",
     "resize-observer-polyfill": "^1.5.1"
   },

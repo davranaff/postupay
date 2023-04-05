@@ -18,8 +18,8 @@ function Footer() {
             </div>
             <div className={style.footerItemR}>
                 <div className={style.footerIcons}>
-                    <Image src='icons/Insta.svg' width={35} height={35} alt='instagram'/>
-                    <Image src='icons/Teleg.svg' width={35} height={35} alt='telegram'/>
+                    <Image src='/icons/Insta.svg' width={35} height={35} alt='instagram'/>
+                    <Image src='/icons/Teleg.svg' width={35} height={35} alt='telegram'/>
                 </div>
                 <p className={style.footerRights}>При цитировании с сайта, ссылка на источник обязательна.</p>
             </div>

@@ -13,11 +13,11 @@ function Index(props) {
 }
 
 export async function getServerSideProps() {
-    let regions = await filter.getRegions().then(res => res.data)
-    let subjects = await filter.getSubjects().then(res => res.data)
-    let educationTypes = await filter.getEducationTypes().then(res => res.data)
-    let educationForms = await filter.getEducationForms().then(res => res.data)
-    let educationDegrees = await filter.getEducationDegrees().then(res => res.data)
+    let regions = await filter.getRegions().then(res => res.data).catch(e => console.log(e))
+    let subjects = await filter.getSubjects().then(res => res.data).catch(e => console.log(e))
+    let educationTypes = await filter.getEducationTypes().then(res => res.data).catch(e => console.log(e))
+    let educationForms = await filter.getEducationForms().then(res => res.data).catch(e => console.log(e))
+    let educationDegrees = await filter.getEducationDegrees().then(res => res.data).catch(e => console.log(e))
 
 
     regions = regions.map(value => {

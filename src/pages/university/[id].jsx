@@ -41,7 +41,7 @@ function Id({university}) {
         <div className={style.main}>
             <div className={style.header}>
                 <div className={style.leftInfo}>
-                    <img src={mainUrlFiles + university.image} alt={'example'} width={100} height={100}/>
+                    {university.image && <img src={mainUrlFiles + university.image} alt={'example'} width={100} height={100}/>}
                     {university.phone_number && <div className={style.leftInfoItem}>
                         <img src={'/icons/telephone.svg'} alt={'telephone'}/>
                         <div className={style.leftInfoItemContent}>
@@ -109,10 +109,17 @@ function Id({university}) {
             </div>
             <div className={style.foot}>
                 <div className={style.footMap}>
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6096.650588605307!2d64.42101051081836!3d39.77231752448985!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f500777455a1019%3A0x401e16fbb9a122ad!2sLabi%20Hovuz!5e0!3m2!1sru!2s!4v1675852563721!5m2!1sru!2s"
-                        width="600" height="450" allowFullScreen="" loading="lazy"
-                        referrerPolicy="no-referrer-when-downgrade"></iframe>
+                    <div style={{position:"relative",overflow:"hidden"}}><a
+                        href="https://yandex.uz/maps/10335/tashkent/?utm_medium=mapframe&utm_source=maps"
+                        style={{color:'#eee',fontSize:'12px',position:'absolute',top:'0px'}}>Ташкент</a><a
+                        href="https://yandex.uz/maps/10335/tashkent/house/YkAYdA9jTUcOQFprfX9xdnxhYg==/?ll=69.281312%2C41.309118&utm_medium=mapframe&utm_source=maps&z=16.57"
+                        style={{color:'#eee',fontSize:'12px',position:'absolute',top:'14px'}}>Улица Истикбол, 12 — Яндекс
+                        Карты</a>
+                        <iframe
+                            src="https://yandex.uz/map-widget/v1/?ll=69.281312%2C41.309118&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgoxNTIyNTAxMTcyEi5Pyrt6YmVraXN0b24sIFRvc2hrZW50LCBJc3RpcWJvbCBrb8q7Y2hhc2ksIDEyIgoNHpGKQhVlOiVC&z=16.57" height="400" frameBorder="1" allowFullScreen="true"
+                            width="560"
+                            style={{position: 'relative'}}></iframe>
+                    </div>
                 </div>
                 <div className={style.footContacts}>
                     <div className={style.footContactsInfo}>
@@ -147,3 +154,4 @@ export async function getServerSideProps(context) {
 }
 
 export default Id
+
