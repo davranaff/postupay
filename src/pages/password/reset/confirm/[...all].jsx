@@ -4,6 +4,7 @@ import style from './password.module.css'
 import {AiTwotoneEye, AiTwotoneEyeInvisible} from "react-icons/ai";
 import {toast} from "react-toastify";
 import {useRouter} from "next/navigation";
+import {useTranslation} from "react-i18next";
 
 
 
@@ -31,6 +32,7 @@ function Input ({placeholder, value, setValue}) {
 function Index(props) {
     const [password, setPassword] = useState('')
     const [cPassword, setCPassword] = useState('')
+    const {t} = useTranslation()
     const router = useRouter()
     const confirm = (e) =>{
         e.preventDefault()
@@ -52,12 +54,12 @@ function Index(props) {
     return (
         <div className={style.main}>
             <div className={style.content}>
-                <div className={style.title}>Забыли пароль</div>
-                <div className={style.subtitle}>Придумайте новый пароль</div>
+                <div className={style.title}>{t('sign.forgot')}</div>
+                <div className={style.subtitle}>{t('sign.say_password')}</div>
                 <form action="password" onSubmit={confirm}>
-                    <Input placeholder="Новый пароль" value={password} setValue={setPassword}/>
-                    <Input placeholder="Подтвердите пароль" value={cPassword} setValue={setCPassword}/>
-                    <button className={style.button}>Войти</button>
+                    <Input placeholder={t('sign.new_password')} value={password} setValue={setPassword}/>
+                    <Input placeholder={t('sign.c_password')} value={cPassword} setValue={setCPassword}/>
+                    <button className={style.button}>{t('home.navbar.sign_in')}</button>
                 </form>
             </div>
         </div>

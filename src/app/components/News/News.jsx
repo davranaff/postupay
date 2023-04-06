@@ -4,10 +4,12 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import {ButtonBack, ButtonNext, CarouselProvider, Slide, Slider} from "pure-react-carousel";
 import 'pure-react-carousel/dist/react-carousel.es.css';
+import {useTranslation} from "react-i18next";
 
 
 function News(props) {
     const [posts, setPosts] = useState(null)
+    const {t} = useTranslation()
 
     useEffect(() => {
         axios.get('https://education07.pythonanywhere.com/api/news/')
@@ -16,7 +18,7 @@ function News(props) {
     }, [])
     return (
         <div className={style.main}>
-            <h1 className={style.title}>Новости</h1>
+            <h1 className={style.title}>{t('home.news.news')}</h1>
             {posts && <CarouselProvider className={style.newsContent} naturalSlideWidth={30}
                                         naturalSlideHeight={20}
                                         totalSlides={posts.length}
