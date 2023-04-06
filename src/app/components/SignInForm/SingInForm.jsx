@@ -51,7 +51,7 @@ function SingInForm({children}) {
         } catch (e) {
             setIsLoading(false)
         }
-
+        setIsLoading(false)
     }
 
     return (

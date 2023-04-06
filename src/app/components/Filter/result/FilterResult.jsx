@@ -5,6 +5,7 @@ import {useFilterContext} from "@/app/context/FilterContext";
 import Link from "next/link";
 import {filter} from "@/app/services/filter/filter";
 import {useBaseContext} from "@/app/context/BaseContext";
+import {useTranslation} from "react-i18next";
 
 function FilterResult() {
     const {data, setData, showSideBar, params, setShowSideBar} = useFilterContext()
@@ -14,6 +15,7 @@ function FilterResult() {
         datas: [],
     })
     const { user } = useBaseContext()
+    const {t} = useTranslation()
 
 
     useEffect(_ => {
@@ -28,7 +30,7 @@ function FilterResult() {
 
     return (
         <div className={`${style.main} ${!showSideBar ? style.main_active : ''}`}>
-            <h1 className={style.mainTitle}>Список Высших Учебных Заведений</h1>
+            <h1 className={style.mainTitle}>{t('filter.list')}</h1>
             <div className={style.mainM}>
                 <h1 className={style.mainTitleM}>{saves.active ? 'Сохраненные ВУЗы' : 'Список ВУЗов'}</h1>
                 <div>
@@ -43,7 +45,7 @@ function FilterResult() {
                 <input value={search} onInput={e => setSearch(e.target.value)} id='search' type="text"
                        className={style.input} placeholder='Поиск…'/>
             </label>
-            <h1 className={style.mainTitle}>Результаты:</h1>
+            <h1 className={style.mainTitle}>{t('filter.results')}:</h1>
             <div className={style.resultContent}>
                 {
                     !saves.active ? data.length ? data.map(value => <Link href={`university/${value.id}`} key={value.id}>

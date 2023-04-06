@@ -46,6 +46,7 @@ function SingInForm({children}) {
             return
         }
         toast.error('Пароли не совпадают')
+        setIsLoading(false)
     }
 
     return (

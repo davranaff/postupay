@@ -5,7 +5,10 @@ import {useBaseContext, UserContext} from "@/app/context/BaseContext";
 import {useContext, useEffect, useState} from "react";
 import {auth} from "@/app/services/auth/auth";
 import {toast} from "react-toastify";
-import Image from "next/image";
+import {useTranslation} from "react-i18next";
+import i18n from "@/i18n";
+import {appWithTranslation} from "next-i18next";
+
 
 function Navbar(props) {
     const route = useRouter()
@@ -16,14 +19,34 @@ function Navbar(props) {
 
     const {language, setLanguage} = useContext(UserContext)
     const {customer, setCustomer} = useContext(UserContext)
+
+    const {t} = useTranslation()
+
     const languages = [
         {lang: 'Ru', image: 'icons/russia.png'},
         {lang: 'Uzb', image: 'icons/uzbekistan.png'},
     ]
+
     const changeLang = (lang) => {
         setLanguage(lang)
         setShowSelect(false)
+        i18n.changeLanguage(lang.lang.toLowerCase())
     }
+
+    useEffect(() => {
+        if (i18n.language === 'ru') {
+            setLanguage({lang: 'Ru', image: './icons/russia.png'})
+        } else {
+            setLanguage({lang: 'Uzb', image: './icons/uzbekistan.png'})
+        }
+        // changeLang()
+    }, [])
+
+    useEffect(() => {
+        route.events.on('routeChangeComplete', () => {
+            document.documentElement.lang = localStorage.i18nextLng;
+        });
+    }, []);
 
 
     useEffect(_ => {
@@ -36,19 +59,17 @@ function Navbar(props) {
         ).catch(
             err => {
                 console.log(err.response.data.detail)
-                if (localStorage.getItem('Authorization' ) && !localStorage.getItem('user'))  {
+                if (localStorage.getItem('Authorization') && !localStorage.getItem('user')) {
                     toast.warn('У вас нету доступа!')
                 }
             }
         )
 
 
-
-
     }, [route.pathname])
 
     useEffect(() => {
-       setTimeout(() =>  setCustomer(JSON.parse(localStorage.getItem('user'))), 1)
+        setTimeout(() => setCustomer(JSON.parse(localStorage.getItem('user'))), 1)
     }, [])
 
     async function logout() {
@@ -71,27 +92,31 @@ function Navbar(props) {
 
     return (
         <nav className={style.navbar}>
-            <Link href='/' className={style.navbarLogo}>postupay</Link>
+            <Link href='/' className={style.navbarLogo}>Postupay</Link>
             <div className={style.navbarAuth}>
                 <div className={style.navItem}>
                     <div className={style.langSelect}>
                         <p className={style.lang}
                            onClick={() => setShowSelect(!showSelect)}>
+
                             <span>{language.lang}</span>
                             {language.lang === "Ru"
                                 ? <img src='/icons/russia.png' alt={language.lang}/>
                                 : <img src='/icons/uzbekistan.png' alt={language.lang}/>}
+
+
                         </p>
                         {showSelect && (
                             <div className={style.languages}>
                                 {languages.map(lang => (
-                                    <span className={style.selectItem} onClick={() => changeLang(lang)}>{lang.lang}</span>
+                                    <span key={lang.image} className={style.selectItem}
+                                          onClick={() => changeLang(lang)}>{lang.lang}</span>
                                 ))}
                             </div>)}
                     </div>
                 </div>
                 {route.pathname !== '/filter' && <Link href='/filter' className={style.button}>
-                    Найти Вуз
+                    {`${t('home.navbar.find_univer')}`}
                 </Link>}
                 {user.active ?
                     <div className={style.navItem}>
@@ -105,18 +130,18 @@ function Navbar(props) {
                                 <li onClick={_ => {
                                     route.push('/profile')
                                     setShow(false)
-                                }}>Профиль
+                                }}>{`${t('home.navbar.profile')}`}
                                 </li>
 
                                 <li onClick={_ => {
                                     route.push('/profile?save=true')
                                     setShow(false)
-                                }}>Сохраненные ВУЗы
+                                }}>{`${t('home.navbar.saved')}`}
                                 </li>
                                 <li onClick={_ => {
                                     logout()
                                     setShow(false)
-                                }}>Выйти
+                                }}>{`${t('home.navbar.log_out')}`}
                                 </li>
                             </ul>
 
@@ -125,11 +150,11 @@ function Navbar(props) {
                     : !['/signin', '/signup'].includes(route.pathname) &&
                     <Link href='/signin/' className={`${style.navItem} ${style.button} ${style.signinbtn}`}>
                         <div className={style.check}></div>
-                        Войти
+                        {`${t('home.navbar.sign_in')}`}
                     </Link>}
             </div>
         </nav>
     );
 }
 
-export default Navbar;
+export default appWithTranslation(Navbar);

@@ -1,23 +1,32 @@
 import style from './road.module.css'
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {useTranslation} from "react-i18next";
+import i18n from "@/i18n";
 
 function Road(props) {
-    const data = [
-        {id: 1, title: 'Выберите специальность', active: false},
-        {id: 2, title: 'Выберите ВУЗ', active: false},
-        {id: 3, title: 'Подайте заявление о приеме в ВУЗ', active: false},
-        {id: 4, title: 'Сдайте вступительные испытания', active: false},
-        {id: 5, title: 'Подайте заявление о согласии', active: false},
-        {id: 6, title: 'Принесите оригиналы документов', active: false},
-        {id: 7, title: 'Оплатите контракт', active: false},
-        {id: 8, title: 'Поздравляем Вы зачислены', active: false},
-    ]
+    const {t} = useTranslation()
+    const data=
+        [
+            {id: 1, title: t('home.way.choose_special'), active: false},
+            {id: 2, title: t('home.way.choose_univer'), active: false},
+            {id: 3, title: t('home.way.apply'), active: false},
+            {id: 4, title: t('home.way.pass_exam'), active: false},
+            {id: 5, title: t('home.way.submit_application'), active: false},
+            {id: 6, title: t('home.way.quoting'), active: false},
+            {id: 7, title: t('home.way.pay'), active: false},
+            {id: 8, title: t('home.way.congrates'), active: false},
+        ]
 
     const [items, setItems] = useState(data)
+    useEffect(() => {
+        setItems(data)
+    },[i18n.language])
+
+
 
     return (
         <div className={style.main}>
-            <h1 className={style.title}>Путь поступления в вуз</h1>
+            <h1 className={style.title}>{t('home.way.process')}</h1>
             <div className={style.content}>
                 <img src="other/pathTop.png" className={style.pathTop} alt=""/>
                 <img src="other/pathBottom.png" className={style.pathBottom} alt=""/>

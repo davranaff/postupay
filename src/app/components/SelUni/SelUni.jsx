@@ -1,25 +1,28 @@
 import style from './seluni.module.css'
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useRouter} from "next/navigation";
+import {useTranslation} from "react-i18next";
+import i18n from "@/i18n";
 
 
 function SelUni() {
+    const {t} = useTranslation()
     const initialState = [
         {
             id: 1,
-            title: 'Частные ВУЗы',
+            title: t('home.sel_univer.private'),
             query: 'education_type=1',
             checked: false
         },
         {
             id: 2,
-            title: 'Государственные ВУЗы',
+            title: t('home.sel_univer.state'),
             query: 'education_type=2',
             checked: false
         },
         {
             id: 3,
-            title: 'Иностранные ВУЗы',
+            title: t('home.sel_univer.foreign'),
             query: 'education_type=3',
             checked: false
         },
@@ -27,7 +30,9 @@ function SelUni() {
     ]
     const [list, setList] = useState(initialState)
 
-
+    useEffect(( ) => {
+        setList(initialState)
+    }, [i18n.language])
     return (
         <div className={style.main}>
             {list.map(value => <Check key={value.id} check={value} setList={setList}/>)}

@@ -8,8 +8,10 @@ import {toast} from "react-toastify";
 import {useRouter} from "next/navigation";
 import {mainUrlFiles} from "@/app/services/base";
 import ScrollContainer from "react-indiana-drag-scroll";
+import {useTranslation} from "next-i18next";
 
 function Id({university}) {
+
     const {user} = useBaseContext()
     const router = useRouter()
 
