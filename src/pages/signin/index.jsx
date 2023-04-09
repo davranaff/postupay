@@ -22,7 +22,7 @@ function Index(props) {
             .then(res => {
                 console.log(res)
                 setShowModal(false)
-                toast.success('Check your email')
+                toast.success(t('toasts.check_email'))
             })
             .catch(err => console.error(err))
     }

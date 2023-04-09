@@ -20,7 +20,8 @@ function News(props) {
         <div className={style.main}>
             <h1 className={style.title}>{t('home.news.news')}</h1>
             {posts && <CarouselProvider className={style.newsContent} naturalSlideWidth={30}
-                                        naturalSlideHeight={20}
+
+                                        naturalSlideHeight={40}
                                         totalSlides={posts.length}
                                         interval={10000}
                                         isPlaying={true}

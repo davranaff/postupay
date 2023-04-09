@@ -37,16 +37,16 @@ function Index(props) {
     const confirm = (e) =>{
         e.preventDefault()
         if (password.length < 8) {
-            toast.error('Пароль должен содержать минимум 8 символ')
+            toast.error(t('toasts.password8'))
         }  else {
             if (password === cPassword) {
                 auth.resetConfirmPassword(props.uid, props.token, password).then(res => {
-                    toast.success('Вы успешно сбросили пароль!')
+                    toast.success(t("toasts.reset_password"))
                     router.push('/signin')
 
                 }).catch(err => toast.error(err.response.data.new_password[0]))
             } else {
-                toast.error('Пароли не совпадают!')
+                toast.error(t("toasts.password_doesnt"))
             }
         }
     }

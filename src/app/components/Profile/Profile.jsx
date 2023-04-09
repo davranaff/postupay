@@ -10,6 +10,7 @@ import {BiEdit} from "react-icons/bi";
 import Modal from "@/app/components/Modal/Modal";
 import {UserContext} from "@/app/context/BaseContext";
 import axios from "axios";
+import {useTranslation} from "react-i18next";
 
 function Profile({check}) {
 
@@ -28,6 +29,7 @@ function Profile({check}) {
     const [surname, setSurname] = useState(userInfo && !edit ? userInfo.last_name : "")
     const [token, setToken] = useState(null)
     const {customer, setCustomer} = useContext(UserContext)
+    const {t} = useTranslation()
 
     const editProfile = e => {
         e.preventDefault()
@@ -44,14 +46,14 @@ function Profile({check}) {
               .then((res) => {
                   localStorage.setItem('user', JSON.stringify(res.data))
                   setShowModal(false)
-                  toast.success('Вы успешно изменили профиль')
+                  toast.success(t('toasts.all_right'))
                   setCustomer(JSON.parse(localStorage.getItem('user')))
                   setName('')
                   setSurname('')
                   load()
               })
       } else {
-          toast.warn('Write something')
+          toast.warn(t("toasts.write_something"))
       }
 
 
@@ -63,10 +65,11 @@ function Profile({check}) {
         universities.getFavourites(localStorage.getItem('Authorization'))
             .then(res => console.log(res.data)).catch(err => {
                 if (!localStorage.getItem('Authorization')) {
-                    toast.warn('У вас нету доступа!')
+                    toast.warn(t('toasts.no_permission'))
                 }
         })
     }
+
     useEffect(_ => {
         setToken(localStorage.getItem('Authorization'))
         load()
@@ -81,11 +84,11 @@ function Profile({check}) {
                 <div className={style.profileId}>
                     <p>ID: {userInfo && id}</p>
                     <button className={style.button}
-                            onClick={_ => setCheckout(!checkout)}>{!checkout ? 'Сохраненные ВУЗы' : 'Тестирование'}</button>
+                            onClick={_ => setCheckout(!checkout)}>{!checkout ? t('home.navbar.saved') : t('profile.test')}</button>
                 </div>
             </div>
             <h1 className={style.result}>{
-                !checkout ? 'Результаты тестирования:' : 'Сохраненные ВУЗы:'
+                !checkout ? t('profile.result_test') : t('home.navbar.saved')
             }</h1>
             {
                 !checkout ? <ProfileResult results={data.results}/> : <ProfileSaves saves={data.saves}/>

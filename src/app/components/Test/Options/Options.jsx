@@ -4,19 +4,21 @@ import {useTestContext} from "@/app/context/TestContext";
 import {AiTwotoneEye, AiTwotoneEyeInvisible} from "react-icons/ai";
 import {mainUrlFiles} from "@/app/services/base";
 import {useRouter} from "next/navigation";
+import Modal from "@/app/components/Modal/Modal";
 
 function Options(props) {
     const route = useRouter()
     const {tests, setActive, active} = useTestContext()
 
-    const [defaultTime, setDefaultTime] = useState( 1500);
+    const [defaultTime, setDefaultTime] = useState(1500);
     const [time, setTime] = useState(defaultTime);
 
     const [isActive, setIsActive] = useState(false)
     const [showTime, setShowTime] = useState(true)
+    const [showModal, setShowModal] = useState(true)
 
     useEffect(_ => {
-        setTime(localStorage.getItem('time') ? Number(localStorage.getItem('time'))  : 1500)
+        setTime(localStorage.getItem('time') ? Number(localStorage.getItem('time')) : 1500)
     }, [])
 
     useEffect(() => {
@@ -24,8 +26,9 @@ function Options(props) {
         if (isActive && time > 0) {
             interval = setInterval(() => {
                 setTime(time - 1);
-                setDefaultTime(defaultTime -1)
-                localStorage.setItem('time', defaultTime -1)
+                localStorage.setItem('time', defaultTime - 1)
+                console.log(defaultTime)
+                setDefaultTime(localStorage.getItem('time') || 1500)
             }, 1000);
         } else if (time === 0) {
             clearInterval(interval);
@@ -34,12 +37,20 @@ function Options(props) {
 
         return () => clearInterval(interval);
     }, [isActive, time]);
+    useEffect(() => {
+        const storedSeconds = localStorage.getItem('time');
+        if (storedSeconds !== null) {
+            setDefaultTime(parseInt(storedSeconds));
+        }
+    }, [])
+
 
     const startTimer = () => {
+        setShowModal(false)
         setIsActive(true);
     };
 
-    useEffect(() => startTimer(), [])
+    // useEffect(() => startTimer(), [])
 
     const formatTime = (time) => {
         const minutes = Math.floor(time / 60);
@@ -55,17 +66,30 @@ function Options(props) {
         <img src={props.university && mainUrlFiles + props.university.image} alt=""/>
         <h1 className={style.title}>{tests[0] && tests[0].subject.title}</h1>
 
-        {showTime ?  <div className={style.time}> {formatTime(time)}   <AiTwotoneEyeInvisible  color="#6C6F82" onClick={() => setShowTime(false)}/></div> :
-            <div className={style.time}> -- : --   <AiTwotoneEye  color="#6C6F82" onClick={() => setShowTime(true)} /></div>
+        {showTime ? <div className={style.time}> {formatTime(time)} <AiTwotoneEyeInvisible color="#6C6F82"
+                                                                                           onClick={() => setShowTime(false)}/>
+            </div> :
+            <div className={style.time}> -- : -- <AiTwotoneEye color="#6C6F82" onClick={() => setShowTime(true)}/></div>
         }
-
 
 
         <div className={style.optionsContent}>
             {tests.map(value => <div key={value.id} onClick={_ => activeOption(value)}
-                                    className={`${style.option} ${(value === active || value.done) && style.option_active}`}>
+                                     className={`${style.option} ${(value === active || value.done) && style.option_active}`}>
                 {value.id}
             </div>)}
+
+            <Modal open={showModal}>
+                <div className={style.startModal}>
+                    <h1 className={style.modalText}>Начать тест?</h1>
+                    <br/>
+                    <button className={style.button} onClick={startTimer}>Да</button>
+                    <button className={`${style.button} ${style.no}`}
+                            onClick={() => setShowModal(false)}
+                    >Нет
+                    </button>
+                </div>
+            </Modal>
         </div>
     </div>);
 }

@@ -8,7 +8,7 @@ import {toast} from "react-toastify";
 import {useRouter} from "next/navigation";
 import {mainUrlFiles} from "@/app/services/base";
 import ScrollContainer from "react-indiana-drag-scroll";
-import {useTranslation} from "next-i18next";
+import {useTranslation} from "react-i18next";
 
 function Id({university}) {
 
@@ -16,7 +16,7 @@ function Id({university}) {
     const router = useRouter()
 
     const scrollRef = useRef(null);
-
+    const {t}= useTranslation()
 
 
     async function saveUni() {
@@ -24,14 +24,14 @@ function Id({university}) {
             const decoded = decodeToken(user.access)
             await universities.saveUniversity(decoded.id, university.id, localStorage.getItem('Authorization'))
                 .then(res => {
-                    toast.success('Вуз сохранён')
+                    toast.success(t('toasts.saved_univer'))
                 })
                 .catch(e => {
-                    toast.error('Что-то пошло не так!')
+                    toast.error(t('toasts.something'))
                 })
             return
         }
-        toast.warn('Пройдите регистрацию!')
+        toast.warn(t('toast.move_register'))
     }
 
     function goTest() {

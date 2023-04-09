@@ -60,7 +60,7 @@ function Navbar(props) {
             err => {
                 console.log(err.response.data.detail)
                 if (localStorage.getItem('Authorization') && !localStorage.getItem('user')) {
-                    toast.warn('У вас нету доступа!')
+                    toast.warn(t('toasts.no_permission'))
                 }
             }
         )
@@ -70,19 +70,20 @@ function Navbar(props) {
 
     useEffect(() => {
         setTimeout(() => setCustomer(JSON.parse(localStorage.getItem('user'))), 1)
+
     }, [])
 
     async function logout() {
         if (user) {
             const data = await auth.logout().then(res => {
-                toast.info('Вы вышли из аккаунта!')
+                toast.info(t('toasts.logout'))
                 localStorage.removeItem('user')
                 localStorage.removeItem('Authorization')
                 localStorage.removeItem('ally-supports-cache')
                 return res
 
             }).catch(err => {
-                toast.error('Что-то пошло не так!')
+                toast.error(t('toasts.something'))
                 console.log(err)
             })
             setUser({...user, active: false, access: '', refresh: ''})
@@ -92,7 +93,7 @@ function Navbar(props) {
 
     return (
         <nav className={style.navbar}>
-            <Link href='/' className={style.navbarLogo}>Postupay</Link>
+            <Link href='/' className={style.navbarLogo}>postupay</Link>
             <div className={style.navbarAuth}>
                 <div className={style.navItem}>
                     <div className={style.langSelect}>

@@ -14,7 +14,8 @@ function Button({
 }) {
     
 
-    const {isLoading, setIsLoading} =  text === 'Регистрация'|| text === "Ro’yxatdan o’tish"  ? useContext(SignUpContext) : useContext(SignInContext)
+    const {isLoading, setIsLoading} =  text === 'Регистрация'||
+    text === "Ro’yxatdan o’tish"  ? useContext(SignUpContext) : useContext(SignInContext)
     return (
         <button
             type={type}
