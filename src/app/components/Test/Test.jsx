@@ -6,6 +6,7 @@ import Questions from "@/app/components/Test/Questions/Questions";
 function Test(props) {
     const [tests, setTests] = useState([])
     const [active, setActive] = useState(null)
+    console.log(props.university)
 
 
     useEffect(_ => {

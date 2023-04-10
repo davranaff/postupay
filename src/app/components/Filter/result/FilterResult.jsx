@@ -6,6 +6,7 @@ import Link from "next/link";
 import {filter} from "@/app/services/filter/filter";
 import {useBaseContext} from "@/app/context/BaseContext";
 import {useTranslation} from "react-i18next";
+import {mainUrlFiles} from "@/app/services/base";
 
 function FilterResult() {
     const {data, setData, showSideBar, params, setShowSideBar} = useFilterContext()
@@ -20,9 +21,13 @@ function FilterResult() {
 
     useEffect(_ => {
         if (search) {
-            setTimeout(_ => filter.getSearchResult(search).then(r => setData(r.data)), 500)
+            setTimeout(_ => filter.getSearchResult(search).then(r => {
+                setData(r.data)
+            }), 500)
         }
     }, [search, params])
+
+    console.log(data)
 
     async function getSaves() {
         if (user.active &&  saves.datas) {}
@@ -50,8 +55,7 @@ function FilterResult() {
                 {
                     !saves.active ? data.length ? data.map(value => <Link href={`university/${value.id}`} key={value.id}>
                     <div className={style.filterItem}>
-                        <Image src={'/other/ban.png'} alt={'example'} width={0} height={0}
-                               className={style.filterItemImg}/>
+                        <img src={value.image ? mainUrlFiles + value.image : "/icons/logo.svg"} alt={value.translations['ru'].title} className={style.filterItemImg}/>
                         <div className={style.filterItemContent}>
                             <h3 className={style.filterItemContentTitle}>
                                 {value.translations['ru'].title}

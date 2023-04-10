@@ -69,6 +69,35 @@
     background-color: rgba(14, 67, 241, 0.33);
     box-shadow: inset 0 2px 5px 1px rgba(0, 0, 0, 0.25);
 }
+.startModal {
+    text-align: center;
+}
+
+.button {
+    text-align: center;
+    border-radius: 10px;
+    background-color: #2455C6;
+    color: white;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.15);
+    outline: none;
+    border: none;
+    padding: 10px 20px;
+    transition: .1s ease-in-out;
+    margin-right: 5px;
+}
+
+.button:hover {
+    filter: brightness(90%);
+}
+
+.button:active {
+    filter: brightness(90%);
+    transform: scale(0.99);
+}
+.no {
+    background: #e5e5e5;
+    color: black;
+}
 
 @media screen and (max-width: 450px) {
     .options {
@@ -130,5 +159,21 @@
         width: 22%;
         height: 10px;
         font-size: 12px;
+    }
+}
+@media screen and (max-width: 768px) {
+    .button {
+        font-size: 8px;
+        margin-top: 20px;
+        border-radius: 5px;
+        padding: 5px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .button {
+        padding: 10px 10px;
+        font-size: 11px;
+        border-radius: 10px;
     }
 }

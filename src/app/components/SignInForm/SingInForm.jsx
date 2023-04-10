@@ -7,6 +7,7 @@ import {setCookie} from "@/app/utils/cookies";
 import {useRouter} from "next/navigation";
 import {toast} from "react-toastify";
 import {decodeToken } from "@/app/utils/jwtDecode"
+import {useTranslation} from "react-i18next";
 
 function SingInForm({children}) {
     const [data, setData] = useState([])
@@ -14,7 +15,7 @@ function SingInForm({children}) {
     const {setUser} = useBaseContext()
     const router = useRouter()
     const [isLoading, setIsLoading] = useState(false)
-
+    const {t} = useTranslation()
 
 
     async function handleSubmit(e) {
@@ -41,7 +42,7 @@ function SingInForm({children}) {
 
                 authHead.auth = localStorage.getItem('Authorization')
                 setSuccess(true)
-                toast.success('Вы успешно вошли в Аккаунт')
+                toast.success(t("toasts.entered"))
                 // console.log(decodeToken(res.data.access))
                 auth.getProfile(`Bearer ${res.data.access}`).then(res => {
                     localStorage.setItem('user', JSON.stringify(res.data))
@@ -52,6 +53,7 @@ function SingInForm({children}) {
             setIsLoading(false)
         }
         setIsLoading(false)
+
     }
 
     return (

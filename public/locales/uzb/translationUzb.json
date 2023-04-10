@@ -21,6 +21,7 @@
     },
     "contact": "Aloqa",
     "for_univer":"OTMlarning shaxsiy kabineti bilan ishlash uchun",
+    "footer_text": "Saytdan iqtibos keltirganda, manbaga havola kerak.",
     "way": {
       "pay": "Kontrakt to’lovini amalga oshiring",
       "documents": "Hujjatlarni asl nusxasini topshiring",
@@ -50,7 +51,8 @@
     "level": "Ta’lim darajasi"
   },
   "profile" : {
-    "result_test": "Test natijalari"
+    "result_test": "Test natijalari",
+    "test": "Test"
   },
   "sign": {
     "no_account": "Ro'yxatdan o’tmaganmisiz?",
@@ -68,6 +70,29 @@
     "enter_email": "Elektron pochtangizni kiriting",
     "submit": "Tasdiqlash"
 
+  },
+  "toasts" : {
+    "no_permission" : "Sizda ruxsat yo'q!",
+    "logout": "Siz tizimdan chiqdingiz!",
+    "something": "Nimadir noto'g'ri bajarildi!",
+    "all_right": "Siz profilingizni muvaffaqiyatli o'zgartirdingiz",
+    "write_something": "Nimadir yozing!",
+    "entered": "Siz akkauntingizga muvaffaqiyatli kirdingiz",
+    "confirm_email": "Pochtani tasdiqlang!",
+    "already_has": "Bu elektron pochta manzili allaqachon mavjud",
+    "password_err": "Zaif parol!",
+    "password_doesnt": "Parollar mos kelmayapti!",
+    "test_success": "Sinovimiz muvaffaqiyatli yakunlandi!",
+    "password8": "Parol kamida 8 ta belgidan iborat bo'lishi kerak!",
+    "reset_password": "Siz parolingizni muvaffaqiyatli tikladingiz!",
+    "check_email": "Elektron pochtangizni tekshiring",
+    "saved_univer": "Universitet saqlanib qolindi",
+    "move_register": "Ro'yxatdan o'ting!"
+  },
+  "test" : {
+    "exit": "Urinishni tugatish",
+    "next": "Keyingi savol",
+    "choose": "Testni tanlang"
   }
 
 }

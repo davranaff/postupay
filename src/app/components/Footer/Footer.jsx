@@ -23,7 +23,7 @@ function Footer() {
                     <Image src='/icons/Insta.svg' width={35} height={35} alt='instagram'/>
                     <Image src='/icons/Teleg.svg' width={35} height={35} alt='telegram'/>
                 </div>
-                <p className={style.footerRights}>При цитировании с сайта, ссылка на источник обязательна.</p>
+                <p className={style.footerRights}>{t('home.footer_text')}</p>
             </div>
         </footer>
     );

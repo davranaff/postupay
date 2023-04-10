@@ -2,11 +2,12 @@ import React, {useEffect, useState} from 'react';
 import style from './questions.module.css'
 import {useTestContext} from "@/app/context/TestContext";
 import {toast} from "react-toastify";
+import {useTranslation} from "react-i18next";
 
 function Questions(props) {
     const {active, tests, setTests, setActive} = useTestContext()
     const [check, setCheck] = useState({})
-
+    const {t} = useTranslation()
     useEffect(_ => {
         const local = JSON.parse(localStorage.getItem('active'))
         if (local !== null) {
@@ -34,7 +35,7 @@ function Questions(props) {
 
     const next = (obj) => {
         if (obj.id === tests[tests.length - 1].id) {
-            toast.success('Успешно завершили наш тест')
+            toast.success(t("toasts.test_success"))
             localStorage.removeItem('tests')
             localStorage.setItem('time', '0')
             localStorage.removeItem('active')
@@ -62,10 +63,10 @@ function Questions(props) {
                 </label>
             ))}
             <button onClick={_ => next(active)}
-                    className={style.button}>{active.id === tests[tests.length - 1].id ? 'Завершить попытку' : 'Следующий вопрос'}</button>
+                    className={style.button}>{active.id === tests[tests.length - 1].id ? t("test.exit") : t('text.next')}</button>
         </div>
     </div>) : (<div className={style.questions}>
-        <h1 className={style.title}>Выберите Тест</h1>
+        <h1 className={style.title}>{t("test.choose")}</h1>
     </div>)
 }
 

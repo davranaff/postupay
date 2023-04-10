@@ -23,13 +23,10 @@ function Road(props) {
     },[i18n.language])
 
 
-
     return (
         <div className={style.main}>
             <h1 className={style.title}>{t('home.way.process')}</h1>
             <div className={style.content}>
-                <img src="other/pathTop.png" className={style.pathTop} alt=""/>
-                <img src="other/pathBottom.png" className={style.pathBottom} alt=""/>
                 { items.map( value => <RoadItem key={value.id} item={value} update={setItems} /> ) }
             </div>
         </div>
