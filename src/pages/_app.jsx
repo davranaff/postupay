@@ -2,30 +2,30 @@ import '@/app/globals.css'
 import App from "@/app/components/App";
 import {UserContext} from "@/app/context/BaseContext";
 import {useEffect, useState} from "react";
-
-import Router from 'next/router';
+import Router, {useRouter} from 'next/router';
 import NProgress from 'nprogress'; //nprogress module
 import 'nprogress/nprogress.css';
 import Head from "next/head";
-import {NextIntlProvider} from "next-intl"; //styles of nprogress
+import "../i18n"
 
-//Route Events.
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
+
 function Application({Component, pageProps}) {
+    const {locale} = useRouter()
     const [user, setUser] = useState({
         active: false,
         access: '',
         refresh: ''
     })
-    const [language, setLanguage]  = useState({
+    const [language, setLanguage] = useState({
         lang: 'Ru', image: './icons/russia.png'
     })
 
-
     const [customer, setCustomer] = useState(null)
+    const [count, setCount] = useState(0)
 
     useEffect(
         _ => {
@@ -42,12 +42,12 @@ function Application({Component, pageProps}) {
         }, []
     )
 
-    return <UserContext.Provider value={{user, setUser, language, setLanguage, customer,setCustomer}}>
+    return <UserContext.Provider value={{user, setUser, language, setLanguage, customer, setCustomer, count, setCount}}>
         <Head>
             <link rel="icon" href="icons/logo.svg"/>
         </Head>
         <App>
-            <Component {...pageProps} />
+            <Component {...pageProps} dir={locale}/>
         </App>
     </UserContext.Provider>
 }

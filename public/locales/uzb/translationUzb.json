@@ -1,0 +1,98 @@
+{
+  "home": {
+    "navbar": {
+      "find_univer": "OTM izlash",
+      "sign_in": " Kirish",
+
+      "profile": " Profil",
+      "saved": "Saqlangan OTMlar",
+      "log_out": "Chiqish"
+    },
+    "sel_univer": {
+      "state": "Davlat OTM",
+      "foreign": "Xorijiy OTM",
+      "private": "Xususiy OTM"
+    },
+    "news": {
+      "news": "Yangiliklar (Xabarlar)"
+    },
+    "partners": {
+      "partners": "Hamkorlar"
+    },
+    "contact": "Aloqa",
+    "for_univer":"OTMlarning shaxsiy kabineti bilan ishlash uchun",
+    "footer_text": "Saytdan iqtibos keltirganda, manbaga havola kerak.",
+    "way": {
+      "pay": "Kontrakt to’lovini amalga oshiring",
+      "documents": "Hujjatlarni asl nusxasini topshiring",
+      "process": "Kirish jarayoni",
+      "choose_special": "Mutaxassislik tanlang",
+      "choose_univer": "OTM tanlang",
+      "apply": "Qabul uchun ariza topshiring",
+      "pass_exam": "Kirish imtihonlarini topshiring",
+      "submit_application": "Rozilik haqida ariza topshiring",
+      "quoting": "Saytdan iqtibos keltirganda, halova qoldiring",
+      "if_necessary": "Zarur bo’lsa (Zaruriy xolatda)",
+      "congrates": "Tabriklaymiz! Siz qabul qilindingiz"
+    }
+  },
+  "filter": {
+    "list": "Oliy ta’lim muassasalari ro’yxati",
+    "filter": "Filtr",
+    "results": "Qidiruv natijalari",
+    "full_time": "Kunduzgi",
+    "correspondence": "Sirtqi",
+    "full_corr": "Kunduzgi-sirtqi",
+
+    "choose_region": "Viloyat tanlang",
+    "education_speciality": "Ta’lim muassasini tanlang",
+    "form_education":"Ta’lim shakli",
+    "science": "Fanlar",
+    "level": "Ta’lim darajasi"
+  },
+  "profile" : {
+    "result_test": "Test natijalari",
+    "test": "Test"
+  },
+  "sign": {
+    "no_account": "Ro'yxatdan o’tmaganmisiz?",
+    "has_account": "Akkauntingiz bormi?",
+    "signup": "Ro’yxatdan o’tish",
+    "forgot": "Parolingizni unutdingizmi?",
+    "less_minute": "bu bir daqiqadan kam vaqtni talab etadi",
+    "name" : "Ism",
+    "surname" : "Familiya",
+    "email": "Elektron pochta ",
+    "password": "Parol tanlang",
+    "c_password": "Parolni tasdiqlang",
+    "say_password": "Yangi parol tanlang",
+    "new_password": "Yangi parol",
+    "enter_email": "Elektron pochtangizni kiriting",
+    "submit": "Tasdiqlash"
+
+  },
+  "toasts" : {
+    "no_permission" : "Sizda ruxsat yo'q!",
+    "logout": "Siz tizimdan chiqdingiz!",
+    "something": "Nimadir noto'g'ri bajarildi!",
+    "all_right": "Siz profilingizni muvaffaqiyatli o'zgartirdingiz",
+    "write_something": "Nimadir yozing!",
+    "entered": "Siz akkauntingizga muvaffaqiyatli kirdingiz",
+    "confirm_email": "Pochtani tasdiqlang!",
+    "already_has": "Bu elektron pochta manzili allaqachon mavjud",
+    "password_err": "Zaif parol!",
+    "password_doesnt": "Parollar mos kelmayapti!",
+    "test_success": "Sinovimiz muvaffaqiyatli yakunlandi!",
+    "password8": "Parol kamida 8 ta belgidan iborat bo'lishi kerak!",
+    "reset_password": "Siz parolingizni muvaffaqiyatli tikladingiz!",
+    "check_email": "Elektron pochtangizni tekshiring",
+    "saved_univer": "Universitet saqlanib qolindi",
+    "move_register": "Ro'yxatdan o'ting!"
+  },
+  "test" : {
+    "exit": "Urinishni tugatish",
+    "next": "Keyingi savol",
+    "choose": "Testni tanlang"
+  }
+
+}

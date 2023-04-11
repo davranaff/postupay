@@ -2,12 +2,21 @@ import style from './partners.module.css'
 import Image from "next/image";
 import {Splide, SplideSlide} from "@splidejs/react-splide";
 import '@splidejs/react-splide/css';
+import {useTranslation} from "react-i18next";
+import {useContext, useEffect} from "react";
+import {UserContext} from "@/app/context/BaseContext";
+import i18next from "i18next";
+import i18n from "@/i18n";
 
 
 function Partners(props) {
+    const {t} = useTranslation()
+    useEffect(() => {
+        i18n.changeLanguage(i18n.language)
+    }, [i18n.language])
     return (
         <div className={style.main}>
-            <h1 className={style.title}>Партнеры</h1>
+            <h1 className={style.title}>{t('home.partners.partners')}</h1>
             <Splide className={style.sliders} options={{
                 type: 'loop',
                 rewind: true,

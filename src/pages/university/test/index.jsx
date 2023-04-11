@@ -23,6 +23,7 @@ export async function getServerSideProps(context) {
                 university: university,
             }
         }
+
     } catch (e) {
         return {
             redirect: {
@@ -31,6 +32,7 @@ export async function getServerSideProps(context) {
             },
         }
     }
+
 }
 
 export default Index;

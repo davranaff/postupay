@@ -14,8 +14,8 @@ function Button({
 }) {
     
 
-    const {isLoading, setIsLoading} =  text === 'Регистрация' ? useContext(SignUpContext) : useContext(SignInContext)
-//${disabled ? style.disabled : style.active}
+    const {isLoading, setIsLoading} =  text === 'Регистрация'||
+    text === "Ro’yxatdan o’tish"  ? useContext(SignUpContext) : useContext(SignInContext)
     return (
         <button
             type={type}
