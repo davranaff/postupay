@@ -13,9 +13,16 @@ function Id({university}) {
     const {user} = useBaseContext()
     const router = useRouter()
 
-    const scrollRef = useRef(null);
 
+    function telegram() {
+        const a = university.telegram.split("/")
+        return `@${a[a.length - 1]}`
+    }
 
+    function instagram() {
+        const a = university.instagram.split('/')
+        return `${a[a.length - 2]}`
+    }
 
     async function saveUni() {
         if (user.active) {
@@ -69,13 +76,13 @@ function Id({university}) {
                     {university.telegram && <div className={style.leftInfoItem}>
                         <img src={'/icons/Teleg.svg'} alt={'telephone'}/>
                         <div className={style.leftInfoItemContent}>
-                            <p><a href={'https://t.me/' + university.telegram}>{university.telegram}</a></p>
+                            <p><a href={'https://t.me/' + university.telegram}>{telegram()}</a></p>
                         </div>
                     </div>}
                     {university.instagram && <div className={style.leftInfoItem}>
                         <img src={'/icons/Insta.svg'} alt={'telephone'}/>
                         <div className={style.leftInfoItemContent}>
-                            <p><a href={'https://instagram.com/' + university.instagram}>{university.instagram}</a></p>
+                            <p><a href={'https://instagram.com/' + university.instagram}>{instagram()}</a></p>
                         </div>
                     </div>}
                 </div>
@@ -109,17 +116,10 @@ function Id({university}) {
             </div>
             <div className={style.foot}>
                 <div className={style.footMap}>
-                    <div style={{position:"relative",overflow:"hidden"}}><a
-                        href="https://yandex.uz/maps/10335/tashkent/?utm_medium=mapframe&utm_source=maps"
-                        style={{color:'#eee',fontSize:'12px',position:'absolute',top:'0px'}}>Ташкент</a><a
-                        href="https://yandex.uz/maps/10335/tashkent/house/YkAYdA9jTUcOQFprfX9xdnxhYg==/?ll=69.281312%2C41.309118&utm_medium=mapframe&utm_source=maps&z=16.57"
-                        style={{color:'#eee',fontSize:'12px',position:'absolute',top:'14px'}}>Улица Истикбол, 12 — Яндекс
-                        Карты</a>
-                        <iframe
-                            src="https://yandex.uz/map-widget/v1/?ll=69.281312%2C41.309118&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgoxNTIyNTAxMTcyEi5Pyrt6YmVraXN0b24sIFRvc2hrZW50LCBJc3RpcWJvbCBrb8q7Y2hhc2ksIDEyIgoNHpGKQhVlOiVC&z=16.57" height="400" frameBorder="1" allowFullScreen="true"
-                            width="560"
-                            style={{position: 'relative'}}></iframe>
-                    </div>
+                    <iframe
+                        src={university.map && university.map}
+                        width={600} height={400} style={{border: 0}} allowFullScreen="" loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"></iframe>
                 </div>
                 <div className={style.footContacts}>
                     <div className={style.footContactsInfo}>
@@ -146,6 +146,7 @@ export async function getServerSideProps(context) {
     const {params} = context
 
     const data = await universities.getOne(params.id).then(res => res.data)
+
     return {
         props: {
             university: data,

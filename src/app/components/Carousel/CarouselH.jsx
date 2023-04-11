@@ -26,9 +26,9 @@ function CarouselH() {
                                         infinite={true}
                                         visibleSlides={1}>
                 <Slider>
-                   <Slide index={0}><img src="/sliders/header/slider1.svg" alt=""/></Slide>
-                   <Slide index={1}><img src="/sliders/header/slider2.svg" alt=""/></Slide>
-                   <Slide index={2}><img src="/sliders/header/slider3.svg" alt=""/></Slide>
+                   <Slide index={0} style={{paddingBottom: '100px'}}><img src="/sliders/header/sliderm1.svg" alt=""/></Slide>
+                   <Slide index={1} style={{paddingBottom: '100px'}}><img src="/sliders/header/sliderm2.svg" alt=""/></Slide>
+                   <Slide index={2} style={{paddingBottom: '100px'}}><img src="/sliders/header/sliderm3.svg" alt=""/></Slide>
                 </Slider>
             </CarouselProvider>
         </div>
