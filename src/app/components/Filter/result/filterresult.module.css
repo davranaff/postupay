@@ -183,7 +183,8 @@
         font-size: 10px;
     }
     .resultContent {
-        height: 300px;
+    overflow-y: auto;
+        min-height:700px;
     }
     .filterItem {
         padding: 10px 0;
