@@ -19,13 +19,12 @@ function Partners(props) {
             <h1 className={style.title}>{t('home.partners.partners')}</h1>
             <Splide className={style.sliders} options={{
                 type: 'loop',
-                rewind: true,
-                rewindByDrag: true,
-                flickPower: true,
+                // rewind: true,
+                // rewindByDrag: true,
+                // flickPower: true,
                 autoplay: true,
                 speed: 1000,
-
-                focus: 'center',
+                // focus: 'right',
                 gap: "40px",
                 breakpoints:  {
                     700 :{
@@ -34,9 +33,10 @@ function Partners(props) {
                 },
                 perPage: 3,
                 perMove: 1,
+
                 interval: 9000,
                 pauseOnHover: false,
-                arrows: false,
+                // arrows: false,
                 pagination: false,
             }}>
                 <SplideSlide>

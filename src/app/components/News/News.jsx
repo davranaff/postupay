@@ -22,21 +22,15 @@ function News(props) {
     return (
         <div className={style.main}>
             <h1 className={style.title}>{t('home.news.news')}</h1>
-            <br/>
             {posts && <Splide options={{
-                // grid: {
-                //     rows: 1,
-                //     cols: 1,
-                //     gap: {
-                //         col: '1.5rem'
-                //     },
-                // },
+
                 breakpoints: {
                     1024: {
                         perPage: 3,
 
                     },
-                    590: {
+
+                    850: {
                         perPage: 2
                     },
                     500 :{
@@ -44,19 +38,20 @@ function News(props) {
                     }
                 },
 
+                interval : 9000,
+                speed: 1000,
                 autoplay: true,
                 pagination: false,
                 perMove: 1,
                 perPage: 3,
-                gap: '100px',
+                gap: '40px',
                 type: 'loop',
                 pauseOnHover: false,
 
             }}
-                              extensions={{Grid}}
 
             >
-                {posts.map(post => <SplideSlide key={post.id}>
+                {posts.map(post => <SplideSlide key={post.id} style={{padding: "20px 0"}}>
                     <NewsItem post={post}/>
                 </SplideSlide>)}
             </Splide>}
