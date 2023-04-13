@@ -6,7 +6,7 @@ import {useRouter} from "next/navigation";
 import {toast} from "react-toastify";
 import {useTranslation} from "react-i18next";
 
-function SingInForm({children}) {
+function SingUpForm({children}) {
     const [data, setData] = useState([])
     const [success, setSuccess] = useState(null)
     const router = useRouter()
@@ -63,4 +63,4 @@ function SingInForm({children}) {
     );
 }
 
-export default SingInForm;
+export default SingUpForm;
