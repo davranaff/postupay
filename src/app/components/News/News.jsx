@@ -44,12 +44,12 @@ function News(props) {
                     }
                 },
 
-                autoplay: false,
+                autoplay: true,
                 pagination: false,
                 perMove: 1,
                 perPage: 3,
-                gap: '40px',
-                // type: 'loop',
+                gap: '100px',
+                type: 'loop',
                 pauseOnHover: false,
 
             }}
