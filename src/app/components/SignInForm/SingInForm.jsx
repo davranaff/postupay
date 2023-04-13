@@ -60,7 +60,6 @@ function SingInForm({children}) {
         <SignInContext.Provider value={{data, setData, success, isLoading, setIsLoading}}>
             <form onSubmit={handleSubmit} className={style.main}>
                 {...children}
-
             </form>
         </SignInContext.Provider>
     );

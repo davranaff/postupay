@@ -1,41 +1,43 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import style from "@/pages/profile/profile.module.css";
 import Image from "next/image";
+import {auth} from "@/app/services/auth/auth";
 
-function ProfileResult(props) {
+function ProfileResult() {
+    const [data, setData] = useState([])
+
+    useEffect(_ => {
+          auth.getResultProfile(localStorage.getItem('Authorization'))
+            .then(res => setData(res.data))
+            .catch(err => console.log(err))
+    }, [])
+
     return (
         <>
-            <div className={style.blockTest}>
-                <div className={style.progress}>
-                    <div className={style.backGround} style={{width: '95%'}}>
+            {data.length > 0 ? data.map(value => {
+                const ball = Math.floor(100 * (value.score / value.test_subject_histories.length))
+                return <div className={style.blockTest}>
+                <div className={style.progress} key={value.id}>
+                    <div className={style.backGround} style={
+                        {
+                            width: `${ball}%`,
+                            backgroundColor: ball < 60 && '#F4DCD6'
+                        }
+                    }>
                         <div className={style.wave1}></div>
                         <div className={style.wave2}></div>
                     </div>
                     <Image src={'/icons/check.svg'} alt={'check'} width={0} height={0}/>
                     <div className={style.progressContent}>
-                        <h2>Тест: Ташкентский филиал Российского Экономического Университета им. Г.В. Плеханова</h2>
-                        <p>Русский | Математика</p>
+                        <h2>Тест: {value.university.title}</h2>
+                        <p>{value.subject.title}</p>
                     </div>
-                    <h1>95%</h1>
+                    <h1>{ball}%</h1>
                 </div>
             </div>
-            <div className={style.blockTest}>
-                <div className={style.progress}>
-                    <div className={style.backGround} style={{
-                        width: '25%',
-                        backgroundColor: '#F4DCD6'
-                    }}>
-                        <div className={style.wave1}></div>
-                        <div className={style.wave2}></div>
-                    </div>
-                    <Image src={'/icons/check.svg'} alt={'check'} width={0} height={0}/>
-                    <div className={style.progressContent}>
-                        <h2>Тест: Ташкентский филиал Российского Экономического Университета им. Г.В. Плеханова</h2>
-                        <p>Русский | Математика</p>
-                    </div>
-                    <h1>25%</h1>
-                </div>
-            </div>
+            }) : <ul style={{listStyleType: "none"}}>
+                <li>У Вас пока нет пройденных тестов :(</li>
+            </ul>}
         </>
     );
 }

@@ -17,6 +17,7 @@ export const universities = {
     },
     async saveUniversity (userId, universityId, token) {
         const url = mainUrl + `user/favourite/`
+        console.log(userId)
         return await axios.post(url, {
             user: userId,
             university: universityId

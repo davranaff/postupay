@@ -28,8 +28,7 @@ function Id({university}) {
 
     async function saveUni() {
         if (user.active) {
-            const decoded = decodeToken(user.access)
-            await universities.saveUniversity(decoded.id, university.id, localStorage.getItem('Authorization'))
+            await universities.saveUniversity(JSON.parse(localStorage.getItem('user')).id, university.id, localStorage.getItem('Authorization'))
                 .then(res => {
                     toast.success(t('toasts.saved_univer'))
                 })

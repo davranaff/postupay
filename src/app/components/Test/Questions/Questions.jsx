@@ -3,6 +3,7 @@ import style from './questions.module.css'
 import {useTestContext} from "@/app/context/TestContext";
 import {toast} from "react-toastify";
 import {useTranslation} from "react-i18next";
+import {test} from "@/app/services/test/test";
 
 function Questions(props) {
     const {active, tests, setTests, setActive} = useTestContext()
@@ -35,14 +36,47 @@ function Questions(props) {
 
     const next = (obj) => {
         if (obj.id === tests[tests.length - 1].id) {
-            toast.success(t("toasts.test_success"))
-            localStorage.removeItem('tests')
-            localStorage.setItem('time', '0')
-            localStorage.removeItem('active')
+            let questions = []
+            for(let question of tests){
+                let obj = {}
+                let counter = 1
+                let answers = []
+                for (const answer of question['answers']) {
+                    let object = {}
+                    if (counter === 4) {
+                        counter = 1
+                        obj.subjectquestion_id = answer['subject_question'].id
+                        obj.answers = answers
+
+                    }
+                    object.id = answer.id
+                    object.status = answer.done
+                    answers.push(object)
+                    counter++
+                }
+                questions.push(obj)
+            }
+            const data = {
+                user: JSON.parse(localStorage.getItem('user')).id,
+                university: tests[0].university,
+                subject: tests[0].subject.id,
+                questions: questions,
+            }
+            test.postTests(data).then(res => {
+                console.log(res)
+                console.log(data)
+                console.log(tests)
+                toast.success(t("toasts.test_success"))
+                localStorage.removeItem('tests')
+                localStorage.setItem('time', '0')
+                localStorage.removeItem('active')
+            }).catch(err => {
+                console.log(err)
+                toast.success(t("err"))
+            })
             return
         }
         const newActive = tests[tests.findIndex(value => value.id === obj.id) + 1]
-        console.log(newActive)
         setActive(newActive)
     }
 
