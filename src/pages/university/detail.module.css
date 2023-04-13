@@ -97,11 +97,12 @@
     width: 100%;
     height: auto;
     display: flex;
-    margin: 30px 0;
     padding: 10px;
     overflow-x: scroll;
     flex-wrap: nowrap;
      cursor: grab;
+    gap: 30px;
+
 }
 
 .rightInfoFinance::-webkit-scrollbar {
