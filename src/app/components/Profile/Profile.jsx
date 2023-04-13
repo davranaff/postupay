@@ -34,40 +34,47 @@ function Profile({check}) {
     const editProfile = e => {
         e.preventDefault()
         console.log(token)
-      if (name && surname) {
-          axios.put(`https://education07.pythonanywhere.com/auth/users/me/`, {
-              first_name: name,
-              last_name: surname,
-          }, {
-              headers : {
-                  'Authorization': `${token && token}`
-              }
-          })
-              .then((res) => {
-                  localStorage.setItem('user', JSON.stringify(res.data))
-                  setShowModal(false)
-                  toast.success(t('toasts.all_right'))
-                  setCustomer(JSON.parse(localStorage.getItem('user')))
-                  setName('')
-                  setSurname('')
-                  load()
-              })
-      } else {
-          toast.warn(t("toasts.write_something"))
-      }
+        if (name && surname) {
+            axios.put(`https://education07.pythonanywhere.com/auth/users/me/`, {
+                first_name: name,
+                last_name: surname,
+            }, {
+                headers: {
+                    'Authorization': `${token && token}`
+                }
+            })
+                .then((res) => {
+                    localStorage.setItem('user', JSON.stringify(res.data))
+                    setShowModal(false)
+                    toast.success(t('toasts.all_right'))
+                    setCustomer(JSON.parse(localStorage.getItem('user')))
+                    setName('')
+                    setSurname('')
+                    load()
+                })
+        } else {
+            toast.warn(t("toasts.write_something"))
+        }
 
 
     }
-    const load = () => {
-        auth.getProfile(
+    const load = async () => {
+        await auth.getProfile(
             localStorage.getItem('Authorization')
-        ).then(res => {setUserInfo(res.data)}).catch(err => {toast.warn('У вас нету доступа!')})
+        ).then(res => {
+            console.log(res.data)
+            setUserInfo(res.data)
+        }).catch(err => {
+            toast.warn('У вас нету доступа!')
+        })
         universities.getFavourites(localStorage.getItem('Authorization'))
             .then(res => console.log(res.data)).catch(err => {
-                if (!localStorage.getItem('Authorization')) {
-                    toast.warn(t('toasts.no_permission'))
-                }
+            if (!localStorage.getItem('Authorization')) {
+                toast.warn(t('toasts.no_permission'))
+            }
         })
+
+
     }
 
     useEffect(_ => {
@@ -79,7 +86,8 @@ function Profile({check}) {
         <>
             <div className={style.profileInfo}>
                 <div className={style.profileName}>
-                    {userInfo && !edit ? `${userInfo.first_name} ${userInfo.last_name}` : "Иванов Иван"} &nbsp; <BiEdit onClick={() => setShowModal(true)}/>
+                    {userInfo && !edit ? `${userInfo.first_name} ${userInfo.last_name}` : "Иванов Иван"} &nbsp; <BiEdit
+                    onClick={() => setShowModal(true)}/>
                 </div>
                 <div className={style.profileId}>
                     <p>ID: {userInfo && id}</p>
@@ -91,9 +99,9 @@ function Profile({check}) {
                 !checkout ? t('profile.result_test') : t('home.navbar.saved')
             }</h1>
             {
-                !checkout ? <ProfileResult results={data.results}/> : <ProfileSaves saves={data.saves}/>
+                !checkout ? <ProfileResult/> : <ProfileSaves saves={data.saves}/>
             }
-            <Modal open={showModal} onClose={() =>setShowModal(false)}>
+            <Modal open={showModal} onClose={() => setShowModal(false)}>
                 <h1>Изменить профиль</h1>
                 <form onSubmit={e => editProfile(e)}>
                     <input

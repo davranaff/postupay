@@ -6,10 +6,14 @@ import {useBaseContext} from "@/app/context/BaseContext";
 export const test = {
     async getTest(id, token) {
         const url = mainUrl + `university/test/?subject=${id}`
-        return axios.get(url, {
+        return await axios.get(url, {
             headers: {
                 'Authorization': token,
             },
         })
+    },
+    async postTests(tests) {
+        const url = mainUrl + `university/test/result`
+        return await axios.post(url, {data: tests})
     }
 }

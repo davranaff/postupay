@@ -42,5 +42,17 @@ export const auth = {
                 'Authorization': token
             },
         })
+    },
+    getResultProfile: async (token) => {
+        const url = "https://education07.pythonanywhere.com/api/university/test/result"
+        return await axios.get(url, {
+            headers: {
+                'Authorization': token
+            }
+        })
+    },
+    getFavourites: async (token) => {
+        const url = "https://education07.pythonanywhere.com/api/user/favourite/"
+        return await axios.get(url, {headers:{'Authorization': token}})
     }
 }

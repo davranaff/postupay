@@ -27,7 +27,6 @@ function Options(props) {
             interval = setInterval(() => {
                 setTime(time - 1);
                 localStorage.setItem('time', defaultTime - 1)
-                console.log(defaultTime)
                 setDefaultTime(localStorage.getItem('time') || 1500)
             }, 1000);
         } else if (time === 0) {

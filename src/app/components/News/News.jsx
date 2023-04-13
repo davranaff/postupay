@@ -21,14 +21,13 @@ function News(props) {
         <div className={style.main}>
             <h1 className={style.title}>{t('home.news.news')}</h1>
             {posts && <CarouselProvider className={style.newsContent} naturalSlideWidth={30}
-
                                         naturalSlideHeight={40}
                                         totalSlides={posts.length}
                                         interval={10000}
                                         isPlaying={true}
                                         infinite={true}
                                         visibleSlides={3}>
-                <Slider>
+                <Slider className={style.heightContent}>
                     {posts.map(post => <Slide index={post.id}>
                         <NewsItem post={post}/>
                     </Slide>)}

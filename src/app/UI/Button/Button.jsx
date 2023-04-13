@@ -14,9 +14,8 @@ function Button({
    
 }) {
 
-
-
     const {isLoading, setIsLoading} =  !isSignIn  ? useContext(SignUpContext) : useContext(SignInContext)
+
     return (
         <button
             type={type}
