@@ -1,7 +1,7 @@
 .footer {
     background: #F0F4FF;
     border-radius: 25px  25px 0 0;
-    padding: 20px 10px;
+    padding: 20px 50px;
     display: flex;
     justify-content: space-between;
 }
@@ -108,7 +108,7 @@
 
 @media screen and (max-width: 450px) {
     .footer {
-        padding: 20px 30px 100px 30px;
+        padding: 20px 15px;
     }
     .footerItem {
         width: 60%;
@@ -118,7 +118,6 @@
     }
     .footerInfo {
         font-size: 14px;
-        position: absolute;
     }
     .footerInfo li {
         font-size: 10px;

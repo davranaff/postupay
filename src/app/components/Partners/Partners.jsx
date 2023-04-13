@@ -27,7 +27,7 @@ function Partners(props) {
                 perPage: 3,
                 perMove: 1,
                 focus: 'center',
-                padding: '15%',
+                gap: "40px",
                 interval: 9000,
                 pauseOnHover: false,
                 arrows: false,
