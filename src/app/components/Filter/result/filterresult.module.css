@@ -3,10 +3,8 @@
     border-radius: 30px;
     padding: 20px 30px;
     box-sizing: border-box;
-    width: 55%;
+    width: 60%;
     height: auto;
-    position: absolute;
-    left: 7%;
     transition: .2s ease-in-out;
 }
 
@@ -37,6 +35,8 @@
     border: none;
     outline: none;
     box-shadow: 0 3px 3px rgba(0, 0, 0, 0.15);
+    -webkit-appearance: none;
+    -webkit-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.15);
     transition: .2s;
     margin: 10px 0;
     box-sizing: border-box;
@@ -112,7 +112,7 @@
 /* filter item */
 
 .resultContent {
-    height: 500px;
+    height: 70%;
     overflow-y: auto;
 }
 
@@ -184,7 +184,6 @@
     }
     .resultContent {
     overflow-y: auto;
-        min-height:700px;
     }
     .filterItem {
         padding: 10px 0;
@@ -259,10 +258,10 @@
         padding: 10px 0;
     }
     .filterItemContentTitle {
-        font-size: 10px;
+        font-size: 15px;
     }
     .filterItemContentSubtitle {
-        font-size: 10px;
+        font-size: 11px;
     }
     .filterItemImg {
         width: 40px;
@@ -271,6 +270,9 @@
     .resultContent {
         height: auto;
         overflow-y: auto;
+    }
+    .resultContent_hidden {
+        height: 0;
     }
 }
 
