@@ -52,6 +52,7 @@ function FilterResult() {
                     }} src={saves.active ? '/icons/save.svg' : '/icons/rectangle.svg'} alt=""/>
                     <button className={style.button}
                             onClick={_ => setShowSideBar(!showSideBar)}>{showSideBar ? 'Фильтр' : 'Поиск'}</button>
+
                 </div>
             </div>
             <label htmlFor="search" className={style.label}>
@@ -59,7 +60,7 @@ function FilterResult() {
                        className={style.input} placeholder='Поиск…'/>
             </label>
             <h1 className={style.mainTitle}>{t('filter.results')}:</h1>
-            <div className={style.resultContent}>
+            <div className={`${style.resultContent} ${!showSideBar ? style.resultContent_hidden : ''}`}>
                 {!loading ?
                     !saves.active ? data.length ? data.map(value => <Link href={`university/${value.id}`}
                                                                           key={value.id}>

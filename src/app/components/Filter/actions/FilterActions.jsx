@@ -63,7 +63,7 @@ function FilterActions(props) {
                     <p>{dropDown.title}</p>
                 </div>
                 <div className={`${style.selectBody} ${dropDown.active && style.selectBody_active}`}>
-                    {props.regions.map(value => <div key={value.id} onClick={_ => {
+                    {props.regions.map(value => <div className={style.option} key={value.id} onClick={_ => {
                         setDropDown({title: value.title, active: false})
                         active(value)
                     }}>{value.title}</div>)}

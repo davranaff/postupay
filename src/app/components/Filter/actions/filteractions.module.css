@@ -3,11 +3,11 @@
     border-radius: 30px;
     padding: 20px 30px;
     box-sizing: border-box;
-    width: 30%;
+    width: 35%;
     height: auto;
-    position: absolute;
-    right: 5%;
     transition: .2s ease-in-out;
+    position: relative;
+    overflow-y: auto;
 }
 
 .main_active {
@@ -29,11 +29,15 @@
     user-select: none;
     position: relative;
 }
-
+.option {
+    padding: 3px 0;
+    font-weight: 400;
+}
 .select {
     width: 100%;
     padding: 10px 30px;
     border-radius: 10px;
+    font-weight: 400;
     border: none;
     outline: none;
     box-shadow: 0 3px 3px rgba(0, 0, 0, 0.15);
@@ -43,7 +47,10 @@
     font-size: 15px;
     cursor: pointer;
     background-color: white;
+    color: #6C6F82;
 }
+
+
 
 .select:first-child {
     color: #6C6F82;
@@ -133,6 +140,7 @@
     padding: 5px 10px;
     margin: 5px;
     cursor: pointer;
+    font-weight: 400;
 }
 
 .blue {

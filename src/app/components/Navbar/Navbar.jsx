@@ -116,9 +116,13 @@ function Navbar(props) {
                             </div>)}
                     </div>
                 </div>
-                {route.pathname !== '/filter' && <Link href='/filter' className={style.button}>
-                    {`${t('home.navbar.find_univer')}`}
-                </Link>}
+                {route.pathname !== '/filter' &&
+                <div className={style.navItem}>
+                    <Link href='/filter' className={style.button}>
+                        {`${t('home.navbar.find_univer')}`}
+                    </Link>
+                </div>
+                }
                 {user.active ?
                     <div className={style.navItem}>
                         <div className={`${style.navProfile} ${style.button} ${style.signinbtn}`}
