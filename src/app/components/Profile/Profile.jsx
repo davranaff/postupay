@@ -98,9 +98,11 @@ function Profile({check}) {
             <h1 className={style.result}>{
                 !checkout ? t('profile.result_test') : t('home.navbar.saved')
             }</h1>
-            {
-                !checkout ? <ProfileResult/> : <ProfileSaves saves={data.saves}/>
-            }
+            <div className={style.content}>
+                {
+                    !checkout ? <ProfileResult/> : <ProfileSaves saves={data.saves}/>
+                }
+            </div>
             <Modal open={showModal} onClose={() => setShowModal(false)}>
                 <h1>Изменить профиль</h1>
                 <form onSubmit={e => editProfile(e)}>
