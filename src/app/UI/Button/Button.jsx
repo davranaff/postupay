@@ -10,11 +10,12 @@ function Button({
     type = 'submit',
     full = true,
     isForm = true,
+    isSignIn = false
    
 }) {
-    
 
-    const {isLoading, setIsLoading} =  (text === 'Регистрация'|| text === "Ro’yxatdan o’tish")  ? useContext(SignUpContext) : useContext(SignInContext)
+    const {isLoading, setIsLoading} =  !isSignIn  ? useContext(SignUpContext) : useContext(SignInContext)
+
     return (
         <button
             type={type}
