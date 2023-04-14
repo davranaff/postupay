@@ -15,7 +15,7 @@ function ProfileResult() {
     return (
         <>
             {data.length > 0 ? data.map(value => {
-                const ball = Math.floor(100 * (value.score / value.test_subject_histories.length))
+                const ball = Math.floor(100 * (value.score / (value.test_subject_histories.length / 4)))
                 return <div className={style.blockTest}>
                 <div className={style.progress} key={value.id}>
                     <div className={style.backGround} style={
