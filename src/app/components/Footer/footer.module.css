@@ -1,8 +1,9 @@
 .footer {
     background: #F0F4FF;
     border-radius: 25px  25px 0 0;
-    padding: 20px 10px;
+    padding: 30px 20px;
     display: flex;
+    height: auto;
     justify-content: space-between;
 }
 
@@ -47,6 +48,15 @@
     color: #2455C6;
     font-size: 35px;
     font-weight: 600;
+    line-height: 20px;
+}
+
+.footerLinks {
+    color: #6C6F82;
+}
+
+.footerLinks:hover {
+    color: #2152F5;
 }
 
 @media screen and (max-width: 1920px) {
@@ -108,7 +118,7 @@
 
 @media screen and (max-width: 450px) {
     .footer {
-        padding: 20px 30px 100px 30px;
+        padding: 20px 30px 130px 30px;
     }
     .footerItem {
         width: 60%;
@@ -121,7 +131,7 @@
         position: absolute;
     }
     .footerInfo li {
-        font-size: 10px;
+        font-size: 14px !important;
         margin: 5px 0;
     }
     .footerIcons img {
