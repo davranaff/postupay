@@ -1,7 +1,7 @@
 .main {
     width: auto;
     height: auto;
-    padding: 50px 0;
+    padding: 50px;
     box-sizing: border-box;
     background-color: rgba(0, 0, 0, 0.05);
 }
@@ -9,7 +9,6 @@
 .title {
     text-align: center;
     font-size: 40px;
-    margin: 0;
 }
 
 .newsContent {
@@ -22,29 +21,28 @@
 }
 
 .newsItem {
-    width: 350px;
-    height: auto;
+    height: 100%;
+    width: 100%;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
     background-color: white;
     padding: 0;
     box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    margin: 20px 0;
     z-index: 5;
 }
 
 
 .newsItem__image {
     width: 100%;
-    height: 45%;
     border-radius: 20px;
 }
 
 
+
+
 .newsItem__content {
     width: 100%;
-    height: 55%;
     padding: 15px;
     box-sizing: border-box;
 }
@@ -78,14 +76,8 @@
     .newsContent {
         margin: 25px 0;
     }
-    .newsItem {
-        width: 450px;
-        height: auto;
-        margin: 10px 80px;
-    }
-    .newsItem__image {
-        height: 30%;
-    }
+
+
     .newsItem__content {
         height: 60%;
     }
@@ -132,14 +124,8 @@
     .newsContent {
         margin: 25px 0;
     }
-    .newsItem {
-        width: 250px;
-        height: auto;
-        margin: 10px 70px;
-    }
-    .newsItem__image {
-        height: 30%;
-    }
+
+
     .newsItem__content {
         height: 60%;
     }
@@ -157,20 +143,14 @@
 
 @media screen and (max-width: 768px) {
     .title {
-        font-size: 30px;
+        font-size: 18px;
         margin: 0;
     }
     .newsContent {
         margin: 25px 0;
     }
-    .newsItem {
-        width: 180px;
-        height: auto;
-        margin: 10px 30px;
-    }
-    .newsItem__image {
-        height: 30%;
-    }
+
+
     .newsItem__content {
         height: 60%;
     }
@@ -187,21 +167,16 @@
 
 @media screen and (max-width: 450px) {
     .main {
-        padding: 10px 0;
+        padding: 15px ;
     }
     .title {
         font-size: 25px;
     }
-    .newsItem {
-        width: 240px;
-        margin: 10px 20px;
-    }
+
     .newsContent {
         margin: 20px 0;
     }
-    .newsItem__image {
-        height: 35%;
-    }
+
     .newsItem__content_title {
         font-size: 17px;
         margin:5px 0;

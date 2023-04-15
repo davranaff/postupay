@@ -41,14 +41,14 @@ html {
 }
 
 body {
-    margin: 0 auto;
     padding: 0;
 
 }
 
 #__next {
     min-height: 100vh;
-    max-width: 1458px;
+    max-width: 1500px;
+    margin: 0 auto;
 
 }
 

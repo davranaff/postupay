@@ -19,32 +19,44 @@ function Partners(props) {
             <h1 className={style.title}>{t('home.partners.partners')}</h1>
             <Splide className={style.sliders} options={{
                 type: 'loop',
-                rewind: true,
-                rewindByDrag: true,
-                flickPower: true,
+                // rewind: true,
+                // rewindByDrag: true,
+                // flickPower: true,
                 autoplay: true,
                 speed: 1000,
+                // focus: 'right',
+                gap: "40px",
+                breakpoints:  {
+                    700 :{
+                        gap : 0
+                    }
+                },
                 perPage: 3,
                 perMove: 1,
-                focus: 'center',
-                padding: '15%',
+
                 interval: 9000,
                 pauseOnHover: false,
-                arrows: false,
+                // arrows: false,
                 pagination: false,
-                autoWidth: true,
             }}>
                 <SplideSlide>
-                    <Image src='/sliders/partners/logo.svg' alt='partner' width={0} height={0}/>
+                    {/*<Image src='/sliders/partners/logo.svg' alt='partner' width={100} height={100}/>*/}
+                    <img src="/sliders/partners/logo.svg" alt=""/>
                 </SplideSlide>
                 <SplideSlide>
-                    <Image src='sliders/partners/logo.svg' alt='partner' width={0} height={0}/>
+                    {/*<Image src='sliders/partners/logo.svg' alt='partner' width={100} height={100}/>*/}
+                    <img src="/sliders/partners/logo.svg" alt=""/>
+
                 </SplideSlide>
                 <SplideSlide>
-                    <Image src='sliders/partners/logo.svg' alt='partner' width={0} height={0}/>
+                    {/*<Image src='sliders/partners/logo.svg' alt='partner' width={100} height={100}/>*/}
+                    <img src="/sliders/partners/logo.svg" alt=""/>
+
                 </SplideSlide>
                 <SplideSlide>
-                    <Image src='sliders/partners/logo.svg' alt='partner' width={0} height={0}/>
+                    {/*<Image src='sliders/partners/logo.svg' alt='partner' width={100} height={100}/>*/}
+                    <img src="/sliders/partners/logo.svg" alt=""/>
+
                 </SplideSlide>
             </Splide>
         </div>
