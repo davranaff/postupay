@@ -7,6 +7,7 @@ import {filter} from "@/app/services/filter/filter";
 import {useBaseContext} from "@/app/context/BaseContext";
 import {useTranslation} from "react-i18next";
 import {mainUrlFiles} from "@/app/services/base";
+import i18n from "@/i18n";
 
 function FilterResult() {
     const {data, setData, showSideBar, params, setShowSideBar} = useFilterContext()
@@ -20,11 +21,6 @@ function FilterResult() {
     const {t} = useTranslation()
 
     useEffect(_ => {
-        // if (search) {
-        //     setTimeout(_ => filter.getSearchResult(search).then(r => {
-        //         setData(r.data)
-        //     }), 1)
-        // }
         filter.getSearchResult(search).then(r => {
             setData(r.data)
             setLoading(false)
@@ -55,7 +51,7 @@ function FilterResult() {
             </div>
             <label htmlFor="search" className={style.label}>
                 <input value={search} onInput={e => setSearch(e.target.value)} id='search' type="text"
-                       className={style.input} placeholder='Поиск…'/>
+                       className={style.input} placeholder={t('filter.search') + '...'}/>
             </label>
             <h1 className={style.mainTitle}>{t('filter.results')}:</h1>
             <div className={`${style.resultContent} ${!showSideBar ? style.resultContent_hidden : ''}`}>
@@ -65,10 +61,10 @@ function FilterResult() {
                             <img src={value.image ? mainUrlFiles + value.image : "/icons/logo.svg"} alt={value.translations['ru'].title} className={style.filterItemImg}/>
                             <div className={style.filterItemContent}>
                                 <h3 className={style.filterItemContentTitle}>
-                                    {value.translations['ru'].title}
+                                    {value.translations[i18n.language] && value.translations[i18n.language].title }
                                 </h3>
                                 <p className={style.filterItemContentSubtitle}>
-                                    {value.translations['ru'].address}
+                                    {value.translations[i18n.language] && value.translations[i18n.language].address }
                                 </p>
                             </div>
                         </div>
@@ -76,9 +72,11 @@ function FilterResult() {
                         <div className={style.filterItem}>
                             <Image src={'/other/ban.png'} alt={'example'} width={0} height={0}
                                    className={style.filterItemImg}/>
+
                             <div className={style.filterItemContent}>
                                 <h3 className={style.filterItemContentTitle}>
                                     {value.translations.title}
+
                                 </h3>
                                 <p className={style.filterItemContentSubtitle}>
                                     {value.city.title}

@@ -13,7 +13,8 @@
 }
 
 .main_active {
-    width: 83%;
+    width: 300%;
+    margin: 0;
 }
 
 .button {
@@ -154,8 +155,11 @@
 }
 
 .filterItemContentTitle {
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 18px;
+    font-weight: 600;
+}
+.filterItemDescription {
+    font-size: 13px;
 }
 
 .filterItemContentSubtitle {

@@ -77,8 +77,12 @@
     padding: 5px 10px;
     margin: 10px 0;
     cursor: pointer;
+    font-weight: 500;
 }
-
+.savedButton {
+    background: #FFFFFF;
+    color: #2152F5;
+}
 .button:hover {
     filter: brightness(0.9);
 }
@@ -387,4 +391,12 @@
         font-size: 15px;
         font-weight: 400;
     }
+
+    .rightInfoTitle {
+        font-size: 20px;
+    }
+    .rightInfoDescription {
+        font-size: 13px;
+    }
+
 }

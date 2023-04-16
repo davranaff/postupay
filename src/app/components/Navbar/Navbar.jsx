@@ -24,7 +24,7 @@ function Navbar(props) {
 
     const languages = [
         {lang: 'Ru', image: 'icons/russia.png'},
-        {lang: 'Uzb', image: 'icons/uzbekistan.png'},
+        {lang: 'Uz', image: 'icons/uzbekistan.png'},
     ]
 
     const changeLang = (lang) => {
@@ -37,7 +37,7 @@ function Navbar(props) {
         if (i18n.language === 'ru') {
             setLanguage({lang: 'Ru', image: './icons/russia.png'})
         } else {
-            setLanguage({lang: 'Uzb', image: './icons/uzbekistan.png'})
+            setLanguage({lang: 'Uz', image: './icons/uzbekistan.png'})
         }
         // changeLang()
     }, [])

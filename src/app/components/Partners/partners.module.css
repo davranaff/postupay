@@ -81,11 +81,10 @@
     .sliders {
         margin: 10px 0;
     }
-    /*.sliders img {*/
-    /*    width: 70px;*/
-    /*    height: 70px;*/
-    /*    margin: 0 30px;*/
-    /*}*/
+    .sliders img {
+        width: 70px;
+        height: 70px;
+    }
 }
 
 

@@ -3,14 +3,14 @@ import { initReactI18next } from 'react-i18next';
 import Backend from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import ru from "/public/locales/ru/translationRu.json"
-import uzb from "/public/locales/uzb/translationUzb.json"
+import uz from "/public/locales/uzb/translationUzb.json"
 
 const resources = {
     ru: {
         translation: ru
     },
-    uzb: {
-        translation: uzb
+    uz: {
+        translation: uz
     }
 };
 
@@ -21,7 +21,7 @@ i18n
     .use(initReactI18next)
 
     .init({
-        supportedLngs: ['uzb', 'ru'],
+        supportedLngs: ['uz', 'ru'],
         fallbackLng: 'ru',
         resources,
         debug: true,
