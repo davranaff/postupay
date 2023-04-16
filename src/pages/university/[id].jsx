@@ -95,13 +95,13 @@ function Id({university}) {
                     {university.telegram && <div className={style.leftInfoItem}>
                         <img src={'/icons/Teleg.svg'} alt={'telephone'}/>
                         <div className={style.leftInfoItemContent}>
-                            <p><a href={'https://t.me/' + university.telegram}>{telegram()}</a></p>
+                            <p><a href={university.telegram}>{telegram()}</a></p>
                         </div>
                     </div>}
                     {university.instagram && <div className={style.leftInfoItem}>
                         <img src={'/icons/Insta.svg'} alt={'telephone'}/>
                         <div className={style.leftInfoItemContent}>
-                            <p><a href={'https://instagram.com/' + university.instagram}>{instagram()}</a></p>
+                            <p><a href={university.instagram}>{instagram()}</a></p>
                         </div>
                     </div>}
                 </div>

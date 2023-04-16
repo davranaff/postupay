@@ -109,7 +109,7 @@
 
 @media screen and (max-width: 450px) {
     .footer {
-        padding: 20px 15px;
+        padding: 20px 30px 100px 30px;
     }
     .footerItem {
         width: 60%;
@@ -119,6 +119,7 @@
     }
     .footerInfo {
         font-size: 14px;
+        position: absolute;
     }
     .footerInfo li {
         font-size: 10px;
