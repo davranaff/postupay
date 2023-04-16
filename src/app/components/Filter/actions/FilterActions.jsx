@@ -4,6 +4,7 @@ import {useFilterContext} from "@/app/context/FilterContext";
 import {useRouter} from "next/router";
 import {useTranslation} from "react-i18next";
 import i18n from "i18next";
+import {log} from "next-translate/loadNamespaces";
 
 function FilterActions(props) {
     const {t} = useTranslation()
@@ -50,7 +51,7 @@ function FilterActions(props) {
 
 
     return (
-        <div className={`${style.main} ${showSideBar ? '' : style.main_active}`}>
+        <div className={`${style.main} ${showSideBar ? '' : `${style.main_active } ${style.hide}`} `}>
             <h1 className={style.title}>{t('filter.filter')}</h1>
             <div onClick={_ => setShowSideBar(!showSideBar)}
                  className={`${style.arrow} ${showSideBar ? '' : style.arrow_active}`}>
@@ -73,14 +74,14 @@ function FilterActions(props) {
             <div className={style.buttons}>
                 {props.educationTypes.map(value => <button key={value.id}
                                                            className={`${style.button} ${info[`${value.name}=${value.id}`] && style.active}`}
-                                                           onClick={_ => active(value)}>{value.title}</button>)}
+                                                           onClick={_ => active(value)}>{value.translations[i18n.language] && value.translations[i18n.language].title}</button>)}
             </div>
             <p className={style.buttonsTitle}>{t('filter.form_education')}</p>
 
             <div className={style.buttons}>
                 {props.educationForms.map(value => <button key={value.id}
                                                            className={`${style.button} ${info[`${value.name}=${value.id}`] && style.active}`}
-                                                           onClick={_ => active(value)}>{value.title}</button>)}
+                                                           onClick={_ => active(value)}>{value.translations[i18n.language] && value.translations[i18n.language].title}</button>)}
             </div>
             <p className={style.buttonsTitle}>{t('filter.science')}</p>
             <div className={style.buttonsItems}>
@@ -88,16 +89,16 @@ function FilterActions(props) {
                     key={value.id}
                     onClick={() => active(value)}
                     className={`${style.button} ${info[`${value.name}=${value.id}`] && style.active}`}>
-                    {value.title}
+                    {value.translations[i18n.language] && value.translations[i18n.language].title}
                 </button>)}
             </div>
             <p className={style.buttonsTitle}>{t('filter.level')}</p>
             <div className={style.buttons}>
                 {props.educationDegrees.map(value => <button key={value.id}
                                                              className={`${style.button} ${info[`${value.name}=${value.id}`] && style.active}`}
-                                                             onClick={_ => active(value)}>{value.title}</button>)}
+                                                             onClick={_ => active(value)}>{value.translations[i18n.language] && value.translations[i18n.language].title}</button>)}
             </div>
-            <button className={`${style.button} ${style.blue}`} onClick={_ => setShowSideBar(!showSideBar)}>Поиск
+            <button className={`${style.button} ${style.blue}`} onClick={_ => setShowSideBar(!showSideBar)}>{t('filter.search')}
             </button>
         </div>
     );

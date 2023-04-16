@@ -1,7 +1,7 @@
 .footer {
     background: #F0F4FF;
     border-radius: 25px  25px 0 0;
-    padding: 20px 50px;
+    padding: 2px 50px 10px 50px;
     display: flex;
     justify-content: space-between;
 }
@@ -16,6 +16,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-end;
+    margin-top: 11px;
 }
 
 .footerItemR p {
