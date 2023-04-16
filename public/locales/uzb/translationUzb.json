@@ -48,7 +48,8 @@
     "education_speciality": "Ta’lim muassasini tanlang",
     "form_education":"Ta’lim shakli",
     "science": "Fanlar",
-    "level": "Ta’lim darajasi"
+    "level": "Ta’lim darajasi",
+    "search" : "Qidiruv"
   },
   "profile" : {
     "result_test": "Test natijalari",
@@ -93,6 +94,14 @@
     "exit": "Urinishni tugatish",
     "next": "Keyingi savol",
     "choose": "Testni tanlang"
-  }
+  },
+  "university" : {
+    "pass_test" : "Testni boshlash",
+    "test": "Test",
+    "phone": "Telefon:",
+    "email": "Elektron pochta:",
+    "index": "Pochta indeksi:",
+    "official_site": "Rasmiy sayti:"
 
+  }
 }

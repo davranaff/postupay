@@ -40,23 +40,18 @@ function Partners(props) {
                 pagination: false,
             }}>
                 <SplideSlide>
-                    {/*<Image src='/sliders/partners/logo.svg' alt='partner' width={100} height={100}/>*/}
                     <img src="/sliders/partners/logo.svg" alt=""/>
                 </SplideSlide>
                 <SplideSlide>
-                    {/*<Image src='sliders/partners/logo.svg' alt='partner' width={100} height={100}/>*/}
                     <img src="/sliders/partners/logo.svg" alt=""/>
 
                 </SplideSlide>
                 <SplideSlide>
-                    {/*<Image src='sliders/partners/logo.svg' alt='partner' width={100} height={100}/>*/}
                     <img src="/sliders/partners/logo.svg" alt=""/>
 
                 </SplideSlide>
                 <SplideSlide>
-                    {/*<Image src='sliders/partners/logo.svg' alt='partner' width={100} height={100}/>*/}
                     <img src="/sliders/partners/logo.svg" alt=""/>
-
                 </SplideSlide>
             </Splide>
         </div>

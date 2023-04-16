@@ -47,7 +47,7 @@ function Application({Component, pageProps}) {
             <link rel="icon" href="icons/logo.svg"/>
         </Head>
         <App>
-            <Component {...pageProps} dir={locale}/>
+          <Component {...pageProps} dir={locale}/>
         </App>
     </UserContext.Provider>
 }
