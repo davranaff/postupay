@@ -3,6 +3,7 @@ import i18n from "i18next";
 import {mainUrlFiles} from "@/app/services/base";
 
 function NewsItem({post}) {
+    console.log(post)
     return (
         <div className={style.newsItem}>
             {post.image ? <img className={style.newsItem__image} src={mainUrlFiles + post.image} alt={'example.png'}/>: ""}
