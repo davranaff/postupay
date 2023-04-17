@@ -11,38 +11,28 @@ import i18n from "@/i18n";
 import {useRouter} from "next/router";
 
 function FilterResult() {
-    const {data, setData, showSideBar, params, setShowSideBar, used} = useFilterContext()
+    const {data, setData, showSideBar, params, setShowSideBar} = useFilterContext()
     const [search, setSearch] = useState('')
     const [loading, setLoading] = useState(true)
     const [saves, setSaves] = useState({
         active: false,
         datas: [],
     })
-    const {user} = useBaseContext()
+    const { user } = useBaseContext()
     const {t} = useTranslation()
-    const router = useRouter()
 
     useEffect(_ => {
         filter.getSearchResult(search).then(r => {
             setData(r.data)
             setLoading(false)
         })
-        if (used > 1) {
-            filter.getSearchResult(search).then(r => {
-                setData(r.data)
-                setLoading(false)
-            })
-            return
-        }
-        setLoading(false)
     }, [search, params])
 
 
 
 
     async function getSaves() {
-        if (user.active && saves.datas) {
-        }
+        if (user.active &&  saves.datas) {}
     }
 
     return (
@@ -55,9 +45,7 @@ function FilterResult() {
                         getSaves()
                         setSaves({...saves, active: !saves.active})
                     }} src={saves.active ? '/icons/save.svg' : '/icons/rectangle.svg'} alt=""/>
-                    <button className={style.button}
-                            onClick={_ => setShowSideBar(!showSideBar)}>{showSideBar ? 'Фильтр' : 'Поиск'}</button>
-
+                    <button className={style.button} onClick={_ => setShowSideBar(!showSideBar)}>{showSideBar ? 'Поиск' : 'Фильтр'}</button>
                 </div>
             </div>
             <label htmlFor="search" className={style.label}>
@@ -92,36 +80,9 @@ function FilterResult() {
                                 <p className={style.filterItemContentSubtitle}>
                                     {value.city.title}
                                 </p>
-                    !saves.active ? data.length ? data.map(value => <Link href={`university/${value.id}`}
-                                                                          key={value.id}>
-                            <div className={style.filterItem}>
-                                <img src={value.image ? mainUrlFiles + value.image : "/icons/logo.svg"}
-                                     alt={value.translations['ru'].title} className={style.filterItemImg}/>
-                                <div className={style.filterItemContent}>
-                                    <h3 className={style.filterItemContentTitle}>
-                                        {value.translations['ru'].title}
-                                    </h3>
-                                    <p className={style.filterItemContentSubtitle}>
-                                        {value.translations['ru'].address}
-                                    </p>
-                                </div>
                             </div>
-                        </Link>) :
-                        <h2 className={style.mainTitle}>Ничего не найдено</h2> : saves.datas.length ? data.map(value =>
-                        <Link href={`university/${value.id}`} key={value.id}>
-                            <div className={style.filterItem}>
-                                <Image src={'/other/ban.png'} alt={'example'} width={0} height={0}
-                                       className={style.filterItemImg}/>
-                                <div className={style.filterItemContent}>
-                                    <h3 className={style.filterItemContentTitle}>
-                                        {value.translations.title}
-                                    </h3>
-                                    <p className={style.filterItemContentSubtitle}>
-                                        {value.city.title}
-                                    </p>
-                                </div>
-                            </div>
-                        </Link>) : <h2 className={style.mainTitle}>Ничего не найдено</h2>
+                        </div>
+                    </Link>) : <h2 className={style.mainTitle}>Ничего не найдено</h2>
                     : (
                         <div className={style.loadingContainer}>
                             <div className={style.ldsDualRing}>
