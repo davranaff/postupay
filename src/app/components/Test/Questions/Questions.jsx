@@ -96,6 +96,7 @@ function Questions(props) {
                     {value.translations['ru'].title}
                 </label>
             ))}
+
             <button onClick={_ => next(active)}
                     className={style.button}>{active.id === tests[tests.length - 1].id ? t("test.exit") : t('text.next')}</button>
         </div>
