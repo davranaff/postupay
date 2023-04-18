@@ -11,9 +11,9 @@ import i18n from "@/i18n";
 import {useRouter} from "next/router";
 
 function FilterResult() {
-    const {data, setData, showSideBar, params, setShowSideBar, used} = useFilterContext()
+    const {data, setData, showSideBar, params, setShowSideBar, used, loading, setLoading} = useFilterContext()
     const [search, setSearch] = useState('')
-    const [loading, setLoading] = useState(true)
+    
     const [saves, setSaves] = useState({
         active: false,
         datas: [],

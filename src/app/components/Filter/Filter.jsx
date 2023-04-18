@@ -11,10 +11,14 @@ function Filter(props) {
     const [params, setParams] = useState('')
     const router = useRouter()
     const [used, setUsed] = useState(0)
+    const [loading, setLoading] = useState(true)
 
     useEffect(_ => {
         async function getData() {
-            await filter.getFilterResult(params).then(res => setData(res.data))
+            await filter.getFilterResult(params).then(res => {
+                setData(res.data)
+                setLoading(false)
+            })
         }
 
         getData()
@@ -23,13 +27,14 @@ function Filter(props) {
             setUsed(used + 1)
             filter.getFilterResult(`${router.query.education_type}`).then(r => {
                 setData(r.data)
+                setLoading(false)
             })
         }
     }, [params])
 
 
     return (
-        <FilterContext.Provider value={{showSideBar, setShowSideBar, data, setData, setParams, used}}>
+        <FilterContext.Provider value={{loading, setLoading, showSideBar, setShowSideBar, data, setData, setParams, used}}>
             <FilterResult/>
             <FilterActions {...props}/>
         </FilterContext.Provider>

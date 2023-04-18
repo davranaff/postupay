@@ -5,13 +5,14 @@ import {useRouter} from "next/router";
 import {useTranslation} from "react-i18next";
 import i18n from "i18next";
 import {log} from "next-translate/loadNamespaces";
+import { set } from 'nprogress';
 
 function FilterActions(props) {
     const {t} = useTranslation()
 
     const [change, setChange] = useState(1)
     const [info, setInfo] = useState({})
-    const {showSideBar, setShowSideBar, setParams} = useFilterContext()
+    const {showSideBar, setShowSideBar, setParams, setLoading} = useFilterContext()
     const router = useRouter()
     const initialDrop ={
         title: t('filter.choose_region'),
@@ -29,6 +30,7 @@ function FilterActions(props) {
             setParams(Object.keys({[router.query.education_type]: router.query.education_type}).join('&'))
         }
         setParams(Object.keys(info).join('&'))
+        setLoading(true)
     }, [change])
 
 
