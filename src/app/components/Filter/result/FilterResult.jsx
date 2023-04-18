@@ -22,7 +22,7 @@ function FilterResult() {
     const {t} = useTranslation()
 
     useEffect(_ => {
-        if (used > 1) {
+        if (used > 1 || search) {
             filter.getSearchResult(search).then(r => {
                 setData(r.data)
                 setLoading(false)
@@ -53,7 +53,10 @@ function FilterResult() {
                 </div>
             </div>
             <label htmlFor="search" className={style.label}>
-                <input value={search} onInput={e => setSearch(e.target.value)} id='search' type="text"
+                <input value={search} onInput={e => {
+                    setLoading(true)
+                    setSearch(e.target.value)
+                }} id='search' type="text"
                        className={style.input} placeholder={t('filter.search') + '...'}/>
             </label>
             <h1 className={style.mainTitle}>{t('filter.results')}:</h1>
