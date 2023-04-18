@@ -11,9 +11,9 @@ import i18n from "@/i18n";
 import {useRouter} from "next/router";
 
 function FilterResult() {
-    const {data, setData, showSideBar, params, setShowSideBar} = useFilterContext()
+    const {data, setData, showSideBar, params, setShowSideBar, used, loading, setLoading} = useFilterContext()
     const [search, setSearch] = useState('')
-    const [loading, setLoading] = useState(true)
+    
     const [saves, setSaves] = useState({
         active: false,
         datas: [],
@@ -22,10 +22,14 @@ function FilterResult() {
     const {t} = useTranslation()
 
     useEffect(_ => {
-        filter.getSearchResult(search).then(r => {
-            setData(r.data)
-            setLoading(false)
-        })
+        if (used > 1 || search) {
+            filter.getSearchResult(search).then(r => {
+                setData(r.data)
+                setLoading(false)
+            })
+            return
+        }
+        setLoading(false)
     }, [search, params])
 
 
@@ -49,7 +53,10 @@ function FilterResult() {
                 </div>
             </div>
             <label htmlFor="search" className={style.label}>
-                <input value={search} onInput={e => setSearch(e.target.value)} id='search' type="text"
+                <input value={search} onInput={e => {
+                    setLoading(true)
+                    setSearch(e.target.value)
+                }} id='search' type="text"
                        className={style.input} placeholder={t('filter.search') + '...'}/>
             </label>
             <h1 className={style.mainTitle}>{t('filter.results')}:</h1>
