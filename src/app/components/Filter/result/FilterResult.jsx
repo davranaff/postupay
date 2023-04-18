@@ -11,7 +11,7 @@ import i18n from "@/i18n";
 import {useRouter} from "next/router";
 
 function FilterResult() {
-    const {data, setData, showSideBar, params, setShowSideBar} = useFilterContext()
+    const {data, setData, showSideBar, params, setShowSideBar, used} = useFilterContext()
     const [search, setSearch] = useState('')
     const [loading, setLoading] = useState(true)
     const [saves, setSaves] = useState({
@@ -22,10 +22,14 @@ function FilterResult() {
     const {t} = useTranslation()
 
     useEffect(_ => {
-        filter.getSearchResult(search).then(r => {
-            setData(r.data)
-            setLoading(false)
-        })
+        if (used > 1) {
+            filter.getSearchResult(search).then(r => {
+                setData(r.data)
+                setLoading(false)
+            })
+            return
+        }
+        setLoading(false)
     }, [search, params])
 
 
