@@ -2,11 +2,12 @@ import React, {useEffect, useState} from 'react';
 import {TestContext} from "@/app/context/TestContext";
 import Options from "@/app/components/Test/Options/Options";
 import Questions from "@/app/components/Test/Questions/Questions";
+import Router, {useRouter} from "next/router";
+import NProgress from "nprogress";
 
 function Test(props) {
     const [tests, setTests] = useState([])
     const [active, setActive] = useState(null)
-    console.log(props.university)
 
 
     useEffect(_ => {

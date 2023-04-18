@@ -9,6 +9,7 @@
     transition: .2s ease-in-out;
     overflow-x: hidden;
     flex-wrap: nowrap;
+    gap: 30px;
 }
 
 @media screen and (max-width: 768px) {

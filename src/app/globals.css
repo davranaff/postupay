@@ -59,3 +59,18 @@ a {
 p, h1, h2, h3, h4, h5, h6 {
     margin: 0;
 }
+
+::-webkit-scrollbar {
+    width: 1px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

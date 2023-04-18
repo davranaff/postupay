@@ -4,8 +4,9 @@ import {useTestContext} from "@/app/context/TestContext";
 import {toast} from "react-toastify";
 import {useTranslation} from "react-i18next";
 import {test} from "@/app/services/test/test";
+import Router, {useRouter} from "next/router";
 
-function Questions(props) {
+function Questions() {
     const {active, tests, setTests, setActive} = useTestContext()
     const [check, setCheck] = useState({})
     const {t} = useTranslation()
@@ -15,6 +16,9 @@ function Questions(props) {
             setActive(local)
         }
     }, [check])
+
+
+
 
     const chose = (obj) => {
         const answers = active.answers.map(value => {
@@ -96,6 +100,7 @@ function Questions(props) {
                     {value.translations['ru'].title}
                 </label>
             ))}
+
             <button onClick={_ => next(active)}
                     className={style.button}>{active.id === tests[tests.length - 1].id ? t("test.exit") : t('text.next')}</button>
         </div>
