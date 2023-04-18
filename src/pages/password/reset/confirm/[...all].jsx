@@ -11,7 +11,6 @@ import {useTranslation} from "react-i18next";
 
 function Input ({placeholder, value, setValue}) {
     const [showPassword, setShowPassword] = useState(false)
-    console.log(showPassword)
     return (
         <label className={style.label}>
             <input

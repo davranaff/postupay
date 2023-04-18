@@ -42,7 +42,6 @@ function SingInForm({children}) {
                 authHead.auth = localStorage.getItem('Authorization')
                 setSuccess(true)
                 toast.success(t("toasts.entered"))
-                // console.log(decodeToken(res.data.access))
                 auth.getProfile(`Bearer ${res.data.access}`).then(res => {
                     localStorage.setItem('user', JSON.stringify(res.data))
                 })

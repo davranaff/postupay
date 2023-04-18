@@ -18,7 +18,6 @@ function News(props) {
             .then(res => setPosts(res.data))
             .catch(err => console.error(err))
     }, [])
-    console.log(posts)
     return (
         <div className={style.main}>
             <h1 className={style.title}>{t('home.news.news')}</h1>

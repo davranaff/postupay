@@ -32,7 +32,7 @@ function Id({university}) {
 
     const loadSaved = () => {
         auth.getFavourites(localStorage.getItem('Authorization'))
-            .then(res =>setIsSaved( res.data.filter(item => item.university.id === university.id)[0]))
+            .then(res => setIsSaved(res.data.find(item => item.university.id === university.id)))
             .catch(err => console.log(err))
     }
 
@@ -41,6 +41,21 @@ function Id({university}) {
             await universities.saveUniversity(JSON.parse(localStorage.getItem('user')).id, university.id, localStorage.getItem('Authorization'))
                 .then(res => {
                     toast.success(t('toasts.saved_univer'))
+                    loadSaved()
+                })
+                .catch(e => {
+                    toast.error(t('toasts.something'))
+                })
+            return
+        }
+        toast.warn(t('toast.move_register'))
+    }
+
+    async function delUni() {
+        if (user.active) {
+            await universities.deleteUniversity(isSaved.id, localStorage.getItem('Authorization'))
+                .then(res => {
+                    toast.success("вуз удалён")
                     loadSaved()
                 })
                 .catch(e => {
@@ -107,7 +122,7 @@ function Id({university}) {
                 </div>
                 <div className={style.rightInfo}>
                     <h1 className={style.rightInfoTitle}>{university.translations[i18n.language] && university.translations[i18n.language].title}</h1>
-                    <button className={`${style.button} ${isSaved ? style.savedButton : ""}`} onClick={_ => saveUni()} disabled={isSaved ? true : false}>{isSaved ? "ВУЗ Сохранен" : "Сохранить ВУЗ"}</button>
+                    <button className={`${style.button} ${isSaved ? style.savedButton : ""}`} onClick={_ => isSaved ? delUni() : saveUni()}>{isSaved ? "ВУЗ Сохранен" : "Сохранить ВУЗ"}</button>
                     <div className={style.rightInfoDescription}>
                         {university.translations[i18n.language] && university.translations[i18n.language].description}
                     </div>

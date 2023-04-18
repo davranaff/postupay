@@ -17,14 +17,19 @@ export const universities = {
     },
     async saveUniversity (userId, universityId, token) {
         const url = mainUrl + `user/favourite/`
-        console.log(userId)
         return await axios.post(url, {
-            user: userId,
-            university: universityId
+            data: {
+                user_id: userId,
+                university_id: universityId
+            }
         }, {headers: {'Authorization': token}})
     },
     async getFavourites (token) {
         const url = mainUrl + 'user/favourite/1/'
         return await axios.get(url, {headers: {'Authorization': token}})
+    },
+    async deleteUniversity (universityId, token) {
+        const url = mainUrl + `user/favourite/${universityId}/`
+        return await axios.delete(url, {headers: {'Authorization': token}})
     }
 }

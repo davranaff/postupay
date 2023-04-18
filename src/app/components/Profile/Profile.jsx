@@ -33,7 +33,6 @@ function Profile({check}) {
 
     const editProfile = e => {
         e.preventDefault()
-        console.log(token)
         if (name && surname) {
             axios.put(`https://education07.pythonanywhere.com/auth/users/me/`, {
                 first_name: name,

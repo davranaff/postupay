@@ -8,7 +8,7 @@ import Modal from "@/app/components/Modal/Modal";
 
 function Options(props) {
     const route = useRouter()
-    const {tests, setActive, active} = useTestContext()
+    const {tests, setActive, active, setNumber} = useTestContext()
 
     const [defaultTime, setDefaultTime] = useState(1500);
     const [time, setTime] = useState(defaultTime);
@@ -58,11 +58,12 @@ function Options(props) {
         return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
     };
 
-    const activeOption = (obj) => {
+    const activeOption = (obj, index) => {
         setActive(tests.find(el => obj.id === el.id))
+        setNumber(index)
     }
     return (<div className={style.options}>
-        <img src={props.university && mainUrlFiles + props.university.image} alt=""/>
+        <img src={props.university ? mainUrlFiles + props.university.image : "/icons/logo.svg"} alt=""/>
         <h1 className={style.title}>{tests[0] && tests[0].subject.title}</h1>
 
         {showTime ? <div className={style.time}> {formatTime(time)} <AiTwotoneEyeInvisible color="#6C6F82"
@@ -73,9 +74,9 @@ function Options(props) {
 
 
         <div className={style.optionsContent}>
-            {tests.map(value => <div key={value.id} onClick={_ => activeOption(value)}
+            {tests.map((value, index) => <div key={value.id} onClick={_ => activeOption(value, index + 1)}
                                      className={`${style.option} ${(value === active || value.done) && style.option_active}`}>
-                {value.id}
+                {index + 1}
             </div>)}
 
             <Modal open={showModal}>

@@ -15,7 +15,6 @@ function Filter(props) {
 
     useEffect(_ => {
         if (router.query.education_type && used <= 0) {
-            console.log(used, 'used')
             setUsed(used + 1)
             filter.getFilterResult(`${router.query.education_type}`).then(r => {
                 setData(r.data)

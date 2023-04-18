@@ -23,7 +23,6 @@ export async function getServerSideProps(context) {
 
     function sendConfirm() {
         return auth.confirmEmail(uid, token).then(res => {
-            console.log(res)
             return res
         }).catch(e => console.log(e))
     }

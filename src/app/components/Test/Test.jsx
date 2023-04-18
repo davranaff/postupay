@@ -8,24 +8,25 @@ import NProgress from "nprogress";
 function Test(props) {
     const [tests, setTests] = useState([])
     const [active, setActive] = useState(null)
-
-
+    const [number, setNumber] = useState(null)
+    
     useEffect(_ => {
-        console.log(props.tests)
-        let tests = JSON.parse(localStorage.getItem('tests'))
-        if (tests !== null) {
-            setTests(tests)
+        console.log(props.university)
+        let testss = JSON.parse(localStorage.getItem('tests'))
+        if (testss !== null || testss === []) {
+            setTests(testss)
             return
         }
-        tests = props.tests.map( v => ({...v, done:false, answers: v.answers.map(value => ({...value, done: false}))}))
-        localStorage.setItem('tests',JSON.stringify(tests))
-        setTests(tests)
+        testss = props.tests.map( v => ({...v, done:false, answers: v.answers.map(value => ({...value, done: false}))}))
+        localStorage.setItem('tests',JSON.stringify(testss))
+        setTests(testss)
+        console.log(props.university)
     }, [])
 
     return (
-        <TestContext.Provider value={{active, setActive, tests, setTests}}>
+        <TestContext.Provider value={{active, setActive, tests, setTests, number, setNumber}}>
             <Options tests={props.tests} university={props.university}/>
-            <Questions/>
+            <Questions number={number}/>
         </TestContext.Provider>
     );
 }
