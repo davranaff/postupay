@@ -50,27 +50,24 @@ function Navbar(props) {
 
 
     useEffect(_ => {
-        auth.getProfile(
-            localStorage.getItem('Authorization')
-        ).then(
-            res => {
-                localStorage.setItem('user', JSON.stringify(res.data))
-            }
-        ).catch(
-            err => {
-                if (localStorage.getItem('Authorization') && !localStorage.getItem('user')) {
-                    toast.warn(t('toasts.no_permission'))
+        if (customer === null) {
+            auth.getProfile(
+                localStorage.getItem('Authorization')
+            ).then(
+                res => {
+                    localStorage.setItem('user', JSON.stringify(res.data))
                 }
-            }
-        )
-
-
-    }, [route.pathname])
-
-    useEffect(() => {
-        setTimeout(() => setCustomer(JSON.parse(localStorage.getItem('user'))), 1)
-
-    }, [])
+            ).catch(
+                err => {
+                    if (localStorage.getItem('Authorization') && !localStorage.getItem('user')) {
+                        toast.warn(t('toasts.no_permission'))
+                    }
+                }
+            )
+            setTimeout(() => setCustomer(JSON.parse(localStorage.getItem('user'))), 1)       
+        }
+        
+    }, [customer])
 
     async function logout() {
         if (user) {
@@ -86,6 +83,7 @@ function Navbar(props) {
             })
             setUser({...user, active: false, access: '', refresh: ''})
             localStorage.removeItem('tokens')
+            route.push('/')
         }
     }
 
@@ -93,7 +91,9 @@ function Navbar(props) {
         <nav className={style.navbar}>
             <Link href='/' className={style.navbarLogo}>postupay</Link>
             <div className={style.navbarAuth}>
-                <div className={style.navItem} onClick={() => setShowSelect(true)}>
+                <div className={style.navItem} onClick={() => setShowSelect(!showSelect)} onFocus={_ => setTimeout(_ => {
+                    setShowSelect(false)
+                }, 3000)}>
                     <div className={style.langSelect} onMouseLeave={_ => setTimeout(_ => {
                         setShowSelect(false)
                     }, 5000)}>
@@ -125,13 +125,13 @@ function Navbar(props) {
                 {user.active ?
                     <div className={style.navItem}>
                         <div className={`${style.navProfile} ${style.button} ${style.signinbtn}`}
-                             onClick={_ => setShow(true)} onMouseLeave={_ => setTimeout(_ => {
+                             onClick={_ => setShow(!show)} onMouseLeave={_ => setTimeout(_ => {
                                 setShow(false)
                              }, 5000)}>
                             <img src="/icons/check.svg" alt="check"/>
                             {customer ? customer.first_name + ' ' + customer.last_name[0] + '.' : ''}
                         </div>
-                        <div onMouseLeave={_ => setShow(false)} className={`${style.dropDown} ${show && style.dropDownActive}`}>
+                        <div onMouseLeave={_ => setShow(!show)} className={`${style.dropDown} ${show && style.dropDownActive}`}>
                             <ul>
                                 <li onClick={_ => {
                                     route.push('/profile')

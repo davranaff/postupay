@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import style from "@/pages/profile/profile.module.css";
 import Image from "next/image";
 import {auth} from "@/app/services/auth/auth";
+import i18n from "@/i18n";
 
 function ProfileResult() {
     const [data, setData] = useState([])
@@ -29,8 +30,8 @@ function ProfileResult() {
                     </div>
                     <Image src={'/icons/check.svg'} alt={'check'} width={0} height={0}/>
                     <div className={style.progressContent}>
-                        <h2>Тест: {value.university.title}</h2>
-                        <p>{value.subject.title}</p>
+                        <h2>Тест: {value.university.title[i18n.language] && value.university.title[i18n.language] }</h2>
+                        <p>{value.subject.title[i18n.language] && value.subject.title[i18n.language]}</p>
                     </div>
                     <h1>{ball}%</h1>
                 </div>

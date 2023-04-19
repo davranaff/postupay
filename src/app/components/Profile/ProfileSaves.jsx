@@ -18,18 +18,14 @@ function ProfileSaves({ saves }) {
         <div className={style.resultContent}>
             {saves.length === 0 ? data.map(value => <Link href={`university/${value.university.id}`} key={value}>
                 <div className={style.filterItem}>
-                    <Image src={value.university.image ? value.university.image: '/icons/logo.svg'} alt={'example'} width={0} height={0}
+                    <Image src={value.university.image ? value.university.image: '/icons/logo.svg'} alt={value.university.title[i18n.language]} width={0} height={0}
                            className={style.filterItemImg}/>
                     <div className={style.filterItemContent}>
                         <h3 className={style.filterItemContentTitle}>
-                            {value.university.title[i18n.language]}
+                        {value.university.title[i18n.language] && value.university.title[i18n.language] }
                         </h3>
-                        <p className={style.filterItemDescription}>
-                            {value.university.address[i18n.language]}
-                        </p>
-
                         <p className={style.filterItemContentSubtitle}>
-                            {/*{value.university.address[i18n.language]}*/}
+                            {value.university.address[i18n.language] && value.university.address[i18n.language] }
                         </p>
                     </div>
                 </div>

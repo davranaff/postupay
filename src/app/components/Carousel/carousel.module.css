@@ -2,6 +2,7 @@
     width: auto;
     height: auto;
     background-image: url("back.svg");
+    box-sizing: border-box;
 }
 
 

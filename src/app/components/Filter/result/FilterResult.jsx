@@ -9,6 +9,8 @@ import {useTranslation} from "react-i18next";
 import {mainUrlFiles} from "@/app/services/base";
 import i18n from "@/i18n";
 import {useRouter} from "next/router";
+import {auth} from "@/app/services/auth/auth";
+
 
 function FilterResult() {
     const {data, setData, showSideBar, params, setShowSideBar, used, loading, setLoading} = useFilterContext()
@@ -22,6 +24,7 @@ function FilterResult() {
     const {t} = useTranslation()
 
     useEffect(_ => {
+        // getSaves()
         if (used > 1 || search) {
             filter.getSearchResult(search).then(r => {
                 setData(r.data)
@@ -36,7 +39,11 @@ function FilterResult() {
 
 
     async function getSaves() {
-        if (user.active &&  saves.datas) {}
+        if (user.active &&  saves.datas) {
+            // auth.getFavourites(localStorage.getItem('Authorization'))
+            // .then(res => setSaves({...saves, datas: res.data}))
+            // .catch(err => console.log(err))
+        }
     }
 
     return (
@@ -76,16 +83,14 @@ function FilterResult() {
                         </div>
                     </Link>) : <h2 className={style.mainTitle}>Ничего не найдено</h2> : saves.datas.length ? data.map(value => <Link href={`university/${value.id}`} key={value.id}>
                         <div className={style.filterItem}>
-                            <Image src={'/other/ban.png'} alt={'example'} width={0} height={0}
-                                   className={style.filterItemImg}/>
-
+                            <Image src={value.university.image ? value.university.image : '/icons/logo.svg'} alt={value.university.title[i18n.language]} width={0} height={0}
+                                className={style.filterItemImg}/>
                             <div className={style.filterItemContent}>
                                 <h3 className={style.filterItemContentTitle}>
-                                    {value.translations.title}
-
+                                    {value.university.title[i18n.language] && value.university.title[i18n.language] }
                                 </h3>
                                 <p className={style.filterItemContentSubtitle}>
-                                    {value.city.title}
+                                    {value.university.address[i18n.language] && value.university.address[i18n.language] }
                                 </p>
                             </div>
                         </div>

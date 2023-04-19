@@ -35,13 +35,13 @@ function CarouselH() {
                 pauseOnHover: false,
                 rewindSpeed: 7000
             }}>
-                <SplideSlide>
+                <SplideSlide style={{display:"flex", justifyContent: "center"}}>
                     <img src="/sliders/header/sliderm1.svg" alt=""/>
                 </SplideSlide>
-                <SplideSlide>
+                <SplideSlide style={{display:"flex", justifyContent: "center"}}>
                     <img src="/sliders/header/sliderm2.svg" alt=""/>
                 </SplideSlide>
-                <SplideSlide>
+                <SplideSlide style={{display:"flex", justifyContent: "center"}}>
                     <img src="/sliders/header/sliderm3.svg" alt=""/>
                 </SplideSlide>
             </Splide>

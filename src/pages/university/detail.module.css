@@ -364,6 +364,8 @@
         width: auto;
         flex-direction: column;
         align-items: center;
+        box-sizing: border-box;
+        padding: 10px;
     }
 
     .footMap {
@@ -372,6 +374,7 @@
 
     .footMap iframe {
         height: 200px;
+        border-radius: 10px;
     }
 
     .footContacts {
@@ -379,6 +382,7 @@
         flex-direction: column;
         justify-content: flex-start;
         height: auto;
+        padding: 30px 0;
     }
 
     .footContactsInfo {

@@ -77,8 +77,12 @@ function Profile({check}) {
     }
 
     useEffect(_ => {
-        setToken(localStorage.getItem('Authorization'))
-        load()
+        if (JSON.parse(localStorage.getItem("user"))) {
+            setToken(localStorage.getItem('Authorization'))
+            load()
+            return
+        }
+        router.push('/')
     }, [])
 
     return (
