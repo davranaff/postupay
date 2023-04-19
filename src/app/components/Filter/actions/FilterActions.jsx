@@ -44,7 +44,6 @@ function FilterActions(props) {
                     return obj;
                 }, {}
             )
-            console.log(newObj)
             setInfo(newObj)
             return
         }

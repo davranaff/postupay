@@ -19,20 +19,19 @@ export async function getServerSideProps() {
     let educationForms = await filter.getEducationForms().then(res => res.data).catch(e => console.log(e))
     let educationDegrees = await filter.getEducationDegrees().then(res => res.data).catch(e => console.log(e))
 
-
-    regions = regions.map(value => {
+    regions = regions && regions.map(value => {
         return {...value, name: 'city'}
     })
-    subjects = subjects.map(value => {
+    subjects = subjects && subjects.map(value => {
         return {...value, name: 'subject'}
     })
-    educationTypes = educationTypes.map(value => {
+    educationTypes = educationTypes && educationTypes.map(value => {
         return {...value, name: 'education_type'}
     })
-    educationForms = educationForms.map(value => {
+    educationForms = educationForms &&  educationForms.map(value => {
         return {...value, name: 'education_form'}
     })
-    educationDegrees = educationDegrees.map(value => {
+    educationDegrees = educationDegrees && educationDegrees.map(value => {
         return {...value, name: 'degree'}
     })
 
