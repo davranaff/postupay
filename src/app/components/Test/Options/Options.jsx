@@ -88,7 +88,7 @@ function Options(props) {
                     <h1 className={style.modalText}>Начать тест?</h1>
                     <br/>
                     <button className={style.button} onClick={startTimer}>Да</button>
-                    <Link href={`/university/${tests.length && tests[0].university}`}  className={`${style.button} ${style.no}`}
+                    <Link href={tests.length ? `/university/${tests[0].university}` : '/'}  className={`${style.button} ${style.no}`}
                             onClick={() => setShowModal(false)}
                     >Нет
                     </Link>

@@ -9,7 +9,6 @@ function Index(props) {
         <div>
             <h1>Count: {count}</h1>
             <button onClick={() => setCount(p => p+1)}>Click</button>
-
             <Commerce />
         </div>
     );
