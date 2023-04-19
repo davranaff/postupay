@@ -36,7 +36,6 @@ function FilterActions(props) {
 
     const active = (object) => {
         setChange(change + 1)
-        console.log(info)
         if (info[`${object.name}=${object.id}`]) {
             const newObj = Object.keys(info).filter(key =>
                 key !== `${object.name}=${object.id}`).reduce((obj, key) => {

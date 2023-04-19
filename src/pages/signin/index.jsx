@@ -20,7 +20,6 @@ function Index(props) {
             email: email
         })
             .then(res => {
-                console.log(res)
                 setShowModal(false)
                 toast.success(t('toasts.check_email'))
             })

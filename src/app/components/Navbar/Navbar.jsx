@@ -58,7 +58,6 @@ function Navbar(props) {
             }
         ).catch(
             err => {
-                console.log(err.response.data.detail)
                 if (localStorage.getItem('Authorization') && !localStorage.getItem('user')) {
                     toast.warn(t('toasts.no_permission'))
                 }
@@ -84,7 +83,6 @@ function Navbar(props) {
 
             }).catch(err => {
                 toast.error(t('toasts.something'))
-                console.log(err)
             })
             setUser({...user, active: false, access: '', refresh: ''})
             localStorage.removeItem('tokens')
@@ -95,10 +93,11 @@ function Navbar(props) {
         <nav className={style.navbar}>
             <Link href='/' className={style.navbarLogo}>postupay</Link>
             <div className={style.navbarAuth}>
-                <div className={style.navItem}>
-                    <div className={style.langSelect}>
-                        <p className={style.lang}
-                           onClick={() => setShowSelect(!showSelect)}>
+                <div className={style.navItem} onClick={() => setShowSelect(true)}>
+                    <div className={style.langSelect} onMouseLeave={_ => setTimeout(_ => {
+                        setShowSelect(false)
+                    }, 5000)}>
+                        <p className={style.lang}>
 
                             <span>{language.lang}</span>
                             {language.lang === "Ru"
@@ -108,7 +107,7 @@ function Navbar(props) {
 
                         </p>
                         {showSelect && (
-                            <div className={style.languages}>
+                            <div className={style.languages} onMouseLeave={() => setShowSelect(false)}>
                                 {languages.map(lang => (
                                     <span key={lang.image} className={style.selectItem}
                                           onClick={() => changeLang(lang)}>{lang.lang}</span>
@@ -126,11 +125,13 @@ function Navbar(props) {
                 {user.active ?
                     <div className={style.navItem}>
                         <div className={`${style.navProfile} ${style.button} ${style.signinbtn}`}
-                             onClick={_ => setShow(!show)}>
+                             onClick={_ => setShow(true)} onMouseLeave={_ => setTimeout(_ => {
+                                setShow(false)
+                             }, 5000)}>
                             <img src="/icons/check.svg" alt="check"/>
                             {customer ? customer.first_name + ' ' + customer.last_name[0] + '.' : ''}
                         </div>
-                        <div className={`${style.dropDown} ${show && style.dropDownActive}`}>
+                        <div onMouseLeave={_ => setShow(false)} className={`${style.dropDown} ${show && style.dropDownActive}`}>
                             <ul>
                                 <li onClick={_ => {
                                     route.push('/profile')

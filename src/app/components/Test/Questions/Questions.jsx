@@ -4,12 +4,12 @@ import {useTestContext} from "@/app/context/TestContext";
 import {toast} from "react-toastify";
 import {useTranslation} from "react-i18next";
 import {test} from "@/app/services/test/test";
-import Router, {useRouter} from "next/router";
 
-function Questions() {
-    const {active, tests, setTests, setActive} = useTestContext()
+function Questions(props) {
+    const {active, tests, setTests, setActive, number} = useTestContext()
     const [check, setCheck] = useState({})
     const {t} = useTranslation()
+
     useEffect(_ => {
         const local = JSON.parse(localStorage.getItem('active'))
         if (local !== null) {
@@ -67,15 +67,11 @@ function Questions() {
                 questions: questions,
             }
             test.postTests(data).then(res => {
-                console.log(res)
-                console.log(data)
-                console.log(tests)
                 toast.success(t("toasts.test_success"))
                 localStorage.removeItem('tests')
                 localStorage.setItem('time', '0')
                 localStorage.removeItem('active')
             }).catch(err => {
-                console.log(err)
                 toast.success(t("err"))
             })
             return
@@ -85,7 +81,7 @@ function Questions() {
     }
 
     return active ? (<div className={style.questions}>
-        <h1 className={style.title}>Вопрос {active.id}</h1>
+        <h1 className={style.title}>Вопрос {number}</h1>
         <div className={style.description}>
             {active.translations['ru'].title}
         </div>
