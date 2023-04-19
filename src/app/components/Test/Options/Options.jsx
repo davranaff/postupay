@@ -5,6 +5,7 @@ import {AiTwotoneEye, AiTwotoneEyeInvisible} from "react-icons/ai";
 import {mainUrlFiles} from "@/app/services/base";
 import {useRouter} from "next/navigation";
 import Modal from "@/app/components/Modal/Modal";
+import Link from "next/link";
 
 function Options(props) {
     const route = useRouter()
@@ -62,6 +63,8 @@ function Options(props) {
         setActive(tests.find(el => obj.id === el.id))
         setNumber(index)
     }
+
+    console.log(tests.length && tests[0].university)
     return (<div className={style.options}>
         <img src={props.university ? mainUrlFiles + props.university.image : "/icons/logo.svg"} alt=""/>
         <h1 className={style.title}>{tests[0] && tests[0].subject.title}</h1>
@@ -79,15 +82,16 @@ function Options(props) {
                 {index + 1}
             </div>)}
 
+
             <Modal open={showModal}>
                 <div className={style.startModal}>
                     <h1 className={style.modalText}>Начать тест?</h1>
                     <br/>
                     <button className={style.button} onClick={startTimer}>Да</button>
-                    <button className={`${style.button} ${style.no}`}
+                    <Link href={`/university/${tests.length && tests[0].university}`}  className={`${style.button} ${style.no}`}
                             onClick={() => setShowModal(false)}
                     >Нет
-                    </button>
+                    </Link>
                 </div>
             </Modal>
         </div>

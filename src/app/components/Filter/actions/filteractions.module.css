@@ -268,7 +268,6 @@
         display: none;
         position: absolute;
         top: 100px;
-        right: 100%;
         z-index: 50;
         background-color: rgba(255, 255, 255, 1);
         padding: 10px 30px;
@@ -277,6 +276,8 @@
     .main_active {
         display: flex;
         flex-direction: column;
+        transform: translateX(0);
+
     }
 
     .arrow {

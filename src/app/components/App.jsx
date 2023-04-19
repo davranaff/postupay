@@ -28,7 +28,7 @@ function App({children}) {
                 pauseOnHover
                 theme="light"/>
             <Navbar/>
-            <>{children}</>
+            <div style={{minHeight: '72vh'}}>{children}</div>
             <Footer/>
         </div>
     );

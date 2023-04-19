@@ -46,6 +46,7 @@ function FilterResult() {
         }
     }
 
+    console.log(data.find(v => v.id === 1))
     return (
         <div className={`${style.main} ${!showSideBar ? style.main_active : ''}`}>
             <h1 className={style.mainTitle}>{t('filter.list')}</h1>
@@ -71,7 +72,7 @@ function FilterResult() {
                 {!loading ?
                     !saves.active ? data.length ? data.map(value => <Link href={`university/${value.id}`} key={value.id}>
                         <div className={style.filterItem}>
-                            <img src={value.image ? mainUrlFiles + value.image : "/icons/logo.svg"} alt={value.translations['ru'].title} className={style.filterItemImg}/>
+                            <img src={value.image ? value.image : "/icons/logo.svg"} alt={value.translations['ru'].title} className={style.filterItemImg}/>
                             <div className={style.filterItemContent}>
                                 <h3 className={style.filterItemContentTitle}>
                                     {value.translations[i18n.language] && value.translations[i18n.language].title }
