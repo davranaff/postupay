@@ -80,7 +80,7 @@ function Id({university}) {
             <div className={style.header}>
                 <div className={style.leftInfo}>
                     {university.image ?
-                        <img src={mainUrlFiles + university.image} alt={'example'} width={100} height={100}/> :
+                        <img src={mainUrlFiles + university.image} alt={'example'} width={150} height={150}/> :
                         <img src='/icons/logo.svg/' alt={'example'} width={100} height={100}/>}
                     <br/>
                     {university.phone_number && <div className={style.leftInfoItem}>
