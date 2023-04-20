@@ -21,6 +21,7 @@ export async function getServerSideProps(context) {
             props: {
                 tests: tests,
                 university: university,
+                subject: context.query.subject
             }
         }
 
