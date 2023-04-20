@@ -3,13 +3,16 @@ import Footer from "@/app/components/Footer/Footer";
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import {useEffect, useState} from "react";
+import {useRouter} from "next/router";
 
 function App({children}) {
     const [initialRenderComplete, setInitialRenderComplete] = useState(false);
-
+    const router = useRouter()
     useEffect(() => {
         setInitialRenderComplete(true);
     }, []);
+
+    console.log(router.pathname.includes('/test'))
 
     if (!initialRenderComplete) return <></>;
 
@@ -27,9 +30,9 @@ function App({children}) {
                 draggable
                 pauseOnHover
                 theme="light"/>
-            <Navbar/>
+            {router.pathname.includes('/test') ? ' ' : <Navbar/>}
             <div style={{minHeight: '72vh'}}>{children}</div>
-            <Footer/>
+            {router.pathname.includes('/test') ? ' ' : <Footer/>}
         </div>
     );
 }

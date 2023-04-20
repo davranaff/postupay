@@ -84,7 +84,7 @@
 
 @media screen and (max-width: 768px) {
     .footer {
-        padding: 20px 30px;
+        padding: 5px 30px;
     }
     .footerItem {
         width: 60%;
@@ -96,20 +96,24 @@
         font-size: 15px;
     }
     .footerInfo li {
-        font-size: 8px;
+        font-size: 11px;
         margin: 5px 0;
     }
     .footerIcons img {
         width: 21px;
     }
     .footerItemR p {
-        font-size: 8px;
+        font-size: 9px;
     }
+    .footerIcons {
+        margin-top: -15px;
+    }
+
 }
 
 @media screen and (max-width: 450px) {
     .footer {
-        padding: 20px 30px 100px 30px;
+        padding: 10px 30px 122px 30px;
     }
     .footerItem {
         width: 60%;
@@ -117,12 +121,15 @@
     .footerLogo {
         font-size: 20px;
     }
+    .footerIcons {
+        margin-top: -10px;
+    }
     .footerInfo {
         font-size: 14px;
         position: absolute;
     }
     .footerInfo li {
-        font-size: 10px;
+        font-size: 13px;
         margin: 5px 0;
     }
     .footerIcons img {

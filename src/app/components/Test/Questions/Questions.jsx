@@ -5,6 +5,7 @@ import {toast} from "react-toastify";
 import {useTranslation} from "react-i18next";
 import {test} from "@/app/services/test/test";
 import { useRouter } from 'next/router';
+import i18n from "i18next";
 
 function Questions(props) {
     const {active, tests, setTests, setActive, number, current} = useTestContext()
@@ -88,9 +89,15 @@ function Questions(props) {
     }
 
     return active ? (<div className={style.questions}>
-        <h1 className={style.title}>Вопрос {number}</h1>
+        <h1 className={style.univerTitle}>{props.university && props.university.translations[i18n.language].title}</h1>
+        <hr className={style.hr}/>
+        <div className={style.question}>
+            <h1 className={style.title}>{t('test.question')} {number}</h1>
+            <button className={style.button} >{t('test.out_from')}</button>
+        </div>
+
         <div className={style.description}>
-            {active.translations['ru'].title}
+            {active.translations[i18n.language] && active.translations[i18n.language].title}
         </div>
         <div className={style.answers}>
             {active.answers.map(value => (
@@ -100,12 +107,12 @@ function Questions(props) {
                         setCheck(value)
                     }}
                            checked={(value === check) || (value.done)}/>
-                    {value.translations['ru'].title}
+                    {value.translations[i18n.language] && value.translations[i18n.language].title}
                 </label>
             ))}
 
             <button onClick={_ => next(active)}
-                    className={style.button}>{active.id === tests.tests[tests.tests.length - 1].id ? t("test.exit") : t('text.next')}</button>
+                    className={style.button}>{active.id === tests.tests[tests.tests.length - 1].id ? t("test.exit") : t('test.next')}</button>
         </div>
     </div>) : (<div className={style.questions}>
         <h1 className={style.title}>{t("test.choose")}</h1>
