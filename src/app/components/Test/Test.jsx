@@ -3,30 +3,38 @@ import {TestContext} from "@/app/context/TestContext";
 import Options from "@/app/components/Test/Options/Options";
 import Questions from "@/app/components/Test/Questions/Questions";
 import Router, {useRouter} from "next/router";
-import NProgress from "nprogress";
 
 function Test(props) {
-    const [tests, setTests] = useState([])
+    const route = useRouter()
+    const [tests, setTests] = useState({})
     const [active, setActive] = useState(null)
     const [number, setNumber] = useState(null)
-    
+    const [current, setCurrent] = useState(null)
+
     useEffect(_ => {
-        console.log(props.university)
         let testss = JSON.parse(localStorage.getItem('tests'))
-        if (testss !== null || testss === []) {
+        if (testss !== null && testss.tests.length !== 0 && testss.id === props.subject) {
+            
             setTests(testss)
             return
         }
-        testss = props.tests.map( v => ({...v, done:false, answers: v.answers.map(value => ({...value, done: false}))}))
+        const data = props.tests.map( v => ({...v, done:false, answers: v.answers.map(value => ({...value, done: false}))}))
+        testss = {id: props.subject, tests: data}
         localStorage.setItem('tests',JSON.stringify(testss))
         setTests(testss)
-        console.log(props.university)
-    }, [])
-
-    return (
-        <TestContext.Provider value={{active, setActive, tests, setTests, number, setNumber}}>
-            <Options tests={props.tests} university={props.university}/>
-            <Questions number={number}/>
+    }, [route.query])
+    console.log(props.university, 'univerrr')
+    if (tests) return (
+        <TestContext.Provider value={{active,
+         setActive,
+         tests,
+         setTests,
+         number,
+         setNumber,
+         current,
+         setCurrent}}>
+            <Options tests={props.tests} university={props.university} time={props.time}/>
+            <Questions number={number} university={props.university}/>
         </TestContext.Provider>
     );
 }

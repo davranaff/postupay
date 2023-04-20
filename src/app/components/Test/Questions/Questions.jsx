@@ -4,11 +4,13 @@ import {useTestContext} from "@/app/context/TestContext";
 import {toast} from "react-toastify";
 import {useTranslation} from "react-i18next";
 import {test} from "@/app/services/test/test";
+import { useRouter } from 'next/router';
 
 function Questions(props) {
-    const {active, tests, setTests, setActive, number} = useTestContext()
+    const {active, tests, setTests, setActive, number, current} = useTestContext()
     const [check, setCheck] = useState({})
     const {t} = useTranslation()
+    const route = useRouter()
 
     useEffect(_ => {
         const local = JSON.parse(localStorage.getItem('active'))
@@ -25,7 +27,7 @@ function Questions(props) {
             if (value.id === obj.id) return {...value, done: true}
             return {...value, done: false}
         })
-        const newData = tests.map(value => {
+        const newData = tests.tests.map(value => {
             if (value.id === active.id) {
                 return {
                     ...value, done: true, answers
@@ -33,15 +35,14 @@ function Questions(props) {
             }
             return value
         })
-        setTests(newData)
+        setTests(prev => ({...prev, tests: newData}))
         localStorage.setItem('tests', JSON.stringify(newData))
         localStorage.setItem('active', JSON.stringify({...active, answers}))
     }
-
     const next = (obj) => {
-        if (obj.id === tests[tests.length - 1].id) {
+        if (obj.id === tests.tests[tests.tests.length - 1].id) {
             let questions = []
-            for(let question of tests){
+            for(let question of tests.tests){
                 let obj = {}
                 let counter = 1
                 let answers = []
@@ -62,21 +63,27 @@ function Questions(props) {
             }
             const data = {
                 user: JSON.parse(localStorage.getItem('user')).id,
-                university: tests[0].university,
-                subject: tests[0].subject.id,
+                university: props.university.id,
+                subject: tests.id,
                 questions: questions,
             }
             test.postTests(data).then(res => {
                 toast.success(t("toasts.test_success"))
                 localStorage.removeItem('tests')
-                localStorage.setItem('time', '0')
+                localStorage.removeItem('time')
                 localStorage.removeItem('active')
+                let value = props.university.subject[current + 1]
+                if (value) {
+                    route.push(`test?subject=${value.id}&tk_=${localStorage.getItem('Authorization')}&university=${props.university.id}`)
+                    return
+                }
+                route.push(`/profile`)
             }).catch(err => {
                 toast.success(t("err"))
             })
             return
         }
-        const newActive = tests[tests.findIndex(value => value.id === obj.id) + 1]
+        const newActive = tests.tests[tests.tests.findIndex(value => value.id === obj.id) + 1]
         setActive(newActive)
     }
 
@@ -98,7 +105,7 @@ function Questions(props) {
             ))}
 
             <button onClick={_ => next(active)}
-                    className={style.button}>{active.id === tests[tests.length - 1].id ? t("test.exit") : t('text.next')}</button>
+                    className={style.button}>{active.id === tests.tests[tests.tests.length - 1].id ? t("test.exit") : t('text.next')}</button>
         </div>
     </div>) : (<div className={style.questions}>
         <h1 className={style.title}>{t("test.choose")}</h1>
