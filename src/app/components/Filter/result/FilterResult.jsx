@@ -6,10 +6,8 @@ import Link from "next/link";
 import {filter} from "@/app/services/filter/filter";
 import {useBaseContext} from "@/app/context/BaseContext";
 import {useTranslation} from "react-i18next";
-import {mainUrlFiles} from "@/app/services/base";
 import i18n from "@/i18n";
-import {useRouter} from "next/router";
-import {auth} from "@/app/services/auth/auth";
+
 
 
 function FilterResult() {
@@ -46,7 +44,6 @@ function FilterResult() {
         }
     }
 
-    console.log(data.find(v => v.id === 1))
     return (
         <div className={`${style.main} ${!showSideBar ? style.main_active : ''}`}>
             <h1 className={style.mainTitle}>{t('filter.list')}</h1>
