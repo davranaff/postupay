@@ -16,11 +16,13 @@ export async function getServerSideProps(context) {
     try {
         let tests = await test.getTest(context.query.subject, context.query.tk_).then(res => res.data).catch(e => console.log(e))
         let university = null
-        if (tests.length) university = await universities.getOne(tests[0].university).then(res => res.data).catch(e => console.log(e))
+        university = await universities.getOne(context.query.university).then(res => res.data).catch(e => console.log(e))
         return {
             props: {
                 tests: tests,
                 university: university,
+                subject: context.query.subject,
+                time: 1500
             }
         }
 

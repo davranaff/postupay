@@ -65,9 +65,8 @@ function Id({university}) {
         }
         toast.warn(t('toast.move_register'))
     }
-
     function goTest() {
-        router.push(`test/?subject=${university.id}&tk_=${localStorage.getItem('Authorization')}`)
+        router.push(`test/?subject=${university.subject[0].id}&tk_=${localStorage.getItem('Authorization')}&university=${university.id}`)
     }
     useEffect(_ => {
        loadSaved()
