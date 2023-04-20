@@ -63,8 +63,8 @@ function Questions(props) {
             }
             const data = {
                 user: JSON.parse(localStorage.getItem('user')).id,
-                university: tests.tests[0].university,
-                subject: tests.tests[0].subject.id,
+                university: props.university.id,
+                subject: tests.id,
                 questions: questions,
             }
             test.postTests(data).then(res => {
@@ -74,7 +74,7 @@ function Questions(props) {
                 localStorage.removeItem('active')
                 let value = props.university.subject[current + 1]
                 if (value) {
-                    route.push(`test?subject=${value.id}&tk_=${localStorage.getItem('Authorization')}`)
+                    route.push(`test?subject=${value.id}&tk_=${localStorage.getItem('Authorization')}&university=${props.university.id}`)
                     return
                 }
                 route.push(`/profile`)

@@ -61,7 +61,6 @@ function Profile({check}) {
         await auth.getProfile(
             localStorage.getItem('Authorization')
         ).then(res => {
-            console.log(res.data)
             setUserInfo(res.data)
         }).catch(err => {
             toast.warn('У вас нету доступа!')

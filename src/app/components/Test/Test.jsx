@@ -10,6 +10,7 @@ function Test(props) {
     const [active, setActive] = useState(null)
     const [number, setNumber] = useState(null)
     const [current, setCurrent] = useState(null)
+
     useEffect(_ => {
         let testss = JSON.parse(localStorage.getItem('tests'))
         if (testss !== null && testss.tests.length !== 0 && testss.id === props.subject) {
@@ -22,7 +23,7 @@ function Test(props) {
         localStorage.setItem('tests',JSON.stringify(testss))
         setTests(testss)
     }, [route.query])
-
+    console.log(props.university, 'univerrr')
     if (tests) return (
         <TestContext.Provider value={{active,
          setActive,
@@ -32,7 +33,7 @@ function Test(props) {
          setNumber,
          current,
          setCurrent}}>
-            <Options tests={props.tests} university={props.university}/>
+            <Options tests={props.tests} university={props.university} time={props.time}/>
             <Questions number={number} university={props.university}/>
         </TestContext.Provider>
     );

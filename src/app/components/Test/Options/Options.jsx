@@ -8,11 +8,14 @@ import SingletonRouter , { Router, useRouter as clientRouter } from 'next/router
 import Modal from "@/app/components/Modal/Modal";
 import Link from "next/link";
 import i18n from "i18next";
+import {test} from "@/app/services/test/test";
+import {toast} from "react-toastify";
+import {useTranslation} from "react-i18next";
 
 function Options(props) {
     const route = useRouter()
     const {tests, setActive, active, setNumber, setCurrent} = useTestContext()
-    const [defaultTime, setDefaultTime] = useState(1500);
+    const [defaultTime, setDefaultTime] = useState(props.time);
     const [time, setTime] = useState(defaultTime);
     const clientRoute = clientRouter()
     const [isActive, setIsActive] = useState(false)
@@ -20,6 +23,8 @@ function Options(props) {
     const [showModal, setShowModal] = useState(true)
     const [leave, setLeave] = useState(false)
     const [subjectValue, setSubjectValue] = useState(null)
+    const {t} = useTranslation()
+
 
     async function leavef(value, index) {
         setLeave(true)
@@ -28,20 +33,55 @@ function Options(props) {
         setCurrent(index)
     }
 
-    
 
 
-    useEffect(_ => {
-        setTime(localStorage.getItem('time') ? Number(localStorage.getItem('time')) : 1500)
-    }, [])
+    async function leaved() {
+        setLeave(false)
+        localStorage.removeItem('time')
+        localStorage.removeItem('tests')
+        setTime(defaultTime)
+        setIsActive(false)
+        let questions = []
+        for(let question of tests.tests){
+            let obj = {}
+            let counter = 1
+            let answers = []
+            for (const answer of question['answers']) {
+                let object = {}
+                if (counter === 4) {
+                    counter = 1
+                    obj.subjectquestion_id = answer['subject_question'].id
+                    obj.answers = answers
 
+                }
+                object.id = answer.id
+                object.status = answer.done
+                answers.push(object)
+                counter++
+            }
+            questions.push(obj)
+        }
+        const data = {
+            user: JSON.parse(localStorage.getItem('user')).id,
+            university: props.university.id,
+            subject: tests.id,
+            questions: questions,
+        }
+        test.postTests(data).then(res => {
+            toast.success(t("toasts.test_success"))
+            localStorage.removeItem('tests')
+            localStorage.removeItem('time')
+            localStorage.removeItem('active')
+            route.push(`test?subject=${subjectValue.id}&tk_=${localStorage.getItem('Authorization')}&university=${props.university.id}`)
+        }).catch(err => {
+            toast.success(t("err"))
+        })
+    } 
     useEffect(() => {
         let interval = null;
         if (isActive && time > 0) {
             interval = setInterval(() => {
                 setTime(time - 1);
-                localStorage.setItem('time', defaultTime - 1)
-                setDefaultTime(localStorage.getItem('time') || 1500)
             }, 1000);
         } else if (time === 0) {
             clearInterval(interval);
@@ -50,12 +90,6 @@ function Options(props) {
 
         return () => clearInterval(interval);
     }, [isActive, time]);
-    useEffect(() => {
-        const storedSeconds = localStorage.getItem('time');
-        if (storedSeconds !== null) {
-            setDefaultTime(parseInt(storedSeconds));
-        }
-    }, [])
 
     const startTimer = () => {
         setShowModal(false)
@@ -97,13 +131,8 @@ function Options(props) {
                 {leave ? <div className={style.startModal}>
                     <h1 className={style.modalText}>Вы хотите завершить и перейти на след. тест?</h1>
                     <br/>
-                    <Link href={`test?subject=${subjectValue.id}&tk_=${localStorage.getItem('Authorization')}`}  className={`${style.button} ${style.no}`}
-                            onClick={() => {
-                                setShowModal(false)
-                                localStorage.removeItem('time')
-                                localStorage.removeItem('tests')
-                                setTime(defaultTime)
-                            }}
+                    <Link href={`test?subject=${subjectValue.id}&tk_=${localStorage.getItem('Authorization')}&university=${props.university.id}`}  className={`${style.button} ${style.no}`}
+                            onClick={() => leaved()}
                     >Да
                     </Link>
                     <button className={style.button} onClick={_ => setShowModal(false)}>Нет</button>
@@ -119,8 +148,8 @@ function Options(props) {
             </Modal>
         </div>
         {props.university.subject.map((value, index) => <button key={value.id} 
-        className={`${style.buttonSubject} + ${clientRoute.query.subject == value.id && style.no}`}
-        disabled={clientRoute.query.subject == value.id ? true : false}
+        className={`${style.buttonSubject} + ${clientRoute.query.subject == value.id && style.yes}`}
+        disabled={clientRoute.query.subject === value.id ? true : false}
         onClick={_ => leavef(value, index)}>
             {value.translations[i18n.language].title}
             </button>)}
