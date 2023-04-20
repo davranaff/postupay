@@ -22,6 +22,14 @@
     text-align: center;
 }
 
+.univerTitleOption {
+    display: none;
+}
+
+.hrOption {
+    display: none;
+}
+
 .time {
     color: #6C6F82;
     font-size: 40px;
@@ -120,6 +128,15 @@
 }
 
 @media screen and (max-width: 450px) {
+
+    .univerTitleOption {
+        display: block;
+        text-align: center;
+        font-size: 17px;
+    }
+    .hrOption {
+        display: block;
+    }
     .options {
         width: auto;
         padding: 20px 25px;

@@ -226,7 +226,8 @@
     }
     .mainTitleM {
         display: block;
-        font-size: 20px;
+        font-size: 14px;
+        margin-right: 2px;
     }
     .button {
         display: flex;

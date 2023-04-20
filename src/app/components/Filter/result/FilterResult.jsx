@@ -48,13 +48,13 @@ function FilterResult() {
         <div className={`${style.main} ${!showSideBar ? style.main_active : ''}`}>
             <h1 className={style.mainTitle}>{t('filter.list')}</h1>
             <div className={style.mainM}>
-                <h1 className={style.mainTitleM}>{saves.active ? 'Сохраненные ВУЗы' : 'Список ВУЗов'}</h1>
+                <h1 className={style.mainTitleM}>{saves.active ? t('home.navbar.saved') : t('filter.list')}</h1>
                 <div>
                     <img onClick={_ => {
                         getSaves()
                         setSaves({...saves, active: !saves.active})
                     }} src={saves.active ? '/icons/save.svg' : '/icons/rectangle.svg'} alt=""/>
-                    <button className={`${style.button} ${!showSideBar ? style.white : ''}`} onClick={_ => setShowSideBar(!showSideBar)}>Фильтр</button>
+                    <button className={`${style.button} ${!showSideBar ? style.white : ''}`} onClick={_ => setShowSideBar(!showSideBar)}>{t('filter.filter')}</button>
                 </div>
             </div>
             <label htmlFor="search" className={style.label}>

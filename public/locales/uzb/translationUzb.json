@@ -87,13 +87,21 @@
     "password8": "Parol kamida 8 ta belgidan iborat bo'lishi kerak!",
     "reset_password": "Siz parolingizni muvaffaqiyatli tikladingiz!",
     "check_email": "Elektron pochtangizni tekshiring",
-    "saved_univer": "Universitet saqlanib qolindi",
-    "move_register": "Ro'yxatdan o'ting!"
+    "saved_univer": "OTM saqlanib qolindi",
+    "move_register": "Ro'yxatdan o'ting!",
+    "deleted_univer": "OTM o`chirildi"
+
   },
   "test" : {
     "exit": "Urinishni tugatish",
     "next": "Keyingi savol",
-    "choose": "Testni tanlang"
+    "choose": "Testni tanlang",
+
+    "out_from" : "Testni tugatish",
+    "question": "Savol",
+    "start": "Testni boshlaysizmi?",
+    "really_want" : "Testni tugatib keyingi fanga o`tasizmi?"
+
   },
   "university" : {
     "pass_test" : "Testni boshlash",
@@ -101,7 +109,10 @@
     "phone": "Telefon:",
     "email": "Elektron pochta:",
     "index": "Pochta indeksi:",
-    "official_site": "Rasmiy sayti:"
+    "official_site": "Rasmiy sayti:",
+
+    "otm_saved" : "OTM saqlangan",
+    "save_univer": "OTMni saqlash"
 
   }
 }

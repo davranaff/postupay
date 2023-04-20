@@ -55,7 +55,7 @@ function Id({university}) {
         if (user.active) {
             await universities.deleteUniversity(isSaved.id, localStorage.getItem('Authorization'))
                 .then(res => {
-                    toast.success("вуз удалён")
+                    toast.success(t('toasts.deleted_univer'))
                     loadSaved()
                 })
                 .catch(e => {
@@ -121,7 +121,7 @@ function Id({university}) {
                 </div>
                 <div className={style.rightInfo}>
                     <h1 className={style.rightInfoTitle}>{university.translations[i18n.language] && university.translations[i18n.language].title}</h1>
-                    <button className={`${style.button} ${isSaved ? style.savedButton : ""}`} onClick={_ => isSaved ? delUni() : saveUni()}>{isSaved ? "ВУЗ Сохранен" : "Сохранить ВУЗ"}</button>
+                    <button className={`${style.button} ${isSaved ? style.savedButton : ""}`} onClick={_ => isSaved ? delUni() : saveUni()}>{isSaved ? t('university.otm_saved') : t('university.save_univer')}</button>
                     <div className={style.rightInfoDescription}>
                         {university.translations[i18n.language] && university.translations[i18n.language].description}
                     </div>
