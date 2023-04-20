@@ -102,6 +102,7 @@ function Options(props) {
                                 setShowModal(false)
                                 localStorage.removeItem('time')
                                 localStorage.removeItem('tests')
+                                setTime(defaultTime)
                             }}
                     >Да
                     </Link>
