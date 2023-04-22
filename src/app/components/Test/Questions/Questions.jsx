@@ -8,7 +8,18 @@ import { useRouter } from 'next/router';
 import i18n from "i18next";
 
 function Questions(props) {
-    const {active, tests, setTests, setActive, number, current} = useTestContext()
+    const {active,
+         tests,
+         setTests,
+         setActive,
+         number,
+         current,
+         setLeaveTest,
+         setShowModal,
+         showModal,
+         setSubjectValue,
+         setLeave,
+         leave} = useTestContext()
     const [check, setCheck] = useState({})
     const {t} = useTranslation()
     const route = useRouter()
@@ -73,27 +84,33 @@ function Questions(props) {
                 localStorage.removeItem('tests')
                 localStorage.removeItem('time')
                 localStorage.removeItem('active')
-                let value = props.university.subject[current + 1]
-                if (value) {
-                    route.push(`test?subject=${value.id}&tk_=${localStorage.getItem('Authorization')}&university=${props.university.id}`)
-                    return
-                }
-                route.push(`/profile`)
             }).catch(err => {
                 toast.success(t("err"))
             })
+            let value = props.university.subject[current + 1]
+            setActive(null)
+            if (value) {
+                route.push(`test?subject=${value.id}&tk_=${localStorage.getItem('Authorization')}&university=${props.university.id}`)
+                return
+            }
+            route.push(`/profile`)
             return
         }
         const newActive = tests.tests[tests.tests.findIndex(value => value.id === obj.id) + 1]
         setActive(newActive)
     }
 
+
     return active ? (<div className={style.questions}>
         <h1 className={style.univerTitle}>{props.university && props.university.translations[i18n.language].title}</h1>
         <hr className={style.hr}/>
         <div className={style.question}>
             <h1 className={style.title}>{t('test.question')} {number}</h1>
-            <button className={style.button} >{t('test.out_from')}</button>
+            <button className={style.button} onClick={_ => {
+                setSubjectValue(active.subject)
+                setShowModal(true)
+                setLeaveTest(true)
+            }}>{t('test.out_from')}</button>
         </div>
 
         <div className={style.description}>
@@ -112,9 +129,15 @@ function Questions(props) {
             ))}
 
             <button onClick={_ => next(active)}
-                    className={style.button}>{active.id === tests.tests[tests.tests.length - 1].id ? t("test.exit") : t('test.next')}</button>
+                    className={style.button}>{active.id === tests.tests[tests.tests.length - 1].id
+                        ? props.university.subject[props.university.subject.findIndex(value => value.id === tests.tests[0].subject.id) + 1] ? t("test.exit") : t('test.finish') 
+                        : t("test.next")
+                        }
+                            </button> 
         </div>
     </div>) : (<div className={style.questions}>
+        <h1 className={style.univerTitle}>{props.university && props.university.translations[i18n.language].title}</h1>
+        <hr className={style.hr}/>
         <h1 className={style.title}>{t("test.choose")}</h1>
     </div>)
 }

@@ -93,10 +93,11 @@
 
   },
   "test" : {
-    "exit": "Urinishni tugatish",
+    "exit": "Keyingi testga o'tish",
     "next": "Keyingi savol",
+    "finish": "Test sinovini tugatish",
     "choose": "Testni tanlang",
-
+    "leave": "Test sinovini tark etmoqchimisiz?",
     "out_from" : "Testni tugatish",
     "question": "Savol",
     "start": "Testni boshlaysizmi?",
