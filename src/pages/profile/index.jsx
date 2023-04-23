@@ -1,7 +1,6 @@
 import style from './profile.module.css'
 import React from "react";
 import Profile from "@/app/components/Profile/Profile";
-import axios from "axios";
 
 function Index({check}) {
     return (
@@ -14,20 +13,18 @@ function Index({check}) {
 }
 
 export async function getServerSideProps(context) {
-    let check = false
 
     if (context.query.save) {
-        check = true
         return {
             props: {
-                check: check,
+                check: true,
             }
         }
     }
 
     return {
         props: {
-            check: check,
+            check: false,
         }
     }
 }

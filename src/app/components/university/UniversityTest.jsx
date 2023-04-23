@@ -4,12 +4,15 @@ import {auth} from "@/app/services/auth/auth";
 import i18n from "i18next";
 import {useTranslation} from "react-i18next";
 import Image from "next/image";
+import {useRouter} from "next/navigation";
 
 
 function UniversityTest({university}) {
     const [data, setData] = useState(null)
     const [loading, setLoading] = useState(false)
     const {t} = useTranslation()
+    const router = useRouter()
+
 
     useEffect(_ => {
         if (JSON.parse(localStorage.getItem('user'))) {
@@ -25,14 +28,11 @@ function UniversityTest({university}) {
 
     function filter(result) {
         const arr = []
-        for (const element of university.subject) {
-            const obj = result.filter(value => {
-                if (value.university.id === element.id && university.id === value.university.id && !arr.includes(value)) {
-                    return value
-                }
-                return null
-            })
-            arr.push(...obj)
+        const subjects = university.subject
+        for (const element of subjects) {
+            const obj = result.find(value => value.subject.id === element.id && university.id === value.university.id && !arr.includes(value))
+            console.log(obj)
+            arr.push(obj)
         }
         let ball = 0
         arr.forEach(value => {
@@ -40,6 +40,10 @@ function UniversityTest({university}) {
         })
         ball = Math.floor(100 * (ball / university.subject.length))
         setData(ball)
+    }
+
+    function goTest() {
+        router.push(`test/?subject=${university.subject[0].id}&tk_=${localStorage.getItem('Authorization')}&university=${university.id}`)
     }
 
     return (

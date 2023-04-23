@@ -12,8 +12,6 @@ function App({children}) {
         setInitialRenderComplete(true);
     }, []);
 
-    console.log(router.pathname.includes('/test'))
-
     if (!initialRenderComplete) return <></>;
 
 

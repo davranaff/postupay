@@ -11,7 +11,7 @@ import i18n from "@/i18n";
 
 
 function FilterResult() {
-    const {data, setData, showSideBar, params, setShowSideBar, used, loading, setLoading} = useFilterContext()
+    const {data, setData, showSideBar, params, setShowSideBar, loading, setLoading} = useFilterContext()
     const [search, setSearch] = useState('')
     
     const [saves, setSaves] = useState({
@@ -23,7 +23,7 @@ function FilterResult() {
 
     useEffect(_ => {
         // getSaves()
-        if (used > 1 || search) {
+        if (search) {
             filter.getSearchResult(search).then(r => {
                 setData(r.data)
                 setLoading(false)

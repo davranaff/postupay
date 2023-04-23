@@ -49,7 +49,7 @@ function Check({check, setList}) {
             if (value.id === check.id) return {...value, checked: !value.checked}
             return {...value, checked: false}
         }))
-        router.push(`/filter/?education_type=${check.query}`)
+        router.push(`/filter/?${check.query}`)
     }
     return (
         <label className={`${style.item} ${check.checked && style.item__active}`} onClick={handleState}>

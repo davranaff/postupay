@@ -61,6 +61,13 @@ function Profile({check}) {
 
     useEffect(_ => {
         if (JSON.parse(localStorage.getItem("user"))) {
+            axios.get(`https://education07.pythonanywhere.com/auth/users/me/`, {
+                headers: {
+                    'Authorization': localStorage.getItem('Authorization')
+                }
+            }).then(res => {
+                setUserInfo(res.data)
+            })
             setToken(localStorage.getItem('Authorization'))
             return
         }

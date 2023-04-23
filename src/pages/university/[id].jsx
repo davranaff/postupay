@@ -4,7 +4,6 @@ import {universities} from "@/app/services/universities/universites";
 import {useBaseContext} from "@/app/context/BaseContext";
 import {decodeToken} from "@/app/utils/jwtDecode";
 import {toast} from "react-toastify";
-import {useRouter} from "next/navigation";
 import {mainUrlFiles} from "@/app/services/base";
 import ScrollContainer from "react-indiana-drag-scroll";
 import {useTranslation} from "react-i18next";
@@ -15,7 +14,6 @@ import UniversityTest from '@/app/components/university/UniversityTest';
 function Id({university}) {
 
     const {user} = useBaseContext()
-    const router = useRouter()
     const [isSaved ,setIsSaved ] = useState(null)
 
     function telegram() {
@@ -65,9 +63,7 @@ function Id({university}) {
         }
         toast.warn(t('toast.move_register'))
     }
-    function goTest() {
-        router.push(`test/?subject=${university.subject[0].id}&tk_=${localStorage.getItem('Authorization')}&university=${university.id}`)
-    }
+    
     useEffect(_ => {
        loadSaved()
     }, [])
