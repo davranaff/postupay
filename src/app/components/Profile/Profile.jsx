@@ -57,28 +57,11 @@ function Profile({check}) {
 
 
     }
-    const load = async () => {
-        await auth.getProfile(
-            localStorage.getItem('Authorization')
-        ).then(res => {
-            setUserInfo(res.data)
-        }).catch(err => {
-            toast.warn('У вас нету доступа!')
-        })
-        universities.getFavourites(localStorage.getItem('Authorization'))
-            .then(res => console.log(res.data)).catch(err => {
-            if (!localStorage.getItem('Authorization')) {
-                toast.warn(t('toasts.no_permission'))
-            }
-        })
 
-
-    }
 
     useEffect(_ => {
         if (JSON.parse(localStorage.getItem("user"))) {
             setToken(localStorage.getItem('Authorization'))
-            load()
             return
         }
         router.push('/')

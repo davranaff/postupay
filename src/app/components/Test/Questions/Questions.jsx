@@ -79,15 +79,15 @@ function Questions(props) {
                 subject: tests.id,
                 questions: questions,
             }
-            test.postTests(data).then(res => {
+            localStorage.removeItem('tests')
+            localStorage.removeItem('time')
+            localStorage.removeItem('active')
+            test.postTests(data, localStorage.getItem('Authorization')).then(res => {
                 toast.success(t("toasts.test_success"))
-                localStorage.removeItem('tests')
-                localStorage.removeItem('time')
-                localStorage.removeItem('active')
             }).catch(err => {
                 toast.success(t("err"))
             })
-            let value = props.university.subject[current + 1]
+            let value = props.university.subject[props.university.subject.findIndex(value => value.id === tests.tests[0].subject.id) + 1]
             setActive(null)
             if (value) {
                 route.push(`test?subject=${value.id}&tk_=${localStorage.getItem('Authorization')}&university=${props.university.id}`)

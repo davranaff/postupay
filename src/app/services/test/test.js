@@ -12,8 +12,12 @@ export const test = {
             },
         })
     },
-    async postTests(tests) {
+    async postTests(tests, token) {
         const url = mainUrl + `university/test/result`
-        return await axios.post(url, {data: tests})
+        return await axios.post(url, {data: tests}, {
+            headers: {
+                'Authorization': token
+            }
+        })
     }
 }

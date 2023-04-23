@@ -10,7 +10,7 @@ function ProfileResult() {
 
     useEffect(_ => {
         setLoading(true)
-        auth.getResultProfile(localStorage.getItem('Authorization'))
+        auth.getResultProfile(localStorage.getItem('Authorization'), JSON.parse(localStorage.getItem('user')).id)
             .then(res => {
                 setData(res.data)
                 setLoading(false)

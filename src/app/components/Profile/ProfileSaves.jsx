@@ -11,7 +11,7 @@ function ProfileSaves({saves}) {
 
     useEffect(_ => {
         setLoading(true)
-        auth.getFavourites(localStorage.getItem('Authorization'))
+        auth.getFavourites(localStorage.getItem('Authorization'), JSON.parse(localStorage.getItem('user')).id)
             .then(res => {
                 setData(res.data)
                 setLoading(false)
@@ -21,7 +21,7 @@ function ProfileSaves({saves}) {
 
     return (
         <div className={style.resultContent}>
-            {!loading ? saves.length === 0 ? data.map(value => <Link href={`university/${value.university.id}`}
+            {!loading ? data.length > 0 ? data.map(value => <Link href={`university/${value.university.id}`}
                                                                      key={value}>
                     <div className={style.filterItem}>
                         <Image src={value.university.image ? value.university.image : '/icons/logo.svg'}

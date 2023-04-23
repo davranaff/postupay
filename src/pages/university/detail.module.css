@@ -11,6 +11,28 @@
     justify-content: space-between;
 }
 
+.loadingContainer {
+    text-align: center;
+}
+
+.ldsDualRing {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+}
+.ldsDualRing:after {
+    content: " ";
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 8px auto;
+    border-radius: 50%;
+    border: 6px solid #2152F5;
+    border-color: #2152F5 transparent #2152F5 transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+
+}
+
 
 .leftInfo {
     width: 23%;
@@ -176,6 +198,11 @@
     align-items: center;
     padding: 20px;
     box-sizing: border-box;
+    transition: .5s;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+
 }
 
 .blockTestButton:hover {
@@ -252,6 +279,54 @@
     height: auto;
     font-size: 20px;
     font-weight: 900;
+}
+
+.wave1 {
+    width:150px;
+    height: 150px;
+    background-color: inherit;
+    position: absolute;
+    top: -50px;
+    right: -3px;
+    border-radius: 60px;
+    animation: wave1 3.5s infinite linear;
+}
+
+@keyframes wave1 {
+    from {
+        rotate: 0;
+    }
+    to {
+        rotate: 360deg;
+    }
+}
+
+.wave2 {
+    width: 150px;
+    height: 150px;
+    background-color: inherit;
+    position: absolute;
+    bottom: -40px;
+    right: -3px;
+    border-radius:60px;
+    animation: wave2 3.5s infinite linear;
+}
+
+@keyframes wave2 {
+    from {
+        rotate: 0;
+    }
+    to {
+        rotate: 360deg;
+    }
+}
+
+.backGround {
+    position: absolute;
+    height: 100%;
+    background-color: #DFF4D6;
+    z-index: -1;
+    left: 0;
 }
 
 

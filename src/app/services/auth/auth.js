@@ -43,16 +43,16 @@ export const auth = {
             },
         })
     },
-    getResultProfile: async (token) => {
-        const url = "https://education07.pythonanywhere.com/api/university/test/result"
+    getResultProfile: async (token, id) => {
+        const url = `https://education07.pythonanywhere.com/api/university/test/result?user=${id}`
         return await axios.get(url, {
             headers: {
                 'Authorization': token
             }
         })
     },
-    getFavourites: async (token) => {
-        const url = "https://education07.pythonanywhere.com/api/user/favourite/"
+    getFavourites: async (token, id) => {
+        const url = "https://education07.pythonanywhere.com/api/user/favourite/" + "?user=" + id
         return await axios.get(url, {headers:{'Authorization': token}})
     }
 }

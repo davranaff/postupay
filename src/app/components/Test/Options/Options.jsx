@@ -76,10 +76,10 @@ function Options(props) {
             subject: tests.id,
             questions: questions,
         }
-        test.postTests(data).then(res => {
+        localStorage.removeItem('tests')
+        localStorage.removeItem('active')
+        test.postTests(data, localStorage.getItem('Authorization')).then(res => {
             toast.success(t("toasts.test_success"))
-            localStorage.removeItem('tests')
-            localStorage.removeItem('active')
             route.push(`test?subject=${subjectValue.id}&tk_=${localStorage.getItem('Authorization')}&university=${props.university.id}`)
         }).catch(err => {
             toast.success(t("err"))
@@ -115,8 +115,6 @@ function Options(props) {
         setActive(tests.tests.find(el => obj.id === el.id))
         setNumber(index)
     }
-
-
     return (<div className={style.options}>
         <h1 className={style.univerTitleOption}>{props.university && props.university.translations[i18n.language].title}</h1>
         <hr className={style.hrOption}/>
