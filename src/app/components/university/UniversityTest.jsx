@@ -5,7 +5,7 @@ import i18n from "i18next";
 import {useTranslation} from "react-i18next";
 import Image from "next/image";
 import {useRouter} from "next/navigation";
-
+import {toast} from "react-toastify";
 
 function UniversityTest({university}) {
     const [data, setData] = useState(null)
@@ -43,7 +43,11 @@ function UniversityTest({university}) {
     }
 
     function goTest() {
-        router.push(`test/?subject=${university.subject[0].id}&tk_=${localStorage.getItem('Authorization')}&university=${university.id}`)
+        if (localStorage.getItem('Authorization')) {
+            router.push(`test/?subject=${university.subject[0].id}&tk_=${localStorage.getItem('Authorization')}&university=${university.id}`)
+            return
+        }
+        toast.warn(t('toast.move_register'))
     }
 
     return (
