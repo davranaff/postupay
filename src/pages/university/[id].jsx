@@ -1,21 +1,19 @@
 import React, {useEffect, useRef, useState} from 'react';
 import style from './detail.module.css'
-import Image from "next/image";
 import {universities} from "@/app/services/universities/universites";
 import {useBaseContext} from "@/app/context/BaseContext";
 import {decodeToken} from "@/app/utils/jwtDecode";
 import {toast} from "react-toastify";
-import {useRouter} from "next/navigation";
 import {mainUrlFiles} from "@/app/services/base";
 import ScrollContainer from "react-indiana-drag-scroll";
 import {useTranslation} from "react-i18next";
 import i18n from "i18next";
 import {auth} from "@/app/services/auth/auth";
+import UniversityTest from '@/app/components/university/UniversityTest';
 
 function Id({university}) {
 
     const {user} = useBaseContext()
-    const router = useRouter()
     const [isSaved ,setIsSaved ] = useState(null)
 
     function telegram() {
@@ -31,13 +29,13 @@ function Id({university}) {
     }
 
     const loadSaved = () => {
-        auth.getFavourites(localStorage.getItem('Authorization'))
+        auth.getFavourites(localStorage.getItem('Authorization'), JSON.parse(localStorage.getItem('user')).id)
             .then(res => setIsSaved(res.data.find(item => item.university.id === university.id)))
             .catch(err => console.log(err))
     }
 
     async function saveUni() {
-        if (user.active) {
+        if (user.active && JSON.parse(localStorage.getItem('user'))) {
             await universities.saveUniversity(JSON.parse(localStorage.getItem('user')).id, university.id, localStorage.getItem('Authorization'))
                 .then(res => {
                     toast.success(t('toasts.saved_univer'))
@@ -65,9 +63,7 @@ function Id({university}) {
         }
         toast.warn(t('toast.move_register'))
     }
-    function goTest() {
-        router.push(`test/?subject=${university.subject[0].id}&tk_=${localStorage.getItem('Authorization')}&university=${university.id}`)
-    }
+    
     useEffect(_ => {
        loadSaved()
     }, [])
@@ -135,17 +131,7 @@ function Id({university}) {
                 </div>
             </div>
             <div className={style.blockTest}>
-                <div className={style.progress}>
-                    <Image src={'/icons/check.svg'} alt={'check'} width={0} height={0}/>
-                    <div className={style.progressContent}>
-                        <h2>Тест: {university.translations[i18n.language] && university.translations[i18n.language].title}</h2>
-                        <p>{university.subject.map(value => value.translations[i18n.language] && value.translations[i18n.language].title).join(' | ')}</p>
-                    </div>
-                    <h1>0%</h1>
-                </div>
-                <div onClick={_ => goTest()} className={style.blockTestButton}>
-                    {t('university.pass_test')}
-                </div>
+                <UniversityTest university={university}/>
             </div>
             <div className={style.foot}>
                 <div className={style.footMap}>

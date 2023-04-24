@@ -14,15 +14,23 @@ import {useTranslation} from "react-i18next";
 
 function Options(props) {
     const route = useRouter()
-    const {tests, setActive, active, setNumber, setCurrent} = useTestContext()
+    const {tests,
+         setActive,
+         active,
+         setNumber,
+         setCurrent,
+         leaveTest,
+         subjectValue,
+         setSubjectValue,
+         showModal,
+         setShowModal,
+         leave,
+         setLeave} = useTestContext()
     const [defaultTime, setDefaultTime] = useState(props.time);
     const [time, setTime] = useState(defaultTime);
     const clientRoute = clientRouter()
     const [isActive, setIsActive] = useState(false)
     const [showTime, setShowTime] = useState(true)
-    const [showModal, setShowModal] = useState(true)
-    const [leave, setLeave] = useState(false)
-    const [subjectValue, setSubjectValue] = useState(null)
     const {t} = useTranslation()
 
 
@@ -40,6 +48,7 @@ function Options(props) {
         localStorage.removeItem('tests')
         setTime(defaultTime)
         setIsActive(false)
+        setActive(null)
         let questions = []
         for (let question of tests.tests) {
             let obj = {}
@@ -66,11 +75,10 @@ function Options(props) {
             subject: tests.id,
             questions: questions,
         }
-        test.postTests(data).then(res => {
+        localStorage.removeItem('tests')
+        localStorage.removeItem('active')
+        test.postTests(data, localStorage.getItem('Authorization')).then(res => {
             toast.success(t("toasts.test_success"))
-            localStorage.removeItem('tests')
-            localStorage.removeItem('time')
-            localStorage.removeItem('active')
             route.push(`test?subject=${subjectValue.id}&tk_=${localStorage.getItem('Authorization')}&university=${props.university.id}`)
         }).catch(err => {
             toast.success(t("err"))
@@ -108,11 +116,6 @@ function Options(props) {
         setNumber(index)
     }
 
-
-
-
-
-
     return (<div className={style.options}>
         <h1 className={style.univerTitleOption}>{props.university && props.university.translations[i18n.language].title}</h1>
         <hr className={style.hrOption}/>
@@ -145,6 +148,22 @@ function Options(props) {
                     >Да
                     </Link>
                     <button className={style.button} onClick={_ => setShowModal(false)}>Нет</button>
+                </div>  : leaveTest ? <div className={style.startModal}>
+                    <h1 className={style.modalText}>{t('test.leave')}</h1>
+                    <br/>
+                    <Link href={`${tests.tests[0].university}`} 
+                    className={`${style.button} ${style.no}`}
+                    onClick={() => {
+                            setShowModal(false)
+                            localStorage.removeItem('tests')
+                            localStorage.removeItem('active')
+                        }}>
+                        Да
+                    </Link>
+                    <button className={`${style.button}`}
+                            onClick={() => setShowModal(false)}
+                    >Нет
+                    </button>
                 </div> : <div className={style.startModal}>
                     <h1 className={style.modalText}>{t('test.start')}</h1>
                     <br/>
@@ -157,10 +176,12 @@ function Options(props) {
                 </div>}
             </Modal>
         </div>
-        {props.university.subject.map((value, index) => <button key={value.id}
-                                                                className={`${style.buttonSubject} + ${clientRoute.query.subject == value.id && style.yes}`}
-                                                                disabled={clientRoute.query.subject === value.id ? true : false}
-                                                                onClick={_ => leavef(value, index)}>
+        {props.university.subject.map((value, index) => <button key={value.id} 
+        className={`${style.buttonSubject} + ${clientRoute.query.subject == value.id && style.yes}`}
+        disabled={clientRoute.query.subject == value.id ? true : false}
+        onClick={_ => {
+            leavef(value, index)
+        }}>
             {value.translations[i18n.language] && value.translations[i18n.language].title}
         </button>)}
     </div>);

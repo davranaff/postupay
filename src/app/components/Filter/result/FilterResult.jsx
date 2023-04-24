@@ -38,7 +38,7 @@ function FilterResult() {
 
     useEffect(_ => {
         // getSaves()
-        if (used > 1 || search) {
+        if (search) {
             filter.getSearchResult(search).then(r => {
                 setData(r.data)
                 setLoading(false)

@@ -4,13 +4,11 @@ import {useFilterContext} from "@/app/context/FilterContext";
 import {useRouter} from "next/router";
 import {useTranslation} from "react-i18next";
 import i18n from "i18next";
-import {log} from "next-translate/loadNamespaces";
-import { set } from 'nprogress';
+import { element } from 'prop-types';
 
 function FilterActions(props) {
     const {t} = useTranslation()
 
-    const [change, setChange] = useState(1)
     const [info, setInfo] = useState({})
     const {showSideBar, setShowSideBar, setParams, setLoading} = useFilterContext()
     const router = useRouter()
@@ -18,6 +16,7 @@ function FilterActions(props) {
         title: t('filter.choose_region'),
         active: false,
     }
+    const [change, setChange] = useState(false)
     const [dropDown, setDropDown] = useState(initialDrop)
 
     useEffect(() => {
@@ -25,28 +24,72 @@ function FilterActions(props) {
     },[i18n.language])
 
     useEffect(_ => {
-        if (Object.keys(router.query).length !== 0 && change === 1) {
-            setInfo({...info, [router.query.education_type]: router.query.education_type})
-            setParams(Object.keys({[router.query.education_type]: router.query.education_type}).join('&'))
-        }
-        setParams(Object.keys(info).join('&'))
+        filt()
         setLoading(true)
     }, [change])
 
-
-    const active = (object) => {
-        setChange(change + 1)
-        if (info[`${object.name}=${object.id}`]) {
-            const newObj = Object.keys(info).filter(key =>
-                key !== `${object.name}=${object.id}`).reduce((obj, key) => {
-                    obj[key] = info[key];
-                    return obj;
-                }, {}
-            )
-            setInfo(newObj)
+    function filt() {
+        if (Object.keys(router.query).length !== 0) {
+            Object.keys(router.query).forEach((value, index) => {
+                if (typeof router.query[value] === "object") {
+                    router.query[value].forEach(item => {
+                        setInfo({...info, [value]: item})
+                    })
+                    setParams(Object.keys({...info, [Object.keys(router.query)[index]]: router.query[value]}).join('&'))
+                    return
+                }
+                setInfo({...info, [Object.keys(router.query)[index]]: router.query[value]})
+                setParams(Object.keys({...info, [Object.keys(router.query)[index]]: router.query[value]}).join('&'))
+            })
             return
         }
-        setInfo(prev => ({...prev, [`${object.name}=${object.id}`]: object.id}))
+        setParams(Object.keys(info).join('&'))
+    }
+
+    const active = (object) => {
+        let newArr = []
+        if (Object.keys(router.query).length) {
+            Object.keys(router.query).forEach((element, index) => {
+                if (typeof router.query[element] === "object") {
+                    router.query[element].forEach(item => {
+                        newArr.push(`${element}=${item}`)
+                    })
+                    return
+                }
+                newArr.push(`${element}=${Object.values(router.query)[index]}`)
+            })
+        }
+        if (!newArr.includes(`${object.name}=${object.id}`)) {
+            newArr.push(`${object.name}=${object.id}`)
+            router.replace(`filter?${newArr.join('&')}`)
+            setChange(!change)
+            return
+        }
+        newArr = newArr.filter(value => value !== `${object.name}=${object.id}`)
+        router.replace(`filter?${newArr.join('&')}`)
+        setChange(!change)
+    }
+
+    // const newObj = Object.keys(info).filter(key =>
+            //     key !== `${object.name}=${object.id}`).reduce((obj, key) => {
+            //         obj[key] = info[key];
+            //         return obj;
+            //     }, {}
+            // )
+            // setInfo(newObj)
+
+    function checkName(value) {
+        const arr = []
+        Object.keys(router.query).forEach((element) => {
+            if (typeof router.query[element] === "object") {
+                router.query[element].forEach(item => {
+                    arr.push(`${element}=${item}`)
+                })
+                return
+            }
+            arr.push(`${element}=${router.query[element]}`)
+        })
+        return [value, arr.includes(`${value.name}=${value.id}`)]
     }
 
 
@@ -73,14 +116,14 @@ function FilterActions(props) {
             <p className={style.buttonsTitle}>{t('filter.education_speciality')}</p>
             <div className={style.buttons}>
                 {props.educationTypes.map(value => <button key={value.id}
-                                                           className={`${style.button} ${info[`${value.name}=${value.id}`] && style.active}`}
+                                                           className={`${style.button} ${checkName(value)[1] && style.active}`}
                                                            onClick={_ => active(value)}>{value.translations[i18n.language] && value.translations[i18n.language].title}</button>)}
             </div>
             <p className={style.buttonsTitle}>{t('filter.form_education')}</p>
 
             <div className={style.buttons}>
                 {props.educationForms.map(value => <button key={value.id}
-                                                           className={`${style.button} ${info[`${value.name}=${value.id}`] && style.active}`}
+                                                           className={`${style.button} ${checkName(value)[1] && style.active}`}
                                                            onClick={_ => active(value)}>{value.translations[i18n.language] && value.translations[i18n.language].title}</button>)}
             </div>
             <p className={style.buttonsTitle}>{t('filter.science')}</p>
@@ -88,14 +131,14 @@ function FilterActions(props) {
                 {props.subjects.map(value => <button
                     key={value.id}
                     onClick={() => active(value)}
-                    className={`${style.button} ${info[`${value.name}=${value.id}`] && style.active}`}>
+                    className={`${style.button} ${checkName(value)[1] && style.active}`}>
                     {value.translations[i18n.language] && value.translations[i18n.language].title}
                 </button>)}
             </div>
             <p className={style.buttonsTitle}>{t('filter.level')}</p>
             <div className={style.buttons}>
                 {props.educationDegrees.map(value => <button key={value.id}
-                                                             className={`${style.button} ${info[`${value.name}=${value.id}`] && style.active}`}
+                                                             className={`${style.button} ${checkName(value)[1] && style.active}`}
                                                              onClick={_ => active(value)}>{value.translations[i18n.language] && value.translations[i18n.language].title}</button>)}
             </div>
             <button className={`${style.button} ${style.blue}`} onClick={_ => setShowSideBar(!showSideBar)}>{t('filter.search')}

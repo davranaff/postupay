@@ -10,7 +10,7 @@ function ProfileResult() {
 
     useEffect(_ => {
         setLoading(true)
-        auth.getResultProfile(localStorage.getItem('Authorization'))
+        auth.getResultProfile(localStorage.getItem('Authorization'), JSON.parse(localStorage.getItem('user')).id)
             .then(res => {
                 setData(res.data)
                 setLoading(false)
@@ -20,9 +20,9 @@ function ProfileResult() {
 
     return (
         <>
-            {!loading ? data.length > 0 ? data.map(value => {
+            {!loading ? data.length > 0 ? data.map((value, index) => {
                 const ball = Math.floor(100 * (value.score / (value.test_subject_histories.length / 4)))
-                return <div className={style.blockTest}>
+                return <div className={style.blockTest} key={index}>
                     <div className={style.progress} key={value.id}>
                         <div className={style.backGround} style={
                             {
