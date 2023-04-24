@@ -7,6 +7,40 @@
     height: auto;
     transition: .2s ease-in-out;
 }
+.readMore {
+    text-transform: lowercase;
+    text-align: center;
+    display:  block;
+    cursor: pointer;
+    justify-content: center;
+}
+.readMore svg {
+    transform: rotate(45deg);
+    position: relative;
+    bottom: 1px;
+}
+
+.readMore:hover {
+    opacity: .8;
+
+
+}
+.miniLoading {
+    display: block;
+    margin: auto    ;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    border-top-color: #666;
+    animation: spin .7s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
 
 .mainM div img {
     display: none;

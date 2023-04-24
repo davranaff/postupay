@@ -6,6 +6,7 @@ import {useTranslation} from "react-i18next";
 import {test} from "@/app/services/test/test";
 import { useRouter } from 'next/router';
 import i18n from "i18next";
+import localFont from "@next/font/local";
 
 function Questions(props) {
     const {active,
@@ -30,6 +31,8 @@ function Questions(props) {
             setActive(local)
         }
     }, [check])
+
+
 
 
 

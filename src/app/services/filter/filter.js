@@ -3,9 +3,10 @@ import axios from "axios";
 
 
 export const filter = {
-    getFilterResult: async (paramUrl) => {
-        const url = mainUrl + 'university/filter/?' + paramUrl
+    getFilterResult: async (paramUrl, pagination) => {
+        const url = mainUrl + 'university/filter/?' + paramUrl + pagination
         return await axios.get(url)
+
     },
     getSearchResult: async (query) => {
         const url = mainUrl + 'university-query/?search=' + query

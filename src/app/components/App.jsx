@@ -11,7 +11,7 @@ function App({children}) {
     useEffect(() => {
         setInitialRenderComplete(true);
     }, []);
-
+    
     if (!initialRenderComplete) return <></>;
 
 
