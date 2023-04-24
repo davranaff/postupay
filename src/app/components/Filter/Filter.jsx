@@ -12,6 +12,9 @@ function Filter(props) {
     const router = useRouter()
     const [used, setUsed] = useState(0)
     const [loading, setLoading] = useState(true)
+    const [miniLoading, setMiniLoading] = useState(false)
+    const [pagination, setPagination] = useState('&limit=10&offset=0')
+    const [allCount, setAllCount] = useState(null)
 
     useEffect(_ => {
         if (router.query.education_type && used <= 0) {
@@ -23,18 +26,21 @@ function Filter(props) {
             return
         }
         async function getData() {
-            await filter.getFilterResult(params).then(res => {
-                setData(res.data)
+            setMiniLoading(true)
+            await filter.getFilterResult(params + pagination).then(res => {
+                setData(res.data.results)
                 setLoading(false)
+                setMiniLoading(false)
+                setAllCount(res.data.count)
             })
         }
 
         getData()
-    }, [params])
+    }, [params, pagination])
 
 
     return (
-        <FilterContext.Provider value={{loading, setLoading, showSideBar, setShowSideBar, data, setData, setParams, used}}>
+        <FilterContext.Provider value={{allCount, pagination, setPagination,miniLoading, loading, setLoading, showSideBar, setShowSideBar, data, setData, setParams, used}}>
             <FilterResult/>
             <FilterActions {...props}/>
         </FilterContext.Provider>

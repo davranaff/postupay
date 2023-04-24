@@ -4,7 +4,7 @@ import {useTestContext} from "@/app/context/TestContext";
 import {AiTwotoneEye, AiTwotoneEyeInvisible} from "react-icons/ai";
 import {mainUrlFiles} from "@/app/services/base";
 import {useRouter} from "next/navigation";
-import SingletonRouter , { Router, useRouter as clientRouter } from 'next/router'
+import SingletonRouter, {Router, useRouter as clientRouter} from 'next/router'
 import Modal from "@/app/components/Modal/Modal";
 import Link from "next/link";
 import i18n from "i18next";
@@ -34,7 +34,6 @@ function Options(props) {
     }
 
 
-
     async function leaved() {
         setLeave(false)
         localStorage.removeItem('time')
@@ -42,7 +41,7 @@ function Options(props) {
         setTime(defaultTime)
         setIsActive(false)
         let questions = []
-        for(let question of tests.tests){
+        for (let question of tests.tests) {
             let obj = {}
             let counter = 1
             let answers = []
@@ -76,7 +75,8 @@ function Options(props) {
         }).catch(err => {
             toast.success(t("err"))
         })
-    } 
+    }
+
     useEffect(() => {
         let interval = null;
         if (isActive && time > 0) {
@@ -109,10 +109,14 @@ function Options(props) {
     }
 
 
+
+
+
+
     return (<div className={style.options}>
         <h1 className={style.univerTitleOption}>{props.university && props.university.translations[i18n.language].title}</h1>
         <hr className={style.hrOption}/>
-        <img src={props.university.image ?mainUrlFiles + props.university.image : "/icons/logo.svg"} alt=""/>
+        <img src={props.university.image ? mainUrlFiles + props.university.image : "/icons/logo.svg"} alt=""/>
         <h1 className={style.title}>{tests && tests.tests && tests.tests[0].subject.title}</h1>
 
         {showTime ? <div className={style.time}> {formatTime(time)} <AiTwotoneEyeInvisible color="#6C6F82"
@@ -123,38 +127,42 @@ function Options(props) {
 
 
         <div className={style.optionsContent}>
-            {tests && tests.tests && tests.tests.map((value, index) => <div key={value.id} onClick={_ => activeOption(value, index + 1)}
-                                     className={`${style.option} ${(value === active || value.done) && style.option_active}`}>
+            {tests && tests.tests && tests.tests.map((value, index) => <div key={value.id}
+                                                                            onClick={_ => activeOption(value, index + 1)}
+                                                                            className={`${style.option} ${(value === active || value.done) && style.option_active}`}>
                 {index + 1}
             </div>)}
 
 
-            <Modal open={showModal} >
+            <Modal open={showModal}>
                 {leave ? <div className={style.startModal}>
                     <h1 className={style.modalText}>{t('test.really_want')}</h1>
                     <br/>
-                    <Link href={`test?subject=${subjectValue.id}&tk_=${localStorage.getItem('Authorization')}&university=${props.university.id}`}  className={`${style.button} ${style.no}`}
-                            onClick={() => leaved()}
+                    <Link
+                        href={`test?subject=${subjectValue.id}&tk_=${localStorage.getItem('Authorization')}&university=${props.university.id}`}
+                        className={`${style.button} ${style.no}`}
+                        onClick={() => leaved()}
                     >Да
                     </Link>
                     <button className={style.button} onClick={_ => setShowModal(false)}>Нет</button>
-                </div>  : <div className={style.startModal}>
+                </div> : <div className={style.startModal}>
                     <h1 className={style.modalText}>{t('test.start')}</h1>
                     <br/>
                     <button className={style.button} onClick={startTimer}>Да</button>
-                    <Link href={tests.length ? `/university/${tests && tests.tests && tests.tests[0].university}` : '/'}  className={`${style.button} ${style.no}`}
-                            onClick={() => setShowModal(false)}
+                    <Link href={tests.length ? `/university/${tests && tests.tests && tests.tests[0].university}` : '/'}
+                          className={`${style.button} ${style.no}`}
+                          onClick={() => setShowModal(false)}
                     >Нет
                     </Link>
                 </div>}
             </Modal>
         </div>
-        {props.university.subject.map((value, index) => <button key={value.id} 
-        className={`${style.buttonSubject} + ${clientRoute.query.subject == value.id && style.yes}`}
-        disabled={clientRoute.query.subject === value.id ? true : false}
-        onClick={_ => leavef(value, index)}>
+        {props.university.subject.map((value, index) => <button key={value.id}
+                                                                className={`${style.buttonSubject} + ${clientRoute.query.subject == value.id && style.yes}`}
+                                                                disabled={clientRoute.query.subject === value.id ? true : false}
+                                                                onClick={_ => leavef(value, index)}>
             {value.translations[i18n.language] && value.translations[i18n.language].title}
-            </button>)}
+        </button>)}
     </div>);
 }
 

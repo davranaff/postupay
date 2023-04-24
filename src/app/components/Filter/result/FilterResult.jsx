@@ -7,18 +7,33 @@ import {filter} from "@/app/services/filter/filter";
 import {useBaseContext} from "@/app/context/BaseContext";
 import {useTranslation} from "react-i18next";
 import i18n from "@/i18n";
-
+import {GrBottomCorner} from "react-icons/gr";
 
 
 function FilterResult() {
-    const {data, setData, showSideBar, params, setShowSideBar, used, loading, setLoading} = useFilterContext()
+    const {
+        data,
+        setData,
+        showSideBar,
+        params,
+        setShowSideBar,
+        used,
+        loading,
+        setLoading,
+        pagination,
+        setPagination,
+        miniLoading,
+        allCount
+    } = useFilterContext()
+
+    console.log(allCount, data.length)
     const [search, setSearch] = useState('')
-    
+
     const [saves, setSaves] = useState({
         active: false,
         datas: [],
     })
-    const { user } = useBaseContext()
+    const {user} = useBaseContext()
     const {t} = useTranslation()
 
     useEffect(_ => {
@@ -34,10 +49,8 @@ function FilterResult() {
     }, [search, params])
 
 
-
-
     async function getSaves() {
-        if (user.active &&  saves.datas) {
+        if (user.active && saves.datas) {
             // auth.getFavourites(localStorage.getItem('Authorization'))
             // .then(res => setSaves({...saves, datas: res.data}))
             // .catch(err => console.log(err))
@@ -54,7 +67,8 @@ function FilterResult() {
                         getSaves()
                         setSaves({...saves, active: !saves.active})
                     }} src={saves.active ? '/icons/save.svg' : '/icons/rectangle.svg'} alt=""/>
-                    <button className={`${style.button} ${!showSideBar ? style.white : ''}`} onClick={_ => setShowSideBar(!showSideBar)}>{t('filter.filter')}</button>
+                    <button className={`${style.button} ${!showSideBar ? style.white : ''}`}
+                            onClick={_ => setShowSideBar(!showSideBar)}>{t('filter.filter')}</button>
                 </div>
             </div>
             <label htmlFor="search" className={style.label}>
@@ -67,32 +81,48 @@ function FilterResult() {
             <h1 className={style.mainTitle}>{t('filter.results')}:</h1>
             <div className={`${style.resultContent} ${!showSideBar ? style.resultContent_hidden : ''}`}>
                 {!loading ?
-                    !saves.active ? data.length ? data.map(value => <Link href={`university/${value.id}`} key={value.id}>
-                        <div className={style.filterItem}>
-                            <img src={value.image ? value.image : "/icons/logo.svg"} alt={value.translations['ru'].title} className={style.filterItemImg}/>
-                            <div className={style.filterItemContent}>
-                                <h3 className={style.filterItemContentTitle}>
-                                    {value.translations[i18n.language] && value.translations[i18n.language].title }
-                                </h3>
-                                <p className={style.filterItemContentSubtitle}>
-                                    {value.translations[i18n.language] && value.translations[i18n.language].address }
-                                </p>
+                    data && !saves.active ? data.length ? data.map((value, ind) => <>
+                        <Link
+                            href={`university/${value.id}`}
+                            key={value.id}>
+                            <div className={style.filterItem}>
+                                <img src={value.image ? value.image : "/icons/logo.svg"}
+                                     alt={value.translations['ru'].title} className={style.filterItemImg}/>
+                                <div className={style.filterItemContent}>
+                                    <h3 className={style.filterItemContentTitle}>
+                                        {value.translations[i18n.language] && value.translations[i18n.language].title}
+                                    </h3>
+                                    <p className={style.filterItemContentSubtitle}>
+                                        {value.translations[i18n.language] && value.translations[i18n.language].address}
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                    </Link>) : <h2 className={style.mainTitle}>Ничего не найдено</h2> : saves.datas.length ? data.map(value => <Link href={`university/${value.id}`} key={value.id}>
-                        <div className={style.filterItem}>
-                            <Image src={value.university.image ? value.university.image : '/icons/logo.svg'} alt={value.university.title[i18n.language]} width={0} height={0}
-                                className={style.filterItemImg}/>
-                            <div className={style.filterItemContent}>
-                                <h3 className={style.filterItemContentTitle}>
-                                    {value.university.title[i18n.language] && value.university.title[i18n.language] }
-                                </h3>
-                                <p className={style.filterItemContentSubtitle}>
-                                    {value.university.address[i18n.language] && value.university.address[i18n.language] }
-                                </p>
+                        </Link>
+                            {!data[ind + 1] && allCount !== data.length ? (
+                                miniLoading ? <div className={style.miniLoading}></div> :
+                                    <span className={style.readMore}
+                                          onClick={() => setPagination(`&limit=${data.length + 10}&offset=${data.length}`)}>
+                                    Read more <GrBottomCorner/>
+                                </span>
+                            ) : ''}
+                        </>
+                    ) : <h2 className={style.mainTitle}>Ничего не найдено</h2> : saves.datas.length ? data.map(value =>
+                        <Link href={`university/${value.id}`} key={value.id}>
+
+                            <div className={style.filterItem}>
+                                <Image src={value.university.image ? value.university.image : '/icons/logo.svg'}
+                                       alt={value.university.title[i18n.language]} width={0} height={0}
+                                       className={style.filterItemImg}/>
+                                <div className={style.filterItemContent}>
+                                    <h3 className={style.filterItemContentTitle}>
+                                        {value.university.title[i18n.language] && value.university.title[i18n.language]}
+                                    </h3>
+                                    <p className={style.filterItemContentSubtitle}>
+                                        {value.university.address[i18n.language] && value.university.address[i18n.language]}
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                    </Link>) : <h2 className={style.mainTitle}>Ничего не найдено</h2>
+                        </Link>) : <h2 className={style.mainTitle}>Ничего не найдено</h2>
                     : (
                         <div className={style.loadingContainer}>
                             <div className={style.ldsDualRing}>
