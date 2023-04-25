@@ -49,7 +49,7 @@ function Input({ nameOfInput = 'example', type = 'text', required = true, name }
                 placeholder={nameOfInput}
                 onChange={e => changeInput(e)}
                 className={`${style.input}  ${error && style.error}`}
-                minLength={type === 'password' ? 8 : 4}
+                minLength={type === 'password' ? 8 : 1}
                 onBlur={endFocused}
             />
             {type === 'password' && (
