@@ -65,6 +65,7 @@
     "surname" : "Familiya",
     "email": "Elektron pochta ",
     "password": "Parol tanlang",
+    "password_in": "Parolni kiriting",
     "c_password": "Parolni tasdiqlang",
     "say_password": "Yangi parol tanlang",
     "new_password": "Yangi parol",

@@ -34,7 +34,7 @@ function Index(props) {
                     {t('sign.less_minute')} </p>
                 <SingInForm>
                     <Input nameOfInput={t('sign.email')}  type={'email'} name={'email'}/>
-                    <Input nameOfInput={t('sign.password')}  type={'password'} name={'password'}/>
+                    <Input nameOfInput={t('sign.password_in')}  type={'password'} name={'password'}/>
                     <p className={style.forgot} onClick={() => setShowModal(true)}>{t('sign.forgot')} </p>
                     <Button text={t('home.navbar.sign_in')} isSignIn={true}/>
 
