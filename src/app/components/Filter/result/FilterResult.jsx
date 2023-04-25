@@ -8,6 +8,7 @@ import {useBaseContext} from "@/app/context/BaseContext";
 import {useTranslation} from "react-i18next";
 import i18n from "@/i18n";
 import {GrBottomCorner} from "react-icons/gr";
+import {log} from "next-translate/loadNamespaces";
 
 
 function FilterResult() {
@@ -58,7 +59,7 @@ function FilterResult() {
     }
 
     return (
-        <div className={`${style.main} ${!showSideBar ? style.main_active : ''}`}>
+        <div className={`${style.main} ${!showSideBar ? style.main_active : ''}`} >
             <h1 className={style.mainTitle}>{t('filter.list')}</h1>
             <div className={style.mainM}>
                 <h1 className={style.mainTitleM}>{saves.active ? t('home.navbar.saved') : t('filter.list')}</h1>
@@ -79,7 +80,7 @@ function FilterResult() {
                        className={style.input} placeholder={t('filter.search') + '...'}/>
             </label>
             <h1 className={style.mainTitle}>{t('filter.results')}:</h1>
-            <div className={`${style.resultContent} ${!showSideBar ? style.resultContent_hidden : ''}`}>
+            <div className={`${style.resultContent} ${!showSideBar ? style.resultContent_hidden : ''}`} onScroll={() => setPagination(`&limit=${data.length + 10}&offset=${data.length}`)}>
                 {!loading ?
                     data && !saves.active ? data.length ? data.map((value, ind) => <>
                         <Link
