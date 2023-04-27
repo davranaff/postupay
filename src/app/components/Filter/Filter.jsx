@@ -28,16 +28,18 @@ function Filter(props) {
                 }
                 arr.push(`${element}=${router.query[element]}`)
             })
-            filter.getFilterResult(`${arr.join("&")}`).then(r => {
-                setData(r.data)
-                console.log(r.data)
+            setMiniLoading(true)
+            filter.getFilterResult(`${arr.join("&")}`, pagination).then(r => {
+                setData(r.data.results)
                 setLoading(false)
+                setMiniLoading(false)
+                setAllCount(r.data.count)
             })
             return
         }
         async function getData() {
             setMiniLoading(true)
-            await filter.getFilterResult(params + pagination).then(res => {
+            await filter.getFilterResult(pagination).then(res => {
                 setData(res.data.results)
                 setLoading(false)
                 setMiniLoading(false)

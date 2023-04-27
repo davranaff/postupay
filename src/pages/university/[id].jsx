@@ -29,9 +29,11 @@ function Id({university}) {
     }
 
     const loadSaved = () => {
-        auth.getFavourites(localStorage.getItem('Authorization'), JSON.parse(localStorage.getItem('user')).id)
+        if (JSON.parse(localStorage.getItem('user'))) {
+            auth.getFavourites(localStorage.getItem('Authorization'), JSON.parse(localStorage.getItem('user')).id)
             .then(res => setIsSaved(res.data.find(item => item.university.id === university.id)))
             .catch(err => console.log(err))
+        }
     }
 
     async function saveUni() {
