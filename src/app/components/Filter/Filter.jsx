@@ -15,7 +15,7 @@ function Filter(props) {
     const router = useRouter()
     const [loading, setLoading] = useState(true)
     const [miniLoading, setMiniLoading] = useState(false)
-    const [pagination, setPagination] = useState({limit: PAGE_SIZE, offset: 0});
+    const [pagination, setPagination] = useState({limit: PAGE_SIZE, offset: 10});
     const [hasMore, setHasMore] = useState(true);
     const [allCount, setAllCount] = useState(null)
     const [pArr, setPArr] = useState([])

@@ -4,7 +4,8 @@ import axios from "axios";
 
 export const filter = {
     getFilterResult: async (paramUrl, pagination) => {
-        const url = mainUrl + 'university/filter/?' + paramUrl + pagination
+        console.log(pagination)
+        const url = mainUrl + 'university/filter/?' + paramUrl + `&limit=${pagination.limit}&offset=${pagination.offset}`
         return await axios.get(url)
 
     },

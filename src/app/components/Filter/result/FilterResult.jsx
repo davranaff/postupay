@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import style from './filterresult.module.css'
 import Image from "next/image";
 import {useFilterContext} from "@/app/context/FilterContext";
@@ -24,7 +24,9 @@ function FilterResult() {
         pagination,
         setPagination,
         miniLoading,
-        allCount
+        allCount,
+        handleLoadMore,
+        hasMore,
     } = useFilterContext()
 
     console.log(allCount, data.length)
@@ -49,6 +51,30 @@ function FilterResult() {
         setLoading(false)
     }, [search, params])
 
+    const containerRef = useRef(null);
+
+    useEffect(() => {
+        const options = {
+            root: containerRef.current,
+            threshold: 0,
+        };
+        const observer = new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting && hasMore && !miniLoading) {
+                handleLoadMore();
+            }
+        }, options);
+
+        if (containerRef.current) {
+            observer.observe(containerRef.current.lastElementChild);
+        }
+
+        return () => {
+            if (containerRef.current) {
+                observer.unobserve(containerRef.current.lastElementChild);
+            }
+        };
+    }, [containerRef, hasMore, miniLoading]);
+
 
     async function getSaves() {
         if (user.active && saves.datas) {
@@ -59,7 +85,7 @@ function FilterResult() {
     }
 
     return (
-        <div className={`${style.main} ${!showSideBar ? style.main_active : ''}`} >
+        <div className={`${style.main} ${!showSideBar ? style.main_active : ''}`}>
             <h1 className={style.mainTitle}>{t('filter.list')}</h1>
             <div className={style.mainM}>
                 <h1 className={style.mainTitleM}>{saves.active ? t('home.navbar.saved') : t('filter.list')}</h1>
@@ -80,29 +106,30 @@ function FilterResult() {
                        className={style.input} placeholder={t('filter.search') + '...'}/>
             </label>
             <h1 className={style.mainTitle}>{t('filter.results')}:</h1>
-            <div className={`${style.resultContent} ${!showSideBar ? style.resultContent_hidden : ''}`} onScroll={() => setPagination(`&limit=${data.length + 10}&offset=${data.length}`)}>
+            <div ref={containerRef}
+                 className={`${style.resultContent} ${!showSideBar ? style.resultContent_hidden : ''}`}>
                 {!loading ?
                     data && !saves.active ? data.length ? data.map((value, ind) => <>
-                        <Link
-                            href={`university/${value.id}`}
-                            key={value.id}>
-                            <div className={style.filterItem}>
-                                <img src={value.image ? value.image : "/icons/logo.svg"}
-                                     alt={value.translations['ru'].title} className={style.filterItemImg}/>
-                                <div className={style.filterItemContent}>
-                                    <h3 className={style.filterItemContentTitle}>
-                                        {value.translations[i18n.language] && value.translations[i18n.language].title}
-                                    </h3>
-                                    <p className={style.filterItemContentSubtitle}>
-                                        {value.translations[i18n.language] && value.translations[i18n.language].address}
-                                    </p>
+                            <Link
+                                href={`university/${value.id}`}
+                                key={value.id}>
+                                <div className={style.filterItem}>
+                                    <img src={value.image ? value.image : "/icons/logo.svg"}
+                                         alt={value.translations['ru'].title} className={style.filterItemImg}/>
+                                    <div className={style.filterItemContent}>
+                                        <h3 className={style.filterItemContentTitle}>
+                                            {value.translations[i18n.language] && value.translations[i18n.language].title}
+                                        </h3>
+                                        <p className={style.filterItemContentSubtitle}>
+                                            {value.translations[i18n.language] && value.translations[i18n.language].address}
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                        </Link>
-                            {!data[ind + 1] && allCount !== data.length ? (
+                            </Link>
+                            {!data[ind + 1] && hasMore ? (
                                 miniLoading ? <div className={style.miniLoading}></div> :
                                     <span className={style.readMore}
-                                          onClick={() => setPagination(`&limit=${data.length + 10}&offset=${data.length}`)}>
+                                          onClick={handleLoadMore}>
                                     Read more <GrBottomCorner/>
                                 </span>
                             ) : ''}
