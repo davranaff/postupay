@@ -23,7 +23,7 @@ function Profile({check}) {
     const router = useRouter()
     const [userInfo, setUserInfo] = useState(null)
     const [edit, setEdit] = useState(false)
-    const [id, setId] = useState(Math.floor(Math.random() * 99999))
+    const [id, setId] = useState(null)
     const [showModal, setShowModal] = useState(false)
     const [name, setName] = useState(userInfo && !edit ? userInfo.first_name : "")
     const [surname, setSurname] = useState(userInfo && !edit ? userInfo.last_name : "")
@@ -67,6 +67,11 @@ function Profile({check}) {
                 }
             }).then(res => {
                 setUserInfo(res.data)
+                if (localStorage.getItem("id")) {
+                    setId(localStorage.getItem("id"))
+                    return
+                }
+                localStorage.setItem("id", Math.floor(Math.random() * 99999))
             })
             setToken(localStorage.getItem('Authorization'))
             return
