@@ -71,7 +71,9 @@ function Profile({check}) {
                     setId(localStorage.getItem("id"))
                     return
                 }
-                localStorage.setItem("id", Math.floor(Math.random() * 99999))
+                const newId = Math.floor(Math.random() * 99999)
+                localStorage.setItem("id", newId)
+                setId(newId)
             })
             setToken(localStorage.getItem('Authorization'))
             return
