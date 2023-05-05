@@ -76,6 +76,8 @@ function Navbar(props) {
                 localStorage.removeItem('user')
                 localStorage.removeItem('Authorization')
                 localStorage.removeItem('ally-supports-cache')
+                localStorage.removeItem("id")
+                localStorage.removeItem('tests')
                 return res
 
             }).catch(err => {

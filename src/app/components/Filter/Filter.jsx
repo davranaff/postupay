@@ -38,12 +38,12 @@ function Filter(props) {
                 // setArr([...arr,`${element}=${router.query[element]}` ])
             })
             setMiniLoading(true)
-            filter.getFilterResult(`${arr.join("&")}`, pagination).then(r => {
+            filter.getFilterResult(`${arr.join("&")}`, {limit: PAGE_SIZE, offset: 0}).then(r => {
                 setData(r.data.results)
                 setLoading(false)
                 setMiniLoading(false)
                 setAllCount(r.data.count)
-                setHasMore(r.data.next !== null);
+                setHasMore(r.data.next !== null)
             })
             return
         }
@@ -64,6 +64,7 @@ function Filter(props) {
             getData()
         }
     }, [params, router.query])
+
     const handleLoadMore = async () => {
 
 
