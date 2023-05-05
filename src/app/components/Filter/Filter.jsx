@@ -22,7 +22,6 @@ function Filter(props) {
     useEffect(_ => {
         if (Object.keys(router.query).length > 0) {
             let arr = []
-
             Object.keys(router.query).forEach((element) => {
                 if (typeof router.query[element] === "object") {
                     router.query[element].forEach(item => {
