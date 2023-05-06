@@ -123,13 +123,13 @@ function Id({university}) {
                     <div className={style.rightInfoDescription}>
                         {university.translations[i18n.language] && university.translations[i18n.language].description}
                     </div>
-                    <ScrollContainer className={style.rightInfoFinance}>
+                    <div className={style.rightInfoFinance}>
                         {university.faculty.map(vl => (
                             <div className={style.finance} key={vl.id}>
                                 {vl.translations[i18n.language] && vl.translations[i18n.language].title}
                             </div>
                         ))}
-                    </ScrollContainer>
+                    </div>
                 </div>
             </div>
             <div className={style.blockTest}>
