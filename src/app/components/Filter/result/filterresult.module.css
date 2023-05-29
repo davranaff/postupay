@@ -27,13 +27,14 @@
 }
 .miniLoading {
     display: block;
-    margin: auto    ;
+    margin: 20px auto    ;
     width: 20px;
     height: 20px;
     border-radius: 50%;
     border: 2px solid #ccc;
     border-top-color: #666;
     animation: spin .7s ease-in-out infinite;
+
 }
 
 @keyframes spin {
@@ -149,6 +150,7 @@
 .resultContent {
     height: 70%;
     overflow-y: auto;
+    position: relative;
 }
 
 .resultContent span {
